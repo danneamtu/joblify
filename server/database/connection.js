@@ -9,6 +9,7 @@ const connectDB = async () => {
       useFindAndModify: false,
       useCreateIndex: true,
     })
+    mongoose.set('useFindAndModify', false) // !warnings into the console
     console.log(`Connected to MongoDB`)
   } catch (err) {
     console.log(err)

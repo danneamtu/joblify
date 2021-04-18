@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-
 let schema = new mongoose.Schema({
   title: {
     type: String,
@@ -10,7 +9,10 @@ let schema = new mongoose.Schema({
     required: true,
   },
   location: String,
-  createdAt: String,
+  timestamp: {
+    type: Date,
+    default: new Date(),
+  },
 })
 
 const Jobs = mongoose.model('jobs', schema)
