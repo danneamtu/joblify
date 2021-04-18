@@ -26,7 +26,6 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 dotenv.config()
 const PORT = process.env.PORT || 5000
 
-
 app.use('/jobs', jobsRoutes)
 
 app.listen(PORT, (result, error) => {
