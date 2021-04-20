@@ -27,7 +27,9 @@ export const getJobs = async (req, res) => {
 }
 
 export const createJob = async (req, res) => {
-  const newJob = new Jobs(req.body)
+  const { title, description, location } = req.body 
+  const newJob = new Jobs({ title, description, location })
+
   console.log('new job', newJob)
   console.log('from server controler', newJob)
   try {

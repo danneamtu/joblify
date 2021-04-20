@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { createJob } from '../../actions/jobs'
 
 const Form = () => {
-  const [jobData, setJobData] = useState({ title: '', description: '', location: '', timestamp: '' })
+  const [jobData, setJobData] = useState({ title: '', description: '', location: '' })
 
   const dispatch = useDispatch()
 
