@@ -28,10 +28,12 @@ export const getJobs = async (req, res) => {
 
 export const createJob = async (req, res) => {
   const newJob = new Jobs(req.body)
+  console.log('new job', newJob)
+  console.log('from server controler', newJob)
   try {
     await newJob.save()
-    res.status(201).json(req.body)
+    res.status(201).send(req.body)
   } catch (err) {
-    res.status(404).json({ message: err.message || 'Job cannot be created' })
+    res.send({ message: err.message || 'Job cannot be created' })
   }
-} 
+}

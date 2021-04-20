@@ -9,7 +9,6 @@ import jobsRoutes from './routes/jobs.js'
 import connectDB from './database/connection.js'
 
 connectDB()
-
 const app = express()
 
 app.use(cors())

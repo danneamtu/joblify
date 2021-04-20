@@ -1,3 +1,4 @@
+import { getJobs } from '../../../actions/jobs'
 import useStyles from './style'
 const Job = () => {
   const classes = useStyles()
