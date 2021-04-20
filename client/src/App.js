@@ -1,6 +1,6 @@
 import { Container, AppBar, Grid } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import useStyles from './styles'
 import Filter from './components/Filter/Filter'
@@ -10,7 +10,7 @@ import { getJobs } from './actions/jobs'
 function App() {
   const classes = useStyles()
   const dispatch = useDispatch()
-
+  const [currentId, setCurrentId] = useState(null)
   useEffect(() => {
     dispatch(getJobs)
   }, [dispatch])
@@ -22,10 +22,10 @@ function App() {
         <Grid container>
           <Grid item xs={12} sm={3}>
             <Filter />
-            <Form />
+            <Form setCurrentId={setCurrentId} />
           </Grid>
           <Grid item xs={12} sm={9}>
-            <Jobs />
+            <Jobs currentId={currentId} setCurrentId={setCurrentId} />
           </Grid>
         </Grid>
       </Container>

@@ -1,3 +1,4 @@
+import mongoose from 'mongoose'
 import Jobs from '../models/jobs.js'
 
 export const getJob = async (req, res) => {
@@ -27,15 +28,24 @@ export const getJobs = async (req, res) => {
 }
 
 export const createJob = async (req, res) => {
-  const { title, description, location } = req.body 
+  const { title, description, location } = req.body
   const newJob = new Jobs({ title, description, location })
-
   console.log('new job', newJob)
   console.log('from server controler', newJob)
   try {
     await newJob.save()
     res.status(201).send(req.body)
   } catch (err) {
-    res.send({ message: err.message || 'Job cannot be created' })
+    res.status(400).send({ message: err.message || 'Job cannot be created' })
   }
+}
+
+export const patchJob = async (req, res) => {
+  const { id: _id } = req.params
+  const job = req.body
+  if (!mongoose.types.ObjectId.isValid(_id)) {
+    return res.status(404).send('No job with this id')
+  }
+  const updatedJob = await Jobs.findByIdAndUpdate(_id, { new: true })
+  res.status(200).send(updatedJob)
 }

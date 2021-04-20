@@ -1,16 +1,27 @@
 import Job from './Job/Job'
 import useStyles from './style'
 import { useSelector } from 'react-redux'
+import { Grid, CircularProgress } from '@material-ui/core'
 
-const Jobs = () => {
-  const classes = useStyles()
+const Jobs = ({ currentId, setCurrentId }) => {
   const jobs = useSelector((state) => state.jobs)
-  console.log(jobs)
+  const classes = useStyles()
+
+  console.log('the jobs you search', jobs)
   return (
     <>
-      <h1>Jobs</h1>
-      <Job />
-      <Job />
+      {!jobs.length ? (
+        <CircularProgress />
+      ) : (
+        <Grid>
+          {jobs.map((job) => (
+            <Grid item key={job._title}>
+              <h1>JOb {job._title}</h1>
+              <Job currentId={currentId} setCurrentId={setCurrentId} job={job} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </>
   )
 }

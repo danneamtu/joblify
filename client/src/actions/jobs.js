@@ -9,12 +9,10 @@ export const getJobs = () => async (dispatch) => {
   }
 }
 
-export const createJob = (jobb) => async (dispatch) => {
+export const createJob = (newJob) => async (dispatch) => {
   try {
-    const job = await api.createJob(jobb)
-    console.log('create job in action', job)
-    console.log(job)
-    dispatch({ type: 'CREATE', payload: job })
+    const job = await api.createJob(newJob)
+    return dispatch({ type: 'CREATE', payload: job })
   } catch (err) {
     console.log(err)
   }
