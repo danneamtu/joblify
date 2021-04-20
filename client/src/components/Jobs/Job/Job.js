@@ -5,7 +5,7 @@ import useStyles from './style'
 const Job = ({ job, setCurrentId, currentId }) => {
   const { _id, title, description, location } = job.data
   const classes = useStyles()
-  console.log('job job', job)
+  console.log('job job with id', job, _id)
   return (
     <>
       <Typography variant="h1">

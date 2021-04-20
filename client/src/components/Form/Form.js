@@ -1,15 +1,31 @@
 import { useState, useEffect } from 'react'
 import { TextField } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { createJob } from '../../actions/jobs'
+import { createJob, patchJob } from '../../actions/jobs'
 
 const Form = ({ currentId, setCurrentId }) => {
   const [jobData, setJobData] = useState({ title: '', description: '', location: '' })
   const dispatch = useDispatch()
+  const jobToUpdate = useSelector((state) => state.jobs.find((job) => job._id === currentId))
+  console.log('jobToUpdate', jobToUpdate)
+
+  useEffect(() => {
+    if (jobToUpdate) {
+      setJobData(jobToUpdate)
+    }
+  }, [jobToUpdate])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('jobd', jobData)
-    dispatch(createJob(jobData))
+    console.log('curentd', currentId)
+    if (currentId) {
+      console.log('update job', currentId, jobData)
+      dispatch(patchJob(currentId, jobData))
+    } else {
+      console.log('create job')
+      dispatch(createJob(jobData))
+    }
   }
   return (
     <form autoComplete="off" noValidate onSubmit={handleSubmit}>

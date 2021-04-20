@@ -22,7 +22,7 @@ function App() {
         <Grid container>
           <Grid item xs={12} sm={3}>
             <Filter />
-            <Form setCurrentId={setCurrentId} />
+            <Form currentId={currentId} />
           </Grid>
           <Grid item xs={12} sm={9}>
             <Jobs currentId={currentId} setCurrentId={setCurrentId} />

@@ -34,18 +34,18 @@ export const createJob = async (req, res) => {
   console.log('from server controler', newJob)
   try {
     await newJob.save()
-    res.status(201).send(req.body)
+    res.status(201).send(newJob)
   } catch (err) {
     res.status(400).send({ message: err.message || 'Job cannot be created' })
   }
 }
 
 export const patchJob = async (req, res) => {
-  const { id: _id } = req.params
-  const job = req.body
-  if (!mongoose.types.ObjectId.isValid(_id)) {
-    return res.status(404).send('No job with this id')
-  }
-  const updatedJob = await Jobs.findByIdAndUpdate(_id, { new: true })
+  const { id } = req.params
+  const { title, description, location } = req.body
+
+  console.log('inside controllers', title, description, location)
+  const updatedJob = { title, description, location, _id: id }
+  await Jobs.findByIdAndUpdate(id, updatedJob, { new: true })
   res.status(200).send(updatedJob)
 }

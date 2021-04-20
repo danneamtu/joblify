@@ -8,11 +8,21 @@ export const getJobs = () => async (dispatch) => {
     console.log(err)
   }
 }
-
 export const createJob = (newJob) => async (dispatch) => {
   try {
     const job = await api.createJob(newJob)
+    console.log('from action')
     return dispatch({ type: 'CREATE', payload: job })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const patchJob = (id, updatedJob) => async (dispatch) => {
+  try {
+    console.log('inside actions', id, updatedJob)
+    const { data } = await api.patchJob(id, updatedJob)
+    dispatch({ type: 'UPDATE', payload: data })
   } catch (err) {
     console.log(err)
   }
