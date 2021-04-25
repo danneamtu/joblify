@@ -27,3 +27,12 @@ export const patchJob = (id, updatedJob) => async (dispatch) => {
     console.log(err)
   }
 }
+
+export const deleteJob = (id) => async (dispatch) => {
+  try {
+    await api.deleteJob(id)
+    dispatch({ type: 'DELETE', payload: id })
+  } catch (err) {
+    console.log(err)
+  }
+}

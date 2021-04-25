@@ -6,6 +6,8 @@ const reducer = (jobs = [], action) => {
       return [...jobs, action.payload]
     case 'UPDATE':
       return jobs.map((job) => (job._id === action.payload._id ? action.payload : job))
+    case 'DELETE':
+      return jobs.filter((job) => (job._id !== action.payload))
     default:
       return jobs
   }

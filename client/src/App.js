@@ -11,9 +11,10 @@ function App() {
   const classes = useStyles()
   const dispatch = useDispatch()
   const [currentId, setCurrentId] = useState(null)
+
   useEffect(() => {
     dispatch(getJobs)
-  }, [dispatch])
+  }, [currentId, dispatch])
 
   return (
     <Container maxWidth="lg">
@@ -22,7 +23,7 @@ function App() {
         <Grid container>
           <Grid item xs={12} sm={3}>
             <Filter />
-            <Form currentId={currentId} />
+            <Form currentId={currentId} setCurrentId={setCurrentId} />
           </Grid>
           <Grid item xs={12} sm={9}>
             <Jobs currentId={currentId} setCurrentId={setCurrentId} />

@@ -13,7 +13,7 @@ const Form = ({ currentId, setCurrentId }) => {
     if (jobToUpdate) {
       setJobData(jobToUpdate)
     }
-  }, [jobToUpdate])
+  }, [currentId, jobToUpdate])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -26,16 +26,21 @@ const Form = ({ currentId, setCurrentId }) => {
       console.log('create job')
       dispatch(createJob(jobData))
     }
+    // clear()
+  }
+  const clear = () => {
+    setCurrentId(null)
+    setJobData({ title: '', description: '', location: '' })
   }
   return (
     <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-      <h1>Form</h1>
+      <h1>{currentId ? 'Edit job' : 'Form'}</h1>
       curent id {currentId}
       <TextField name="title" label="title" fullWidth value={jobData.title} onChange={(e) => setJobData({ ...jobData, title: e.target.value })} />
       <TextField name="description" label="description" fullWidth value={jobData.description} onChange={(e) => setJobData({ ...jobData, description: e.target.value })} />
       <TextField name="location" label="location" fullWidth value={jobData.location} onChange={(e) => setJobData({ ...jobData, location: e.target.value })} />
       <button type="submit" variant="contained" color="primary" fullWidth>
-        Submit
+        {currentId ? 'Edit' : 'Submit'}
       </button>
     </form>
   )
