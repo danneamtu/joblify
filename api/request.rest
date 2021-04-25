@@ -1,0 +1,6 @@
+# GET http://localhost:5001/api/jobs
+
+GET http://localhost:5001/api/jobs?page=2&limit=10
+
+# GET http://localhost:5001/api/jobs?order=asc&limit=10
+

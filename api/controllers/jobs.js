@@ -3,8 +3,8 @@ import Jobs from '../models/jobs.js'
 
 export const getJob = async (req, res) => {
   try {
-    const jobs = await Jobs.findById(id)
-    res.status(200).json(jobs)
+    const job = await Jobs.findById(id)
+    res.status(200).json(job)
   } catch (err) {
     console.log(err)
     res.status(404).json({ message: err.message || 'Job not found' })
@@ -12,14 +12,27 @@ export const getJob = async (req, res) => {
 }
 
 export const getJobs = async (req, res) => {
-  const id = req.query.id
-  let jobs
-  try {
-    if (id) {
-      jobs = await Jobs.findById(id)
-    } else {
-      jobs = await Jobs.find().limit(3)
+  const id = Number(req.query.id)
+  const page = Number(req.query.page)
+  const limit = Number(req.query.limit)
+  const startIndex = (page - 1) * limit
+  const endIndex = page * limit
+
+  const results = {}
+  if (endIndex < (await Jobs.countDocuments().exec())) {
+    results.next = {
+      page: page + 1,
+      limit: limit,
     }
+  }
+  if (startIndex > 0) {
+    results.previous = {
+      page: page - 1,
+      limit: limit,
+    }
+  }
+  try {
+    let jobs = await Jobs.find().limit(limit).skip(startIndex)
     res.status(200).json(jobs)
   } catch (err) {
     console.log(err)

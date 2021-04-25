@@ -2,8 +2,11 @@ import express from 'express'
 import { getJobs, createJob, patchJob, deleteJob } from '../controllers/jobs.js'
 
 const router = express.Router()
-router.get('/', getJobs)
+// JOBS
+router.get('/', getJobs) // +limit and sort
 router.get('/:id', getJobs)
+
+// JOB
 
 router.post('/', createJob)
 router.patch('/:id', patchJob)
