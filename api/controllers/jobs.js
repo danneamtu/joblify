@@ -1,5 +1,17 @@
-import mongoose from 'mongoose'
 import Jobs from '../models/jobs.js'
+
+export const getJobs = async (req, res) => {
+  const page = Number(req.query.page) || 1
+  const limit = Number(req.query.limit) || 10
+  const start = (page - 1) * limit
+  try {
+    let jobs = await Jobs.find().limit(limit).skip(start)
+    res.status(200).json(jobs)
+  } catch (err) {
+    console.log(err)
+    res.status(409).json({ message: err.message || 'Jobs not found' })
+  }
+}
 
 export const getJob = async (req, res) => {
   try {
@@ -11,40 +23,9 @@ export const getJob = async (req, res) => {
   }
 }
 
-export const getJobs = async (req, res) => {
-  const id = Number(req.query.id)
-  const page = Number(req.query.page)
-  const limit = Number(req.query.limit)
-  const startIndex = (page - 1) * limit
-  const endIndex = page * limit
-
-  const results = {}
-  if (endIndex < (await Jobs.countDocuments().exec())) {
-    results.next = {
-      page: page + 1,
-      limit: limit,
-    }
-  }
-  if (startIndex > 0) {
-    results.previous = {
-      page: page - 1,
-      limit: limit,
-    }
-  }
-  try {
-    let jobs = await Jobs.find().limit(limit).skip(startIndex)
-    res.status(200).json(jobs)
-  } catch (err) {
-    console.log(err)
-    res.status(409).json({ message: err.message || 'Jobs not found' })
-  }
-}
-
 export const createJob = async (req, res) => {
   const { title, description, location } = req.body
   const newJob = new Jobs({ title, description, location })
-  console.log('new job', newJob)
-  console.log('from server controler', newJob)
   try {
     await newJob.save()
     res.status(201).send(newJob)
