@@ -4,7 +4,7 @@ export default makeStyles(() => ({
   appBar: {
     padding: '15px',
   },
-  heading: {
-    color: 'red',
+  jobsList: {
+    paddingRight: '40px',
   },
 }))
