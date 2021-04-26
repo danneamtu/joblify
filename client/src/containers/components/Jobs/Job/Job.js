@@ -1,6 +1,6 @@
-import React from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
-import { heart } from '../../../icons/icons'
+import { star, starFill } from '../../../icons/icons'
 const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 
 const WrapperStyle = styled.div`
@@ -135,7 +135,16 @@ const Container = styled.div`
   background: #1d1d25;
   border-radius: 5px;
   color: white;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  &:hover {
+    background: rgba(74, 74, 97, 0.23);
+  }
+  ${(props) => {
+    if (props.active) {
+      return 'background: rgba(74, 74, 97, 0.23)'
+    }
+  }}
 `
 const Row = styled.div`
   display: flex;
@@ -175,17 +184,26 @@ const CompanyLogo = styled.div`
 const CompanyInfo = styled.div`
   width: 100%;
 `
-const Favorite = styled.div``
+const Favorite = styled.div`
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 8px !important;
+  margin-right: -8px;
+  margin-top: -4px;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.6);
+`
 
 const JobTitle = styled.h2`
   font-size: 16px;
-  color: white;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.94);
   margin: 0;
   padding: 0;
 `
-const JobSubTitle = styled.h3`
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.8);
+const JobSubTitle = styled.p`
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
   margin: 0;
   padding: 0;
 `
@@ -193,17 +211,20 @@ const Chip = styled.span`
   display: inline-block;
   padding: 4px 12px;
   background: #292a33;
-  color: white;
+  color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
 `
 const Date = styled.span`
   display: inline-block;
-  color: white;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
   margin-left: auto;
   max-width: 50px;
 `
 
-function Job() {
+function Job(props) {
+  const [favorite, setFavorite] = useState(false)
+  const {id} = props
   return (
     <WrapperStyle>
       <Container className="p-3">
@@ -213,7 +234,7 @@ function Job() {
             <JobTitle className="mb-1">Front end developer</JobTitle>
             <JobSubTitle>Berlin, Germany</JobSubTitle>
           </CompanyInfo>
-          <Favorite>{heart}</Favorite>
+          <Favorite onClick={() => setFavorite(!favorite)}>{!favorite ? star : starFill}</Favorite>
         </Row>
         <Row alignItems="center">
           <Chip className="rounded-1">Senior</Chip>

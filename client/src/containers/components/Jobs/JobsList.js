@@ -21,7 +21,7 @@ const JobsList = ({ currentId, setCurrentId }) => {
         <Grid>
           {jobs.map((job) => (
             <Grid item key={job._id}>
-              <Job />
+              <Job id={job._id} />
             </Grid>
           ))}
         </Grid>
