@@ -1,5 +1,12 @@
 import styled from 'styled-components'
-const UseGeneralSyles = styled.div`
+export const WrapperStyle = styled.div`
+  .d-flex {
+    display: flex;
+  }
+  .align-items-center {
+    align-items: center;
+  }
+
   .ml-auto {
     margin-left: auto;
   }
@@ -126,4 +133,3 @@ const UseGeneralSyles = styled.div`
     border-radius: 0;
   }
 `
-export default UseGeneralSyles
