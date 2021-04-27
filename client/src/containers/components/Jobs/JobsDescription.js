@@ -1,20 +1,23 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { Row } from '../../styles/components'
+import { boxArrowUp } from '../../icons/icons'
+
 const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 
 const JobInfo = styled.div`
-  width: 100%;
   background: #1d1d25;
   padding: 32px;
   border-radius: 4px;
+  margin-right: 30px;
 `
 const CompanyLogo = styled.div`
-  width: 86px;
+  width: 90px;
   margin-bottom: 32px;
   margin-right: 32px;
   & img {
     width: 100%;
+    border-radius: 4px;
   }
 `
 const CompanyInfo = styled.div`
@@ -22,7 +25,9 @@ const CompanyInfo = styled.div`
   margin-bottom: 24px;
 `
 const CompanyShare = styled.div`
-  width: 260px;
+  width: 120px;
+  margin-left: auto;
+  text-align: right;
 `
 const Title = styled.h1`
   font-size: 21px;
@@ -66,10 +71,8 @@ const ButtonApply = styled.button`
   padding: 12px 30px;
   border: none;
   border-radius: 5px;
-  float: left;
 `
 const ButtonSave = styled.button`
-  float: left;
   font-size: 14px;
   background: #292a32;
   color: rgba(255, 255, 255, 0.6);
@@ -103,15 +106,13 @@ const JobDescription = () => {
       <JobInfo>
         <Row>
           <CompanyLogo>{companyLogo}</CompanyLogo>
-
           <CompanyInfo>
             <Title>Cloud - Senior JavaScript Engineer Billing</Title>
             <JobSubTitle>Vodafone &middot; Berlin, Germany</JobSubTitle>
-          </CompanyInfo>
-          <CompanyShare>
-            <ButtonApply>Apply</ButtonApply>
+            <ButtonApply>{boxArrowUp} Apply</ButtonApply>
             <ButtonSave>Save</ButtonSave>
-          </CompanyShare>
+          </CompanyInfo>
+          <CompanyShare></CompanyShare>
         </Row>
 
         <Row>

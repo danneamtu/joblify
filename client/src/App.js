@@ -2,6 +2,7 @@ import { Container, AppBar, Grid } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 
+import Filter from './containers/components/Filter/Filter'
 import useStyles from './styles'
 import { getJobs } from './redux/actions/jobsActions'
 
@@ -21,15 +22,18 @@ function App() {
 
   return (
     <WrapperStyle>
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         {/* <AppBar className={classes.appBar}>Joblify</AppBar> */}
         <Container>
           <Grid container>
-            <Grid item xs={12} className={classes.jobsList} sm={4}>
+            <Grid item xs={12} sm={4}>
               <JobsList />
             </Grid>
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} sm={6}>
               <JobsDescription />
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Filter />
             </Grid>
           </Grid>
         </Container>

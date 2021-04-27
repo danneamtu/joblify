@@ -10,6 +10,7 @@ const JobContainer = styled.div`
   color: white;
   margin-bottom: 16px;
   padding: 16px;
+  margin-right: 24px;
   cursor: pointer;
   &:hover {
     background: rgba(74, 74, 97, 0.23);
