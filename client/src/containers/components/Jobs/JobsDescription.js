@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { Row } from '../../styles/components'
-import { boxArrowUp } from '../../icons/icons'
+import { boxArrowUp, star } from '../../icons/icons'
 
 const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 
@@ -70,16 +70,25 @@ const ButtonApply = styled.button`
   margin-right: 16px;
   padding: 12px 30px;
   border: none;
-  border-radius: 5px;
+  font-weight: 500;
+  border-radius: 24px;
+  
+  & svg {
+    margin-left: 8px;
+    margin-bottom: -1px;
+  }
 `
 const ButtonSave = styled.button`
   font-size: 14px;
   background: #292a32;
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
-  padding: 12px 30px;
+  padding: 12px 14px;
   border: none;
-  border-radius: 5px;
+ border-radius: 24px;
+  & svg {
+    
+  }
 `
 const ColInfo = styled.div`
   width: 100%;
@@ -101,6 +110,7 @@ const Content = styled.div`
 `
 
 const JobDescription = () => {
+  const countries = [ 'React.js', 'Node.js', 'Java Script', 'Type Script', 'ireland']
   return (
     <>
       <JobInfo>
@@ -109,31 +119,48 @@ const JobDescription = () => {
           <CompanyInfo>
             <Title>Cloud - Senior JavaScript Engineer Billing</Title>
             <JobSubTitle>Vodafone &middot; Berlin, Germany</JobSubTitle>
-            <ButtonApply>{boxArrowUp} Apply</ButtonApply>
-            <ButtonSave>Save</ButtonSave>
+            <ButtonApply>Apply {boxArrowUp} </ButtonApply>
+            <ButtonSave>Unsave {star} </ButtonSave>
           </CompanyInfo>
           <CompanyShare></CompanyShare>
         </Row>
 
         <Row>
           <ColInfo>
-            <TitleInfo> Job</TitleInfo>
-            <TitleInfoDetail>Full time</TitleInfoDetail>
+            <TitleInfo> 23</TitleInfo>
+            <TitleInfoDetail>Technologies detected</TitleInfoDetail>
+           
           </ColInfo>
           <ColInfo>
-            <TitleInfo> Job</TitleInfo>
-            <TitleInfoDetail>Full time</TitleInfoDetail>
+            <TitleInfo> 38 %</TitleInfo>
+            <TitleInfoDetail>Overall score</TitleInfoDetail>
           </ColInfo>
           <ColInfo>
-            <TitleInfo> Job</TitleInfo>
+            <TitleInfo> Employment Type</TitleInfo>
             <TitleInfoDetail>Full time</TitleInfoDetail>
           </ColInfo>
         </Row>
 
         <Content>
-          <TitleInfoDetail>Technologies detected:</TitleInfoDetail>
-          <br />
-          HTML, CSS, React, JavaScript, TypeScript, Git, Jira, Jest
+
+
+         <ul style={{float:'left', marginRight: '44px'}}>
+              {countries.map((item) => (
+                <li>
+                  <div>{item}</div>
+                </li>
+              ))}
+            </ul>
+            <ul style={{float:'left', marginRight: '60px'}}>
+              {countries.map((item) => (
+                <li>
+                  <div>{item}</div>
+                </li>
+              ))}
+            </ul>
+
+            <h4></h4>
+             <h4>Original job description:</h4>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>

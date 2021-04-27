@@ -1,4 +1,5 @@
 import Job from './Job/Job'
+import TotalResults from './Total/TotalResults'
 import useStyles from './style'
 import { useSelector } from 'react-redux'
 import { Grid, CircularProgress } from '@material-ui/core'
@@ -19,6 +20,8 @@ const JobsList = ({ currentId, setCurrentId }) => {
         <CircularProgress />
       ) : (
         <Grid>
+          <TotalResults />
+
           {jobs.map((job) => (
             <Grid item key={job._id}>
               <Job id={job._id} />

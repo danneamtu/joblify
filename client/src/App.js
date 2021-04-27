@@ -8,9 +8,7 @@ import { getJobs } from './redux/actions/jobsActions'
 
 import JobsList from './containers/components/Jobs/JobsList'
 import JobsDescription from './containers/components/Jobs/JobsDescription'
-import styled from 'styled-components'
-
-import { WrapperStyle } from './containers/styles/classes.js'
+import Navbar from './containers/components/Navbar/Navbar'
 
 function App() {
   const classes = useStyles()
@@ -21,9 +19,9 @@ function App() {
   }, [currentId, dispatch])
 
   return (
-    <WrapperStyle>
+    <>
+      <Navbar />
       <Container maxWidth="xl">
-        {/* <AppBar className={classes.appBar}>Joblify</AppBar> */}
         <Container>
           <Grid container>
             <Grid item xs={12} sm={4}>
@@ -38,7 +36,7 @@ function App() {
           </Grid>
         </Container>
       </Container>
-    </WrapperStyle>
+    </>
   )
 }
 
