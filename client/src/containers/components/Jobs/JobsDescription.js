@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useParams, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { Row } from '../../styles/components'
-import { boxArrowUp, star } from '../../icons/icons'
+import { boxArrowUp, star, circle } from '../../icons/icons'
 
 const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 
@@ -12,7 +13,7 @@ const JobInfo = styled.div`
   margin-right: 30px;
 `
 const CompanyLogo = styled.div`
-  width: 90px;
+  min-width: 90px;
   margin-bottom: 32px;
   margin-right: 32px;
   & img {
@@ -41,7 +42,6 @@ const Title = styled.h1`
 const TitleInfo = styled.h3`
   font-size: 16px;
   margin: 0;
-
   padding: 0;
   margin-bottom: 8px;
   font-weight: 400;
@@ -72,7 +72,7 @@ const ButtonApply = styled.button`
   border: none;
   font-weight: 500;
   border-radius: 24px;
-  
+
   & svg {
     margin-left: 8px;
     margin-bottom: -1px;
@@ -85,9 +85,8 @@ const ButtonSave = styled.button`
   margin: 0;
   padding: 12px 14px;
   border: none;
- border-radius: 24px;
+  border-radius: 24px;
   & svg {
-    
   }
 `
 const ColInfo = styled.div`
@@ -109,15 +108,31 @@ const Content = styled.div`
   color: rgba(255, 255, 255, 0.6);
 `
 
-const JobDescription = () => {
-  const countries = [ 'React.js', 'Node.js', 'Java Script', 'Type Script', 'ireland']
+function useQuery() {
+  return new URLSearchParams(useLocation().search)
+}
+
+const JobDescription = (props) => {
+  // we have
+  let query = useQuery()
+  const searchJobId = query.get('currentJobId')
+  const searchLocation = query.get('location')
+  const searchStart = query.get('start')
+
+  useEffect(() => {
+    console.log('changed id', searchJobId)
+  }, [searchJobId])
+
+  const countries = []
   return (
     <>
       <JobInfo>
         <Row>
           <CompanyLogo>{companyLogo}</CompanyLogo>
           <CompanyInfo>
-            <Title>Cloud - Senior JavaScript Engineer Billing</Title>
+            <Title>
+              {searchLocation},{searchJobId},{searchStart} Cloud - Senior JavaScript Engineer Billing
+            </Title>
             <JobSubTitle>Vodafone &middot; Berlin, Germany</JobSubTitle>
             <ButtonApply>Apply {boxArrowUp} </ButtonApply>
             <ButtonSave>Unsave {star} </ButtonSave>
@@ -129,11 +144,10 @@ const JobDescription = () => {
           <ColInfo>
             <TitleInfo> 23</TitleInfo>
             <TitleInfoDetail>Technologies detected</TitleInfoDetail>
-           
           </ColInfo>
           <ColInfo>
             <TitleInfo> 38 %</TitleInfo>
-            <TitleInfoDetail>Overall score</TitleInfoDetail>
+            <TitleInfoDetail>Your overall score</TitleInfoDetail>
           </ColInfo>
           <ColInfo>
             <TitleInfo> Employment Type</TitleInfo>
@@ -142,30 +156,44 @@ const JobDescription = () => {
         </Row>
 
         <Content>
+          <div style={{ float: 'left', marginRight: '44px' }}>
+            {countries.map((item) => (
+              <p>
+                <div>{item}</div>
+              </p>
+            ))}
+          </div>
+          <div style={{ float: 'left', marginRight: '44px' }}>
+            {countries.map((item) => (
+              <p>
+                <div>{item}</div>
+              </p>
+            ))}
+          </div>
 
-
-         <ul style={{float:'left', marginRight: '44px'}}>
-              {countries.map((item) => (
-                <li>
-                  <div>{item}</div>
-                </li>
-              ))}
-            </ul>
-            <ul style={{float:'left', marginRight: '60px'}}>
-              {countries.map((item) => (
-                <li>
-                  <div>{item}</div>
-                </li>
-              ))}
-            </ul>
-
-            <h4></h4>
-             <h4>Original job description:</h4>
+          <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfmdMdyEdXoVeKd0pNYcd_EwHR2YIZvj4116O0JVZNoE8YOMD5BYlmgOHwYQ1xNn2XaWU&usqp=CAU" />
+          <h4></h4>
+          <h4>Job description</h4>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>
+          <p>Read more</p>
         </Content>
+        <Row>
+          <ColInfo>
+            <TitleInfo> Company</TitleInfo>
+            <TitleInfoDetail>201-500 employees</TitleInfoDetail>
+          </ColInfo>
+          <ColInfo>
+            <TitleInfo> Level</TitleInfo>
+            <TitleInfoDetail>Mid-Senior</TitleInfoDetail>
+          </ColInfo>
+          <ColInfo>
+            <TitleInfo> Employment Type</TitleInfo>
+            <TitleInfoDetail>Full time</TitleInfoDetail>
+          </ColInfo>
+        </Row>
       </JobInfo>
     </>
   )

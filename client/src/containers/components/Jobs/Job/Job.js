@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { Row } from '../../../styles/components'
 import { star, starFill } from '../../../icons/icons'
 const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 
 const JobContainer = styled.div`
+  text-decoration: none;
   background: #1d1d25;
   border-radius: 4px;
   color: white;
@@ -73,25 +75,44 @@ const Date = styled.span`
   margin-left: auto;
   max-width: 50px;
 `
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search)
+}
 
 function Job(props) {
   const [favorite, setFavorite] = useState(false)
+
+  let query = useQuery()
+  const searchJobId = query.get('currentJobId')
+  const searchLocation = query.get('location')
+  const searchStart = query.get('start')
+
+  let uriArray = []
+  searchLocation && uriArray.push(`location=${searchLocation}`)
+  searchStart && uriArray.push(`start=${searchStart}`)
+  searchJobId && uriArray.push(`currentJobId=${searchJobId}`)
+
+  console.log('arr,', uriArray)
+  console.log('props', props)
+
   return (
-    <JobContainer>
-      <Row>
-        <CompanyLogo>{companyLogo}</CompanyLogo>
-        <CompanyInfo>
-          <JobTitle>Front end developer</JobTitle>
-          <JobSubTitle>Berlin, Germany</JobSubTitle>
-        </CompanyInfo>
-        <Favorite onClick={() => setFavorite(!favorite)}>{!favorite ? star : starFill}</Favorite>
-      </Row>
-      <Row alignItems="center">
-        <Chip>Mid-Senior level</Chip>
-        <Chip>Full time</Chip>
-        <Date>3d</Date>
-      </Row>
-    </JobContainer>
+    <Link style={{ textDecoration: 'none' }} to={'/'}>
+      <JobContainer>
+        <Row>
+          <CompanyLogo>{companyLogo}</CompanyLogo>
+          <CompanyInfo>
+            <JobTitle>Front end developer</JobTitle>
+            <JobSubTitle>Berlin, Germany</JobSubTitle>
+          </CompanyInfo>
+          <Favorite onClick={() => setFavorite(!favorite)}>{!favorite ? star : starFill}</Favorite>
+        </Row>
+        <Row alignItems="center">
+          <Chip>Mid-Senior level</Chip>
+          <Chip>Score 38%</Chip>
+          <Date>3d</Date>
+        </Row>
+      </JobContainer>
+    </Link>
   )
 }
 

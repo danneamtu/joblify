@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { person, personFill, starFill, barChartFill, search } from '../../icons/icons'
+import { clockFill, person, personFill, starFill, barChartFill, search } from '../../icons/icons'
 const NavbarContainer = styled.header`
   color: rgba(255, 255, 255, 0.64);
   background: #1d1d25;
@@ -12,16 +13,16 @@ const NavbarContainer = styled.header`
     line-height: 28px;
     padding-left: 28px;
     padding-right: 16px;
-    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
     border: none;
-    margin-right: 16px;
+    margin-right: 8px;
     transition: 0.3s;
     outline-offset: 0;
     outline: none;
-     background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
   }
   .searchInput:focus {
-    width: 230px;
     border: none;
     outline-offset: 0;
     outline: none;
@@ -37,15 +38,22 @@ const Row = styled.div`
   align-items: center;
 `
 const Logo = styled.div`
-  width: 32px;
-  height: 32px;
+  margin-left: -16px;
+  width: 30px;
+  overflow: hidden;
+  height: 30px;
   background: blue;
   color: white;
-  line-height: 32px;
+  line-height: 21px;
   text-align: center;
-  font-size: 20px;
+  font-size: 28px;
   border-radius: 4px;
   margin-right: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  &:hover {
+    background: #0561fb;
+  }
 `
 const Profile = styled.div`
   margin-left: auto;
@@ -53,8 +61,8 @@ const Profile = styled.div`
   color: white;
 `
 const CircleButton = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   text-align: center;
   cursor: pointer;
 
@@ -66,7 +74,7 @@ const CircleButton = styled.div`
   margin-right: 8px;
   transition: 0.2s;
   &:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
   }
 `
 
@@ -86,6 +94,28 @@ const SearchBox = styled.div`
     height: 14px;
   }
 `
+const InfoAuth = styled.div`
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.64);
+  cursor: pointer;
+`
+
+const SearchButton = styled.button`
+  line-height: 28px;
+  border: solid 1px blue;
+  color: blue;
+  text-align: center;
+
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  margin-left: -16px;
+  font-weight: 500;
+  cursor: pointer;
+  &:hover {
+    background: #0561fb;
+    color: white;
+  }
+`
 
 function Navbar() {
   return (
@@ -93,17 +123,25 @@ function Navbar() {
       <NavbarContainer>
         <Container>
           <Row>
-            <Logo>J</Logo>
+            <Link to="/">
+              <Logo>J</Logo>
+            </Link>
             <SearchBox>
               {search}
               <input placeholder="City or country" className="searchInput" />
+              <SearchButton>Search</SearchButton>
             </SearchBox>
+            <CircleButton>{clockFill}</CircleButton>
             <Profile> </Profile>
             <CircleButton>{barChartFill}</CircleButton>
             <CircleButton>{starFill}</CircleButton>
             <CircleButton>{personFill}</CircleButton>
-            Welcome, <br />
-            to your job board
+            <Link to="/profile/1231">
+              <InfoAuth>
+                Welcome, <br />
+                <small>Sign in or Register</small>
+              </InfoAuth>
+            </Link>
           </Row>
         </Container>
       </NavbarContainer>

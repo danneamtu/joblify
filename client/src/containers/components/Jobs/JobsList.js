@@ -1,4 +1,5 @@
 import Job from './Job/Job'
+import JobsFooter from './JobsFooter'
 import TotalResults from './Total/TotalResults'
 import useStyles from './style'
 import { useSelector } from 'react-redux'
@@ -27,6 +28,7 @@ const JobsList = ({ currentId, setCurrentId }) => {
               <Job id={job._id} />
             </Grid>
           ))}
+          <JobsFooter />
         </Grid>
       )}
     </>

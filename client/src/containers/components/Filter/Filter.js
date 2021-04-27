@@ -1,15 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { checkSquare } from '../../icons/icons'
+import { checkSquare, arrowDown, arrowUp, sortUp } from '../../icons/icons'
 
 const FilterContainer = styled.div`
-  color: rgba(255, 255, 255, 0.64);
+  color: rgba(150, 118, 118, 0.64);
   ul {
     padding: 0;
     margin: 0;
   }
   li {
-    font-size: 14px;
     list-style: none;
     display: flex;
     align-items: center;
@@ -30,15 +29,17 @@ const Chip = styled.div`
 `
 
 function Filter() {
-  const countries = ['React', 'Java Script', 'Type Script', 'ireland']
+  const countries = ['Sweden', 'Belgium', 'Netherlands', 'ireland', 'denmark']
+  const skills = ['react', 'node', 'type script', 'express', 'landba']
+
   return (
     <FilterContainer>
-      <h5>Jobs in 24 hours</h5>
+      <h5>{sortUp} Trends</h5>
       <ul>
         {countries.map((item) => (
           <li>
             <div>
-              {checkSquare}
+              {arrowUp}
               {item}
             </div>
             <Chip>22</Chip>
@@ -50,7 +51,19 @@ function Filter() {
         {countries.map((item) => (
           <li>
             <div>
-              {checkSquare}
+              {arrowDown}
+              {item}
+            </div>
+            <Chip>22</Chip>
+          </li>
+        ))}
+      </ul>
+      <h5>Technologies</h5>
+      <ul>
+        {skills.map((item) => (
+          <li>
+            <div>
+              {arrowUp}
               {item}
             </div>
             <Chip>22</Chip>
