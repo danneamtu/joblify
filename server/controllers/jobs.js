@@ -15,6 +15,7 @@ export const getJobs = async (req, res) => {
 
 export const getJob = async (req, res) => {
   try {
+    const { id } = req.params
     const job = await Jobs.findById(id)
     res.status(200).json(job)
   } catch (err) {

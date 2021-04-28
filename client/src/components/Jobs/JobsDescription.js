@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getJob } from '../../redux/actions/jobActions'
+
 import styled from 'styled-components'
 import { Row } from '../../styled-components/responsive/row'
 import { boxArrowUp, star, circle } from '../../assets/icons/icons'
@@ -13,7 +16,7 @@ const JobInfo = styled.div`
   margin-right: 30px;
 `
 const CompanyLogo = styled.div`
-  min-width: 90px;
+  min-width: 80px;
   margin-bottom: 32px;
   margin-right: 32px;
   & img {
@@ -123,6 +126,15 @@ const JobDescription = (props) => {
     console.log('changed id', searchJobId)
   }, [searchJobId])
 
+  const dispatch = useDispatch()
+  const jobState = useSelector((state) => state.job)
+  console.log('job from state', jobState)
+  const jobDetailsFromState = jobState.data[searchJobId]
+  console.log('get this id data', jobDetailsFromState)
+  useEffect(() => {
+    dispatch(getJob(searchJobId))
+  }, [searchJobId])
+
   const countries = []
   return (
     <>
@@ -131,9 +143,12 @@ const JobDescription = (props) => {
           <CompanyLogo>{companyLogo}</CompanyLogo>
           <CompanyInfo>
             <Title>
-              {searchLocation},{searchJobId},{searchStart} Cloud - Senior JavaScript Engineer Billing
+              {jobDetailsFromState ? console.log(jobDetailsFromState.title) : ''}
+              {jobDetailsFromState ? jobDetailsFromState.data.title : '...loading'}
             </Title>
-            <JobSubTitle>Vodafone &middot; Berlin, Germany</JobSubTitle>
+            <JobSubTitle>
+              {jobDetailsFromState ? jobDetailsFromState.data.companyName : '...loading'} &middot; {jobDetailsFromState ? jobDetailsFromState.data.location : '...loading'}
+            </JobSubTitle>
             <ButtonApply>Apply {boxArrowUp} </ButtonApply>
             <ButtonSave>Unsave {star} </ButtonSave>
           </CompanyInfo>
@@ -170,15 +185,10 @@ const JobDescription = (props) => {
               </p>
             ))}
           </div>
-
           <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfmdMdyEdXoVeKd0pNYcd_EwHR2YIZvj4116O0JVZNoE8YOMD5BYlmgOHwYQ1xNn2XaWU&usqp=CAU" />
           <h4></h4>
-          <h4>Job description</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi mollitia illo ut sit dolor natus velit architecto aspernatur voluptate. Iusto sit officiis recusandae, quis quos veniam non ut sed porro?</p>
-          <p>Read more</p>
+          <h4>Original Job description</h4>
+          {jobDetailsFromState ? jobDetailsFromState.data.description : '...loading'}
         </Content>
         <Row>
           <ColInfo>
