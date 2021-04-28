@@ -8,7 +8,8 @@ const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
 
-function Job({ jobId }) {
+function Job({ jobData }) {
+  const { _id: jobId, title, location, companyName } = jobData
   const [favorite, setFavorite] = useState(false)
 
   let query = useQuery()
@@ -27,8 +28,8 @@ function Job({ jobId }) {
         <Row>
           <CompanyLogo>{companyLogo}</CompanyLogo>
           <CompanyInfo>
-            <JobTitle>Front end developer</JobTitle>
-            <JobSubTitle>Berlin, Germany</JobSubTitle>
+            <JobTitle>{title}</JobTitle>
+            <JobSubTitle>{location}</JobSubTitle>
           </CompanyInfo>
           <Favorite onClick={() => setFavorite(!favorite)}>{!favorite ? star : starFill}</Favorite>
         </Row>

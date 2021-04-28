@@ -1,64 +1,113 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+const Ul = styled.ul`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-top: 16px;
+`
+const Li = styled.li`
+  list-style-type: none;
+  margin-left: 2px;
+  margin-right: 2px;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.7);
+  background: ${(props) => (props.pageCurrent && props.pageCurrent === props.page ? 'blue' : 'none')};
+  &:hover {
+    background: #1d1e26;
+  }
+  & a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+  }
+`
 
-function Pagination({ currentPage, perPage, totalResults }) {
-  const getPagination = () => {
-    // 50
-    // 10
-    // total: 430
-    let startPage, endPage
-
-    const totalPages = Math.ceil(totalResults / perPage)
-    if (totalPages <= 10) {
-      startPage = 1
-      endPage = totalPages
+const Pagination = ({ href, pageCurrent, pagePer, totalResults }) => {
+  const createPagination = (href, pageCurrent, pagePer, totalResults) => {
+    // get pages raport
+    const pageStart = 1
+    const pageEnd = Math.ceil(totalResults / pagePer)
+    const pageCur = Number(pageCurrent)
+    let indexStart
+    let indexEnd
+    let left
+    let right
+    if (pageEnd <= 7) {
+      indexStart = 1
+      indexEnd = pageEnd
     } else {
-      if (currentPage <= 6) {
-        startPage = 1
-        endPage = 10
-      } else if (currentPage + 4 >= totalPages) {
-        startPage = totalPages - 9
-        endPage = totalPages
+      left = pageCur - 1
+      if (left > 3) {
+        indexStart = pageCur - 2
+      } else if (left < 3) {
+        indexStart = 1
       } else {
-        startPage = currentPage - 5
-        endPage = currentPage + 4
+        indexStart = pageStart
+      }
+      right = pageCur + 2
+      if (right < pageEnd) {
+        indexEnd = right
+      } else {
+        indexEnd = pageEnd
       }
     }
 
-    const startIndex = (currentPage - 1) * pageSize
-    const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1)
+    console.log('Total Pages:', pageEnd)
+    console.log('Curent page:', pageCur)
+    console.log('left:', left, 'indexStart:', indexStart)
+    console.log('right:', right, 'indexRight:', indexEnd)
 
+    const range = (start, end, length = end - start + 1) => Array.from({ length }, (_, i) => start + i)
+    const pages = range(indexStart, indexEnd)
     return {
-      currentPage,
-      perPage,
-      totalPages,
-      startPage: startPage,
-      endPage: endPage,
-      indexStart: startIndex,
-      indexEnd: endIndex,
+      indexStart,
+      indexEnd,
+      pageCurrent: pageCur,
+      pages,
+      href,
+      totalPages: pageEnd,
     }
   }
-}
 
-return (
-  <ul className="pagination">
-    <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-      <a onClick={() => this.setPage(1)}>First</a>
-    </li>
-    <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-      <a onClick={() => this.setPage(pager.currentPage - 1)}>Previous</a>
-    </li>
-    {pager.pages.map((page, index) => (
-      <li key={index} className={pager.currentPage === page ? 'active' : ''}>
-        <a onClick={() => this.setPage(page)}>{page}</a>
-      </li>
-    ))}
-    <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-      <a onClick={() => this.setPage(pager.currentPage + 1)}>Next</a>
-    </li>
-    <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-      <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
-    </li>
-  </ul>
-)
+  const pager = createPagination(href, pageCurrent, pagePer, totalResults)
+
+  return (
+    <Ul>
+      {pager.indexStart - 2 > 1 && (
+        <>
+          <Li>
+            <Link to={`${pager.href}&start=1`}>1</Link>
+          </Li>
+          <Li>
+            <Link to={`${pager.href}&start=2`}>...</Link>
+          </Li>
+        </>
+      )}
+
+      {pager.pages.map((page, index) => (
+        <Li pageCurrent={pager.pageCurrent} page={page} key={index}>
+          <Link to={`${pager.href}&start=${page}`}>{page}</Link>
+        </Li>
+      ))}
+      {pager.indexEnd < pager.totalPages && (
+        <>
+          <Li>
+            <Link to={`${pager.href}&start=${pager.totalPages - 1}`}>...</Link>
+          </Li>
+          <Li pageCurrent={pager.pageCurrent}>
+            <Link to={`${pager.href}&start=${pager.totalPages}`}>{pager.totalPages}</Link>
+          </Li>
+        </>
+      )}
+    </Ul>
+  )
+}
 
 export default Pagination
