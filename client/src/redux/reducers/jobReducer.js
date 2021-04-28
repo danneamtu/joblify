@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   data: {},
   error: '',
+  count: 120,
 }
 
 const jobReducer = (state = initialState, { type, payload }) => {
