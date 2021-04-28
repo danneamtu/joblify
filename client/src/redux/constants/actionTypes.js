@@ -1,4 +1,4 @@
-export const JOBS_API_URI = 'https://www.joblify.me/api/jobs'
+export const JOBS_API_URI = 'http://localhost:5001/api/jobs'
 
 export const JOBS_LOADING = 'JOBS_LOADING'
 export const JOBS_SUCCESS = 'JOBS_SUCCESS'

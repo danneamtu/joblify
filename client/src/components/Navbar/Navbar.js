@@ -23,9 +23,13 @@ const NavbarContainer = styled.header`
     background: rgba(255, 255, 255, 0.9);
   }
   .searchInput:focus {
+    width: 230px;
     border: none;
     outline-offset: 0;
     outline: none;
+  }
+  a {
+    text-decoration: none;
   }
 `
 const Container = styled.div`
@@ -65,7 +69,6 @@ const CircleButton = styled.div`
   height: 38px;
   text-align: center;
   cursor: pointer;
-
   color: rgba(255, 255, 255, 0.712);
   border-radius: 50%;
   display: flex;
@@ -108,10 +111,10 @@ const SearchButton = styled.button`
   text-align: center;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
-  margin-left: -16px;
+  margin-left: -8px;
   font-weight: 500;
   cursor: pointer;
-  &:hover {
+  :hover {
     background: rgba(70, 149, 137, 0.966);
     color: white;
   }

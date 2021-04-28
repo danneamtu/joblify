@@ -11,7 +11,7 @@ export const Row = styled.div`
       case 'end':
         return 'align-items:end'
       default:
-        return ''
+        return
     }
   }}
   ${(props) => {
@@ -23,7 +23,7 @@ export const Row = styled.div`
       case 'end':
         return 'justify-content:end'
       default:
-        return ''
+        return
     }
   }}
 `

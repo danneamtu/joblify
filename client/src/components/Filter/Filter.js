@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { checkSquare, arrowDown, arrowUp, sortUp } from '../../assets/icons/icons'
 
 const FilterContainer = styled.div`
-  color: rgba(150, 118, 118, 0.64);
+  color: rgba(187, 187, 187, 0.64);
   ul {
     padding: 0;
     margin: 0;
