@@ -7,7 +7,8 @@ import Filter from '../components/Filter/Filter'
 import JobsList from '../components/Jobs/JobsList'
 import JobsDescription from '../components/Jobs/JobsDescription'
 
-function HomePage() {
+function HomePage(props) {
+  console.log('the fake props-----------------', props)
   return (
     <Container maxWidth="xl">
       <Container>

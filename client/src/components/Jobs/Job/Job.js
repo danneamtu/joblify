@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { Row } from '../../../styles/components'
-import { star, starFill } from '../../../icons/icons'
+import { Row } from '../../../styled-components/responsive/row'
+import { star, starFill } from '../../../assets/icons/icons'
 const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 
 const JobContainer = styled.div`
@@ -80,23 +80,24 @@ const useQuery = () => {
 }
 
 function Job(props) {
+  const location = useLocation()
+  console.log('location', location)
+  const jobId = props.id
   const [favorite, setFavorite] = useState(false)
 
   let query = useQuery()
-  const searchJobId = query.get('currentJobId')
-  const searchLocation = query.get('location')
-  const searchStart = query.get('start')
+  let hasLocation, hasStart
+  if (query.get('location')) {
+    hasLocation = `&location=${query.get('location')}`
+  }
+  if (query.get('start')) {
+    hasStart = `&start=${query.get('start')}`
+  }
 
-  let uriArray = []
-  searchLocation && uriArray.push(`location=${searchLocation}`)
-  searchStart && uriArray.push(`start=${searchStart}`)
-  searchJobId && uriArray.push(`currentJobId=${searchJobId}`)
-
-  console.log('arr,', uriArray)
-  console.log('props', props)
+  let theUri = `/jobs/search?currentJobId=${jobId}${hasLocation}${hasStart}`
 
   return (
-    <Link style={{ textDecoration: 'none' }} to={'/'}>
+    <Link style={{ textDecoration: 'none' }} to={theUri}>
       <JobContainer>
         <Row>
           <CompanyLogo>{companyLogo}</CompanyLogo>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { clockFill, person, personFill, starFill, barChartFill, search } from '../../icons/icons'
+import { clockFill, person, personFill, starFill, barChartFill, search } from '../../assets/icons/icons'
 const NavbarContainer = styled.header`
   color: rgba(255, 255, 255, 0.64);
   background: #1d1d25;
@@ -102,17 +102,17 @@ const InfoAuth = styled.div`
 
 const SearchButton = styled.button`
   line-height: 28px;
-  border: solid 1px blue;
-  color: blue;
+  border: none;
+  background: #469589;
+  color: white;
   text-align: center;
-
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   margin-left: -16px;
   font-weight: 500;
   cursor: pointer;
   &:hover {
-    background: #0561fb;
+    background: rgba(70, 149, 137, 0.966);
     color: white;
   }
 `
@@ -131,7 +131,7 @@ function Navbar() {
               <input placeholder="City or country" className="searchInput" />
               <SearchButton>Search</SearchButton>
             </SearchBox>
-            <CircleButton>{clockFill}</CircleButton>
+            {/* <CircleButton>{clockFill}</CircleButton> */}
             <Profile> </Profile>
             <CircleButton>{barChartFill}</CircleButton>
             <CircleButton>{starFill}</CircleButton>

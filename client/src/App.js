@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
-import Navbar from './containers/components/Navbar/Navbar'
-import HomePage from './containers/pages/HomePage'
+import Navbar from './components/Navbar/Navbar'
+import HomePage from './pages/HomePage'
 function App(props) {
-  console.log('tdsa', props)
+  console.log('the real data..................', props)
   return (
     <Router>
       <Navbar />

@@ -5,7 +5,9 @@ import useStyles from './style'
 import { useSelector } from 'react-redux'
 import { Grid, CircularProgress } from '@material-ui/core'
 
-const JobsList = ({ currentId, setCurrentId }) => {
+const JobsList = (props) => {
+  console.log('job lsit props +++++++++++++++++++++', props)
+  const { currentId, setCurrentId } = props
   // const jobs = useSelector((state) => state.jobs)
   const jobs = [
     { _id: 3, title: 'front end developer', location: 'belgium' },

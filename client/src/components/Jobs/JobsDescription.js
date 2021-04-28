@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { Row } from '../../styles/components'
-import { boxArrowUp, star, circle } from '../../icons/icons'
+import { Row } from '../../styled-components/responsive/row'
+import { boxArrowUp, star, circle } from '../../assets/icons/icons'
 
 const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 

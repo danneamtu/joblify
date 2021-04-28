@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { checkSquare, arrowDown, arrowUp, sortUp } from '../../icons/icons'
+import { checkSquare, arrowDown, arrowUp, sortUp } from '../../assets/icons/icons'
 
 const FilterContainer = styled.div`
   color: rgba(150, 118, 118, 0.64);
