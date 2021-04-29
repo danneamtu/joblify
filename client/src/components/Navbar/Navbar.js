@@ -1,33 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import Search from './Search/Search'
+
 import { clockFill, person, personFill, starFill, barChartFill, search } from '../../assets/icons/icons'
 const NavbarContainer = styled.header`
   color: rgba(255, 255, 255, 0.64);
   background: #1d1d25;
   padding: 8px;
   margin-bottom: 16px;
-  .searchInput {
-    width: 200px;
-    height: 28px;
-    line-height: 28px;
-    padding-left: 28px;
-    padding-right: 16px;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    border: none;
-    margin-right: 8px;
-    transition: 0.3s;
-    outline-offset: 0;
-    outline: none;
-    background: rgba(255, 255, 255, 0.9);
-  }
-  .searchInput:focus {
-    width: 230px;
-    border: none;
-    outline-offset: 0;
-    outline: none;
-  }
+
   a {
     text-decoration: none;
   }
@@ -43,14 +25,14 @@ const Row = styled.div`
 `
 const Logo = styled.div`
   margin-left: -16px;
-  width: 30px;
+  width: 33px;
   overflow: hidden;
-  height: 30px;
+  height: 33px;
   background: blue;
   color: white;
-  line-height: 21px;
+  line-height: 33px;
   text-align: center;
-  font-size: 28px;
+  font-size: 21px;
   border-radius: 4px;
   margin-right: 16px;
   font-weight: 500;
@@ -81,43 +63,10 @@ const CircleButton = styled.div`
   }
 `
 
-const SearchBox = styled.div`
-  position: relative;
-  z-index: 1;
-  & svg {
-    position: absolute;
-    z-index: 2;
-    color: rgba(0, 0, 0, 0.664);
-    top: 0;
-    margin-top: auto;
-    margin-bottom: auto;
-    left: 8px;
-    bottom: 0;
-    width: 14px;
-    height: 14px;
-  }
-`
 const InfoAuth = styled.div`
   font-size: 14px;
   color: rgba(255, 255, 255, 0.64);
   cursor: pointer;
-`
-
-const SearchButton = styled.button`
-  line-height: 28px;
-  border: none;
-  background: #469589;
-  color: white;
-  text-align: center;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  margin-left: -8px;
-  font-weight: 500;
-  cursor: pointer;
-  :hover {
-    background: rgba(70, 149, 137, 0.966);
-    color: white;
-  }
 `
 
 function Navbar() {
@@ -129,11 +78,7 @@ function Navbar() {
             <Link to="/">
               <Logo>J</Logo>
             </Link>
-            <SearchBox>
-              {search}
-              <input placeholder="City or country" className="searchInput" />
-              <SearchButton>Search</SearchButton>
-            </SearchBox>
+            <Search />
             {/* <CircleButton>{clockFill}</CircleButton> */}
             <Profile> </Profile>
             <CircleButton>{barChartFill}</CircleButton>

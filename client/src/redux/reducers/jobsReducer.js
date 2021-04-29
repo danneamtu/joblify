@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   data: [],
   error: '',
-  count: 199,
+  count: 190,
 }
 const jobsReducer = (state = initialState, { type, payload }) => {
   switch (type) {

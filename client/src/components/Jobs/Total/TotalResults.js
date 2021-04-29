@@ -24,11 +24,11 @@ const TotalSubTitle = styled.h4`
   font-weight: 300;
 `
 
-function TotalResults() {
+function TotalResults({ total }) {
   return (
     <TotalContainer>
       <TotalTitle>Front End Developer in Amsterdam</TotalTitle>
-      <TotalSubTitle>234 results</TotalSubTitle>
+      <TotalSubTitle>{total || 0} results</TotalSubTitle>
     </TotalContainer>
   )
 }

@@ -1,11 +1,14 @@
 import Jobs from '../models/jobs.js'
-
+import mongoose from 'mongoose'
 export const getJobs = async (req, res) => {
   const page = Number(req.query.page) || 1
   const limit = Number(req.query.limit) || 10
   const start = (page - 1) * limit
+
   try {
-    let jobs = await Jobs.find().limit(limit).skip(start)
+    let jobs = await Jobs.find()
+      .limit(limit + 1)
+      .skip(start)
     res.status(200).json(jobs)
   } catch (err) {
     console.log(err)
@@ -16,6 +19,7 @@ export const getJobs = async (req, res) => {
 export const getJob = async (req, res) => {
   try {
     const { id } = req.params
+    if (!mongoose.Types.ObjectId.isValid(id)) return false
     const job = await Jobs.findById(id)
     res.status(200).json(job)
   } catch (err) {
