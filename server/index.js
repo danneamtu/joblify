@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import jobsRoutes from './routes/jobs.js'
+import locationRoutes from './routes/locations.js'
 import connectDB from './database/connection.js'
 
 connectDB()
@@ -22,6 +23,8 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 dotenv.config()
 const PORT = process.env.PORT || 5002
 app.use('/api/jobs', jobsRoutes)
+app.use('/api/location', locationRoutes)
+
 
 app.listen(PORT, (result, error) => {
   console.log('server is running at', PORT)

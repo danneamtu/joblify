@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Fuse from 'fuse.js'
+
 import styled from 'styled-components'
-import { search } from '../../../assets/icons/icons'
+import { searchIcon } from '../../../assets/icons/icons'
+import locations from '../locations.json'
+
+console.log('Fuse', Fuse)
 
 const SearchBox = styled.div`
   position: relative;
@@ -21,19 +26,20 @@ const SearchBox = styled.div`
   }
   .searchInput {
     color: rgba(255, 255, 255, 0.8);
-    width: 240px;
-    height: 33px;
-    line-height: 33px;
+    width: 290px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
     padding-left: 32px;
     padding-right: 16px;
     border-radius: 5px;
-
     border: none;
     margin-right: 8px;
     transition: 0.3s;
     outline-offset: 0;
     outline: none;
-    background: #2a2b34;
+    background: none;
+    border: solid 1px #2a2b34;
   }
   .searchInput:focus {
     /* width: 410px; */
@@ -106,17 +112,33 @@ function Search() {
   const [searchModal, setSearchModal] = useState(false)
   const wrapperRef = useRef(null)
   useOutsideAlerter(wrapperRef)
-
+  const fuse = new Fuse(locations, {
+    keys: ['country', 'city'],
+    includeScore: true,
+  })
+  useEffect(() => {}, [])
+  const [searchResults, setSearchResults] = useState([])
+  const handleSearch = (e) => {
+    setSearchResults(fuse.search(e.target.value, { limit: 5, order: 'total' }))
+  }
+  console.log(
+    'get this nice results,',
+    searchResults,
+    searchResults.map((item) => item.item)
+  )
   return (
     <SearchBox ref={wrapperRef}>
-      {search}
-      <input onClick={() => setSearchModal(true)} placeholder="City or country" className="searchInput" />
+      {searchIcon}
+      <input onChange={handleSearch} onClick={() => setSearchModal(true)} placeholder="City or country" className="searchInput" />
       {searchModal && (
         <SearchResults>
-          <SearchResult onClick={() => setSearchModal(false)}>Amsterdam, New Holland</SearchResult>
-          <SearchResult>Amsterdam, New Holland</SearchResult>
-          <SearchResult>North, New Holland</SearchResult>
-          <SearchResult>Amsterdam, New Holland</SearchResult>
+          {searchResults &&
+            searchResults.map((res) => (
+              <SearchResult onClick={() => setSearchModal(false)}>
+                {res.item.city}, {res.item.country} --- {res.item.total}
+              </SearchResult>
+            ))}
+
           <SearchTryFor>
             <TryText>Try searching for</TryText>
             <Link to="amsterdam">Amsterdam</Link>

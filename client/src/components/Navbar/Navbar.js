@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Search from './Search/Search'
@@ -70,6 +70,8 @@ const InfoAuth = styled.div`
 `
 
 function Navbar() {
+
+
   return (
     <>
       <NavbarContainer>

@@ -1,10 +1,10 @@
 import Jobs from '../models/jobs.js'
 import mongoose from 'mongoose'
+
 export const getJobs = async (req, res) => {
   const page = Number(req.query.page) || 1
   const limit = Number(req.query.limit) || 10
   const start = (page - 1) * limit
-
   try {
     let jobs = await Jobs.find()
       .limit(limit + 1)
