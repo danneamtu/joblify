@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Fuse from 'fuse.js'
-
 import styled from 'styled-components'
 import { searchIcon } from '../../../assets/icons/icons'
+
+
 import locations from '../locations.json'
+
+
 
 console.log('Fuse', Fuse)
 
@@ -24,6 +27,7 @@ const SearchBox = styled.div`
     height: 14px;
     color: rgba(255, 255, 255, 0.8);
   }
+
   .searchInput {
     color: rgba(255, 255, 255, 0.8);
     width: 290px;
@@ -43,7 +47,6 @@ const SearchBox = styled.div`
   }
   .searchInput:focus {
     /* width: 410px; */
-    border: none;
     outline-offset: 0;
     outline: none;
     border-bottom-left-radius: 0;
@@ -134,16 +137,12 @@ function Search() {
         <SearchResults>
           {searchResults &&
             searchResults.map((res) => (
-              <SearchResult onClick={() => setSearchModal(false)}>
-                {res.item.city}, {res.item.country} --- {res.item.total}
-              </SearchResult>
+              <Link to={`/jobs/search?currentJobId=6085c51038b5be014c306581&location=${res.item.city}`}>
+                <SearchResult onClick={() => setSearchModal(false)}>
+                  {res.item.city}, {res.item.country} --- {res.item.total}
+                </SearchResult>
+              </Link>
             ))}
-
-          <SearchTryFor>
-            <TryText>Try searching for</TryText>
-            <Link to="amsterdam">Amsterdam</Link>
-            <Link to="copenhagen">Copenhagen</Link>
-          </SearchTryFor>
         </SearchResults>
       )}
     </SearchBox>

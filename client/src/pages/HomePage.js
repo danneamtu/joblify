@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
-import Filter from '../components/Filter/Filter'
+import Trends from '../components/Trends/Trends'
 import JobsList from '../components/Jobs/JobsList'
 import JobsDescription from '../components/Jobs/JobsDescription'
 
@@ -19,7 +19,7 @@ function HomePage(props) {
             <JobsDescription />
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Filter />
+            <Trends />
           </Grid>
         </Grid>
       </Container>

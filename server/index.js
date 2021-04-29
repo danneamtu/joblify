@@ -23,8 +23,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 dotenv.config()
 const PORT = process.env.PORT || 5002
 app.use('/api/jobs', jobsRoutes)
-app.use('/api/location', locationRoutes)
-
+app.use('/api/locations', locationRoutes)
 
 app.listen(PORT, (result, error) => {
   console.log('server is running at', PORT)
