@@ -2,6 +2,7 @@ import styled from 'styled-components'
 export const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 
 export const JobContainer = styled.div`
+  position: relative;
   text-decoration: none;
   background: #1d1d25;
   border-radius: 4px;
@@ -10,9 +11,8 @@ export const JobContainer = styled.div`
   padding: 16px;
   margin-right: 24px;
   cursor: pointer;
-  &:hover {
-    background: rgba(74, 74, 97, 0.23);
-  }
+  z-index: 1;
+
   ${(props) => {
     if (props.active) {
       return 'background: rgba(74, 74, 97, 0.23)'
@@ -21,23 +21,24 @@ export const JobContainer = styled.div`
 `
 
 export const CompanyLogo = styled.div`
-  width: 48px;
-  margin-right: 8px;
+  min-width: 42px;
+  max-width: 42px;
+  margin-right: 12px;
   & img {
     width: 100%;
     border-radius: 4px;
   }
 `
 export const CompanyInfo = styled.div`
-  width: 100%;
+  margin-right: 40px;
   margin-bottom: 16px;
 `
 export const Favorite = styled.div`
+  position: absolute;
+  right: 4px;
+  top: 8px;
   cursor: pointer;
-  border-radius: 4px;
-  padding: 8px !important;
-  margin-right: -8px;
-  margin-top: -4px;
+  z-index: 22;
   display: inline-block;
   color: rgba(255, 255, 255, 0.6);
 `
@@ -69,5 +70,7 @@ export const Date = styled.span`
   font-size: 13px;
   color: rgba(255, 255, 255, 0.6);
   margin-left: auto;
-  max-width: 50px;
+  max-width: 29px;
+  min-width: 29px;
+  text-align: center;
 `

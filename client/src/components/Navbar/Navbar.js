@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Search from './Search/Search'
+import { CircleButton } from '../../styled-components/buttons/buttons'
 
 import { clockFill, person, personFill, starFill, barChartFill, search } from '../../assets/icons/icons'
 const NavbarContainer = styled.header`
@@ -46,22 +47,6 @@ const Profile = styled.div`
   min-width: 220px;
   color: white;
 `
-const CircleButton = styled.div`
-  width: 38px;
-  height: 38px;
-  text-align: center;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.712);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 8px;
-  transition: 0.2s;
-  &:hover {
-    background: rgba(255, 255, 255, 0.04);
-  }
-`
 
 const InfoAuth = styled.div`
   font-size: 14px;
@@ -70,8 +55,6 @@ const InfoAuth = styled.div`
 `
 
 function Navbar() {
-
-
   return (
     <>
       <NavbarContainer>

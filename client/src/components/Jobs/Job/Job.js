@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { companyLogo, JobContainer, CompanyLogo, CompanyInfo, Favorite, JobTitle, JobSubTitle, Chip, Date } from './styled'
 import { Row } from '../../../styled-components/responsive/row'
 import { star, starFill } from '../../../assets/icons/icons'
+import { CircleButton } from '../../../styled-components/buttons/buttons'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -23,8 +24,11 @@ function Job({ jobData, index }) {
   let theUri = `/jobs/search?currentJobId=${jobId}${hasLocation}${hasStart}`
 
   return (
-    <Link style={{ textDecoration: 'none' }} to={theUri}>
-      <JobContainer>
+    <JobContainer>
+      <Favorite onClick={() => setFavorite(!favorite)}>
+        <CircleButton>{!favorite ? star : starFill}</CircleButton>
+      </Favorite>
+      <Link style={{ textDecoration: 'none' }} to={theUri}>
         <Row>
           <CompanyLogo>{companyLogo}</CompanyLogo>
           <CompanyInfo>
@@ -34,15 +38,14 @@ function Job({ jobData, index }) {
             </JobTitle>
             <JobSubTitle>{location}</JobSubTitle>
           </CompanyInfo>
-          <Favorite onClick={() => setFavorite(!favorite)}>{!favorite ? star : starFill}</Favorite>
         </Row>
         <Row alignItems="center">
           <Chip>Mid-Senior level</Chip>
           <Chip>Score 38%</Chip>
           <Date>3d</Date>
         </Row>
-      </JobContainer>
-    </Link>
+      </Link>
+    </JobContainer>
   )
 }
 

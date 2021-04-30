@@ -23,6 +23,7 @@ function Filter() {
     <FilterContainer>
       <h6>{allLocations && allLocations[0].totalJobs} front end developer jobs in 4 countries</h6>
       <h5>{sortUp} Trends</h5>
+
       <ul>
         {countries.map((item) => (
           <li>
@@ -34,6 +35,7 @@ function Filter() {
           </li>
         ))}
       </ul>
+
       <h5>City</h5>
       <ul>
         {countries.map((item) => (
