@@ -3,10 +3,12 @@ import { useParams, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getJob } from '../../../redux/actions/jobActions'
 
-import TechnologiesDetected from './TechnologiesDetected/TechnologiesDetected'
-
 import styled from 'styled-components'
 import { Row } from '../../../styled-components/responsive/row'
+import { Col } from '../../../styled-components/responsive/col'
+import TechnologiesDetected from './TechnologiesDetected/TechnologiesDetected'
+import TheChart from './TheChart/TheChart'
+
 import { boxArrowUp, star, circle } from '../../../assets/icons/icons'
 
 const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
@@ -95,7 +97,8 @@ const ButtonSave = styled.button`
   }
 `
 const ColInfo = styled.div`
-  width: 100%;
+  flex: 1 0 0%;
+
   border: solid 1px rgba(255, 255, 255, 0.1);
   padding: 16px;
   &:first-child,
@@ -177,7 +180,12 @@ const JobDescription = (props) => {
         </Row>
 
         <Content>
-          {jobDetailsFromState && <TechnologiesDetected tags={jobDetailsFromState.data.tags} />}
+          <Row alignItems="start">
+            <Col md={7}>{jobDetailsFromState && <TechnologiesDetected tags={jobDetailsFromState.data.tags} />}</Col>
+            <Col md={5}>
+              <TheChart id={searchJobId} />
+            </Col>
+          </Row>
           <h4>Original Job description</h4>
           {jobDetailsFromState && jobDetailsFromState.data.description}
           {/* {jobDetailsFromState && <p dangerouslySetInnerHTML={createMarkup('text')}></p>} */}
