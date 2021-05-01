@@ -7,6 +7,7 @@ export const getJobs = async (req, res) => {
   const start = (page - 1) * limit
   try {
     let jobs = await Jobs.find()
+      .sort({ timestamp: -1 })
       .limit(limit + 1)
       .skip(start)
     res.status(200).json(jobs)

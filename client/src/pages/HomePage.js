@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 
 import Trends from '../components/Trends/Trends'
 import JobsList from '../components/Jobs/JobsList'
-import JobsDescription from '../components/Jobs/JobsDescription'
+import JobsDescription from '../components/Jobs/JobDescription/JobsDescription'
 
 function HomePage(props) {
   return (

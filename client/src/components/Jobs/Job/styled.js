@@ -7,7 +7,7 @@ export const JobContainer = styled.div`
   background: #1d1d25;
   border-radius: 4px;
   color: white;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   padding: 16px;
   margin-right: 24px;
   cursor: pointer;

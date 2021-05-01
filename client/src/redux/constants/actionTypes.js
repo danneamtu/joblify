@@ -1,5 +1,5 @@
-export const JOBS_API_URI = 'http://localhost:5002/api/jobs'
-export const LOCATION_API_URI = 'http://localhost:5002/api/locations'
+export const JOBS_API_URI = 'http://localhost:5003/api/jobs'
+export const LOCATION_API_URI = 'http://localhost:5003/api/locations'
 
 export const JOBS_LOADING = 'JOBS_LOADING'
 export const JOBS_SUCCESS = 'JOBS_SUCCESS'

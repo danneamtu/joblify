@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getJob } from '../../redux/actions/jobActions'
+import { getJob } from '../../../redux/actions/jobActions'
+
+import TechnologiesDetected from './TechnologiesDetected/TechnologiesDetected'
 
 import styled from 'styled-components'
-import { Row } from '../../styled-components/responsive/row'
-import { boxArrowUp, star, circle } from '../../assets/icons/icons'
+import { Row } from '../../../styled-components/responsive/row'
+import { boxArrowUp, star, circle } from '../../../assets/icons/icons'
 
 const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 
@@ -115,6 +117,10 @@ function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
 
+function createMarkup(desc) {
+  return { _html: desc }
+}
+
 const JobDescription = (props) => {
   // we have
   let query = useQuery()
@@ -157,7 +163,7 @@ const JobDescription = (props) => {
 
         <Row>
           <ColInfo>
-            <TitleInfo> 23</TitleInfo>
+            <TitleInfo>{jobDetailsFromState && jobDetailsFromState.data.tags ? jobDetailsFromState.data.tags.length : 0}</TitleInfo>
             <TitleInfoDetail>Technologies detected</TitleInfoDetail>
           </ColInfo>
           <ColInfo>
@@ -171,24 +177,10 @@ const JobDescription = (props) => {
         </Row>
 
         <Content>
-          <div style={{ float: 'left', marginRight: '44px' }}>
-            {countries.map((item) => (
-              <p>
-                <div>{item}</div>
-              </p>
-            ))}
-          </div>
-          <div style={{ float: 'left', marginRight: '44px' }}>
-            {countries.map((item) => (
-              <p>
-                <div>{item}</div>
-              </p>
-            ))}
-          </div>
-          <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfmdMdyEdXoVeKd0pNYcd_EwHR2YIZvj4116O0JVZNoE8YOMD5BYlmgOHwYQ1xNn2XaWU&usqp=CAU" />
-          <h4></h4>
+          {jobDetailsFromState && <TechnologiesDetected tags={jobDetailsFromState.data.tags} />}
           <h4>Original Job description</h4>
-          {jobDetailsFromState ? jobDetailsFromState.data.description : '...loading'}
+          {jobDetailsFromState && jobDetailsFromState.data.description}
+          {/* {jobDetailsFromState && <p dangerouslySetInnerHTML={createMarkup('text')}></p>} */}
         </Content>
         <Row>
           <ColInfo>

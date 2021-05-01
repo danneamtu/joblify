@@ -1,9 +1,13 @@
-import redux from 'redux'
-import reactRedux from 'react-redux'
+let location = 'belgium, North Holland, Netherlands'
+let explodeLocation = location.split(',')
+let city = explodeLocation[0].toLowerCase()
 
-console.log('redux', redux)
-console.log('reactredux', reactRedux)
+let countries = ['netherlands', 'belgium', 'ireland']
 
-// List all your jobs
-// actions / getJobs
-// 
+const itsCountry = countries.find((country) => (country === city ? true : false))
+
+if (!itsCountry) {
+  console.log('insert', city)
+} else {
+  console.log('its a country')
+}
