@@ -10,7 +10,7 @@ export const FilterContainer = styled.div`
     list-style: none;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+
     padding-top: 4px;
     padding-bottom: 4px;
   }

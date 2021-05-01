@@ -30,6 +30,7 @@ export const CompanyLogo = styled.div`
   }
 `
 export const CompanyInfo = styled.div`
+  flex: 1 0 0%;
   margin-right: 40px;
   margin-bottom: 16px;
 `
@@ -54,7 +55,7 @@ export const JobSubTitle = styled.p`
   font-size: 14px;
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
-  padding: 0;
+  padding-top: 8px;
 `
 export const Chip = styled.span`
   display: inline-block;

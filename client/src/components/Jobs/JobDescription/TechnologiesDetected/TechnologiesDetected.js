@@ -8,21 +8,21 @@ import { checkCircle, checkCircleFill } from '../../../../assets/icons/icons'
 function TechnologiesDetected({ tags }) {
   return (
     <Row>
+      <h4>Technologies detected</h4>
+      <h4></h4>
       {tags.map((tag, index) => (
         <Col md={6}>
-          <StyledLink to="#">
-            {index < Math.random() * 8 ? (
-              <Tag className="active">
-                {checkCircleFill}
-                {tag}
-              </Tag>
-            ) : (
-              <Tag>
-                {checkCircleFill}
-                {tag}
-              </Tag>
-            )}
-          </StyledLink>
+          {index < Math.random() * 8 ? (
+            <Tag className="active">
+              {checkCircleFill}
+              {tag}
+            </Tag>
+          ) : (
+            <Tag>
+              {checkCircleFill}
+              {tag}
+            </Tag>
+          )}
         </Col>
       ))}
     </Row>

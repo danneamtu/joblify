@@ -21,7 +21,7 @@ export const Col = styled.div`
         case 8:
           return ' flex: 0 0 auto; width: 66.6666666667%'
         case 9:
-          return ' flex: 0 0 auto; width: 41.6666666667%;'
+          return ' flex: 0 0 auto; width: 75%'
         case 10:
           return ' flex: 0 0 auto; width: 83.3333333333%;'
         case 11:

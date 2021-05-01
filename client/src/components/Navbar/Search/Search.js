@@ -43,7 +43,7 @@ function Search() {
   return (
     <SearchBox ref={wrapperRef}>
       {searchIcon}
-      <input onChange={handleSearch} onClick={() => setSearchModal({ open: true })} value={searchModal.value} placeholder="City or country" className="searchInput" />
+      <input onChange={handleSearch} onClick={() => setSearchModal({ open: true })} value={searchModal.value} placeholder="Search by country or city" className="searchInput" />
       {searchModal.open && (
         <SearchResults>
           {searchResults &&

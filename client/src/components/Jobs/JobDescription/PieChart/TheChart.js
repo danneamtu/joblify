@@ -1,5 +1,7 @@
 import { PieChart } from 'react-minimal-pie-chart'
 import { useState, useEffect } from 'react'
+import { light, lightDark, accentBlue, accentGreen } from '../../../../styled-components/typography/colors'
+
 const data = [
   { name: 'html, css, js', value: 33 },
   { name: 'react, node, axios', value: 55 },
@@ -11,10 +13,10 @@ const TheChart = ({ id }) => {
   const showChart = () => {
     return (
       <PieChart
+        startAngle={-100}
         data={[
-          { title: 'One', value: 10, color: '#E38627' },
-          { title: 'Two', value: 15, color: '#C13C37' },
-          { title: 'Three', value: 20, color: '#6A2135' },
+          { title: 'Three', value: 40, color: lightDark },
+          { title: 'One', value: 60, color: accentGreen },
         ]}
       />
     )

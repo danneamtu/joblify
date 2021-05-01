@@ -66,8 +66,8 @@ function Navbar() {
             <Search />
             {/* <CircleButton style={{ marginLeft: 'auto', marginRight: 'auto' }}>{pieChartFill}</CircleButton> */}
             <Profile> </Profile>
+            {/* <CircleButton>{pieChartFill}</CircleButton> */}
             <CircleButton>{starFill}</CircleButton>
-            <CircleButton>{pieChartFill}</CircleButton>
             <CircleButton>{personFill}</CircleButton>
             <Link to="/profile/1231">
               <InfoAuth>

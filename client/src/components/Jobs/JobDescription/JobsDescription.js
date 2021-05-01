@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { Row } from '../../../styled-components/responsive/row'
 import { Col } from '../../../styled-components/responsive/col'
 import TechnologiesDetected from './TechnologiesDetected/TechnologiesDetected'
-import TheChart from './TheChart/TheChart'
+import TheChart from './PieChart/TheChart'
 
 import { boxArrowUp, star, circle } from '../../../assets/icons/icons'
 
@@ -29,11 +29,9 @@ const CompanyLogo = styled.div`
   }
 `
 const CompanyInfo = styled.div`
-  max-width: 100%;
   margin-bottom: 24px;
 `
 const CompanyShare = styled.div`
-  width: 120px;
   margin-left: auto;
   text-align: right;
 `
@@ -149,8 +147,10 @@ const JobDescription = (props) => {
     <>
       <JobInfo>
         <Row>
-          <CompanyLogo>{companyLogo}</CompanyLogo>
-          <CompanyInfo>
+          <Col md={2}>
+            <CompanyLogo>{companyLogo}</CompanyLogo>
+          </Col>
+          <Col md={9}>
             <Title>
               {jobDetailsFromState ? console.log(jobDetailsFromState.title) : ''}
               {jobDetailsFromState ? jobDetailsFromState.data.title : '...loading'}
@@ -160,8 +160,10 @@ const JobDescription = (props) => {
             </JobSubTitle>
             <ButtonApply>Apply {boxArrowUp} </ButtonApply>
             <ButtonSave>Unsave {star} </ButtonSave>
-          </CompanyInfo>
-          <CompanyShare></CompanyShare>
+          </Col>
+          <Col md={1}>
+            <CompanyShare></CompanyShare>
+          </Col>
         </Row>
 
         <Row>
