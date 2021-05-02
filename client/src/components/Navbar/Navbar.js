@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Search from './Search/Search'
 import { CircleButton } from '../../styled-components/buttons/buttons'
 
-import { pieChartFill, clockFill, person, personFill, starFill, barChartFill, search } from '../../assets/icons/icons'
+import { checkCircleFill, pieChartFill, clockFill, person, personFill, starFill, barChartFill, search } from '../../assets/icons/icons'
 const NavbarContainer = styled.header`
   color: rgba(255, 255, 255, 0.64);
   background: #1d1d25;
@@ -66,7 +66,7 @@ function Navbar() {
             <Search />
             {/* <CircleButton style={{ marginLeft: 'auto', marginRight: 'auto' }}>{pieChartFill}</CircleButton> */}
             <Profile> </Profile>
-            {/* <CircleButton>{pieChartFill}</CircleButton> */}
+            <CircleButton>{checkCircleFill}</CircleButton>
             <CircleButton>{starFill}</CircleButton>
             <CircleButton>{personFill}</CircleButton>
             <Link to="/profile/1231">

@@ -12,7 +12,7 @@ function TechnologiesDetected({ tags }) {
         <h4>Skills detected</h4>
       </Col>
 
-      {tags.map((tag, index) => (
+      {tags?.map((tag, index) => (
         <Col md={6}>
           {index < Math.random() * 8 ? (
             <Tag className="active">

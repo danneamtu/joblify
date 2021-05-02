@@ -52,7 +52,7 @@ function Countries({ allLocations }) {
   return (
     <>
       <ContainerSkills>
-        <Title>Country</Title>
+        <Title>Countries</Title>
         {allLocations.map(
           (item) =>
             item.justCountry?.length > 2 && (
