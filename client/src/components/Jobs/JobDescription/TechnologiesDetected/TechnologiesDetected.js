@@ -8,8 +8,10 @@ import { checkCircle, checkCircleFill } from '../../../../assets/icons/icons'
 function TechnologiesDetected({ tags }) {
   return (
     <Row>
-      <h4>Technologies detected</h4>
-      <h4></h4>
+      <Col md={12}>
+        <h4>Skills detected</h4>
+      </Col>
+
       {tags.map((tag, index) => (
         <Col md={6}>
           {index < Math.random() * 8 ? (

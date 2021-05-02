@@ -17,3 +17,11 @@ export const CircleButton = styled.div`
     background: rgba(255, 255, 255, 0.04);
   }
 `
+
+export const Chip = styled.div`
+  padding: 4px;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.64);
+  background: #1d1d25;
+  font-size: 12px;
+`
