@@ -45,4 +45,16 @@ export const Col = styled.div`
         return
     }
   }}
+  ${(props) => {
+    switch (props.mx) {
+      case 'auto':
+        return 'margin-left:auto; margin-right: auto'
+      case '1':
+        return 'margin-left:4px; margin-right: 4px;'
+      case '2':
+        return 'margin-left:8px; margin-right: 8px;'
+      default:
+        return
+    }
+  }}
 `
