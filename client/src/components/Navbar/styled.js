@@ -57,4 +57,6 @@ export const CircleAvatar = styled.div`
   background: ${accentGreen};
   cursor: pointer;
   border-radius: 50%;
+  margin-right: 4px;
+  text-transform: uppercase;
 `

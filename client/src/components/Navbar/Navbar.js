@@ -9,6 +9,7 @@ import { CircleAvatar, Container, Row, NavbarContainer, Logo, Profile, InfoAuth 
 const user = false
 
 const Navbar = () => {
+  const logout = () => console.log('logout')
   return (
     <>
       <NavbarContainer>
@@ -21,12 +22,11 @@ const Navbar = () => {
             <Profile> </Profile>
             <CircleButton>{checkCircleFill}</CircleButton>
             <CircleButton>{starFill}</CircleButton>
-
             {user ? (
               <Link to="/users/">
                 <Row alignItems="center">
                   <CircleAvatar>{user.name.charAt(0)}</CircleAvatar>
-                  {/* <InfoAuth>{user.name}</InfoAuth> */}
+                  <InfoAuth onClick={logout}>logout</InfoAuth>
                 </Row>
               </Link>
             ) : (
