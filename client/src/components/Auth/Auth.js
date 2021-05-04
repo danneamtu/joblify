@@ -1,40 +1,22 @@
 import React, { useState, useEffect } from 'react'
+import { GoogleLogin } from 'react-google-login'
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { GoogleLogin } from 'react-google-login'
+
+import { googleAuth } from '../../redux/actions/userActions'
 
 import Input from './Input/Input'
-
 import { Row } from '../../styled-components/responsive/row'
 import { Col } from '../../styled-components/responsive/col'
+import  {ContainerForm, Button, ButtonGoogle} from './styled'
 
-const ContainerForm = styled.div`
-  background: blue;
-  padding: 1rem;
-  border-radius: 0.5rem;
-`
-const Button = styled.button`
-  background: red;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  text-align: center;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-`
-const ButtonGoogle = styled.button`
-  background: red;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  text-align: center;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-`
 
 function Auth() {
   const [signIn, setSignIn] = useState(true)
   const dispatch = useDispatch()
+  const history = useHistory()
+
   const handleSubmit = () => {}
   const handleChange = () => {}
   const handleSwitch = (e) => {
@@ -44,16 +26,17 @@ function Auth() {
   const googleSuccess = async (res) => {
     const result = res?.profileObj
     const token = res?.tokenId
+    const payload = { result, token }
 
     try {
-      dispatch({ type: 'AUTH', payload: { result, token } })
+      dispatch(googleAuth(payload))
+      setSignIn(true)
+      history.push(`users/${res?.googleId}`)
     } catch (err) {
       console.log('error', err)
     }
-
-    setSignIn(true)
-    console.log('google response', res)
   }
+
   const googleFailure = (err) => {
     console.log('google error', err)
   }

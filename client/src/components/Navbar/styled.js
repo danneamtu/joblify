@@ -59,4 +59,9 @@ export const CircleAvatar = styled.div`
   border-radius: 50%;
   margin-right: 4px;
   text-transform: uppercase;
+  overflow: hidden;
+  & img {
+    border-radius: 50%;
+    width: 100%;
+  }
 `
