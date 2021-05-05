@@ -1,8 +1,18 @@
 import axios from 'axios'
 
-const url = 'http://127.0.0.1:5000/jobs'
+const API = axios.create({ baseURL: 'http://127.0.0.1:5003' })
 
-export const fetchJobs = () => axios.get(url)
-export const createJob = (job) => axios.post(url, job)
-export const patchJob = (id, updatedJob) => axios.patch(`${url}/${id}`, updatedJob)
-export const deleteJob = (id) => axios.delete(`${url}/${id}`)
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem('user')) {
+    req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+  }
+  return req
+})
+
+export const fetchJobs = () => API.get(`/jobs`)
+export const createJob = (job) => API.post(`/jobs`, job)
+export const patchJob = (id, updatedJob) => API.patch(`/${id}`, updatedJob)
+export const deleteJob = (id) => API.delete(`/jobs/${id}`)
+
+export const signin = (formData) => API.post(`/api/users/signin`, formData)
+export const signup = (formData) => API.post(`/api/users/signup`, formData)

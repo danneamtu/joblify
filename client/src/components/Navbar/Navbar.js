@@ -44,16 +44,16 @@ const Navbar = () => {
             <CircleButton>{checkCircleFill}</CircleButton>
             <CircleButton>{starFill}</CircleButton>
             {user ? (
-              <Link to={`/users/${user.result.googleId}`}>
+              <Link to={`/users/${user.result.googleId || user.result._id}`}>
                 <Row alignItems="center">
-                  {user.result.imageUrl ? (
+                  {user.result?.imageUrl ? (
                     <CircleAvatar>
-                      <img alt={user.result.givenName} src={user.result.imageUrl} />
+                      <img alt={user.result?.givenName} src={user.result?.imageUrl} />
                     </CircleAvatar>
                   ) : (
-                    <CircleAvatar>{user.result.givenName.charAt(0)}</CircleAvatar>
+                    <CircleAvatar>{user.result?.givenName.charAt(0)}</CircleAvatar>
                   )}
-                  Hi {user.result.givenName}
+                  Hi {user.result?.givenName}
                   <InfoAuth onClick={logout}>Logout</InfoAuth>
                 </Row>
               </Link>

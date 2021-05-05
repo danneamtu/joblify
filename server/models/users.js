@@ -17,8 +17,8 @@ let schema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
-  token: String,
   password: String,
 })
 
-export default mongoose.model('Users', schema)
+const Users = mongoose.model('users', schema)
+export default Users

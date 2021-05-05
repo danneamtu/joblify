@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { signup, signin } from '../../redux/actions/userActions'
 import styled from 'styled-components'
 
 import { googleAuth } from '../../redux/actions/userActions'
@@ -9,16 +10,38 @@ import { googleAuth } from '../../redux/actions/userActions'
 import Input from './Input/Input'
 import { Row } from '../../styled-components/responsive/row'
 import { Col } from '../../styled-components/responsive/col'
-import  {ContainerForm, Button, ButtonGoogle} from './styled'
-
+import { ContainerForm, Button, ButtonGoogle } from './styled'
 
 function Auth() {
-  const [signIn, setSignIn] = useState(true)
+  const initialUserData = {
+    familyName: '',
+    givenName: '',
+    email: '',
+    password: '',
+  }
+  const [signIn, setSignIn] = useState(false)
+  const [userData, setUserData] = useState(initialUserData)
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const handleSubmit = () => {}
-  const handleChange = () => {}
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('the user data from handle submit', userData)
+    if (signIn) {
+      dispatch(signin(userData, history))
+      // history.push('/users/1')
+      // get the id
+    } else {
+      dispatch(signup(userData, history))
+      // history.push('/users/2')
+    }
+  }
+
+  const handleChange = (e) => {
+    console.log('user data from handle change', userData)
+    setUserData({ ...userData, [e.target.name]: e.target.value })
+  }
+
   const handleSwitch = (e) => {
     e.preventDefault()
     setSignIn(!signIn)
@@ -45,15 +68,15 @@ function Auth() {
     <ContainerForm>
       <form onSubmit={handleSubmit}>
         <Row>
-          {signIn && (
+          {!signIn && (
             <>
-              <Input onChange={handleChange} md={6} placeholder="First Name" name="firstName" />
-              <Input onChange={handleChange} md={6} placeholder="Last Name" name="lastName" />
+              <Input handleChange={handleChange} md={6} placeholder="First Name" name="givenName" />
+              <Input handleChange={handleChange} md={6} placeholder="Last Name" name="familyName" />
             </>
           )}
-          <Input onChange={handleChange} md={12} placeholder="Email" name="email" />
-          <Input onChange={handleChange} md={12} placeholder="Password" type="password" name="password" />
-          <Button>{signIn ? 'Register' : 'Login'}</Button>
+          <Input handleChange={handleChange} md={12} placeholder="Email" name="email" />
+          <Input handleChange={handleChange} md={12} placeholder="Password" type="password" name="password" />
+          <Button>{!signIn ? 'Register' : 'Login'}</Button>
           <GoogleLogin
             onSuccess={googleSuccess}
             onFailure={googleFailure}
@@ -65,7 +88,7 @@ function Auth() {
               </ButtonGoogle>
             )}
           />
-          <Button onClick={handleSwitch}>Not login? then register</Button>
+          <Button onClick={handleSwitch}>{signIn ? 'Not Register? then sign up' : 'Already have an account? then sign in'}</Button>
         </Row>
       </form>
     </ContainerForm>

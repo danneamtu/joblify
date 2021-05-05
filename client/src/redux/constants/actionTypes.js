@@ -1,5 +1,6 @@
 export const JOBS_API_URI = 'http://localhost:5003/api/jobs'
 export const LOCATION_API_URI = 'http://localhost:5003/api/locations'
+export const API_URI = 'http://localhost:5003/api/'
 
 export const JOBS_LOADING = 'JOBS_LOADING'
 export const JOBS_SUCCESS = 'JOBS_SUCCESS'
@@ -20,3 +21,11 @@ export const GOOGLE_AUTH_ERROR = 'GOOGLE_AUTH_ERROR'
 export const GOOGLE_LOGOUT_LOADING = 'GOOGLE_LOGOUT_LOADING'
 export const GOOGLE_LOGOUT_SUCCESS = 'GOOGLE_LOGOUT_SUCCESS'
 export const GOOGLE_LOGOUT_ERROR = 'GOOGLE_LOGOUT_ERROR'
+
+export const USER_SIGNUP_LOADING = 'USER_SIGNUP_LOADING'
+export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS'
+export const USER_SIGNUP_ERROR = 'USER_SIGNUP_ERROR'
+
+export const USER_SIGNIN_LOADING = 'USER_SIGNIN_LOADING'
+export const USER_SIGNIN_SUCCESS = 'USER_SIGNIN_SUCCESS'
+export const USER_SIGNIN_ERROR = 'USER_SIGNIN_ERROR'
