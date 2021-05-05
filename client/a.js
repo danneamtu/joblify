@@ -1,13 +1,7 @@
-let location = 'belgium, North Holland, Netherlands'
-let explodeLocation = location.split(',')
-let city = explodeLocation[0].toLowerCase()
+const ob = {}
+const loc = 'sweden'
+const value = 'front end'
 
-let countries = ['netherlands', 'belgium', 'ireland']
+const newOb = { ...ob, [loc]: value }
 
-const itsCountry = countries.find((country) => (country === city ? true : false))
-
-if (!itsCountry) {
-  console.log('insert', city)
-} else {
-  console.log('its a country')
-}
+console.log('new', newOb)
