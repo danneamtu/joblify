@@ -17,19 +17,14 @@ const Navbar = () => {
   const history = useHistory()
   const location = useLocation()
   const [user, setUser] = useState(null)
+  const [visitor, setVisitor] = useState(null)
 
   useEffect(() => {
     const token = user?.token
     setUser(JSON.parse(localStorage.getItem('user')))
-   
     const visitor = JSON.parse(localStorage.getItem('visitor'))
-    if (!visitor) {
-      console.log('create visitor', visitor)
-      dispatch(createVisitor())
-    }
+    !visitor ? dispatch(createVisitor()) : setVisitor(visitor.result._id)
   }, [location.pathname])
-
-  console.log('before inside return', user)
 
   const logout = () => {
     dispatch(googleLogout())
@@ -46,7 +41,7 @@ const Navbar = () => {
               <Logo>J</Logo>
             </Link>
             <Search />
-            <Profile> </Profile>
+            <Profile>{visitor}</Profile>
             <CircleButton>{checkCircleFill}</CircleButton>
             <CircleButton>{starFill}</CircleButton>
             {user ? (

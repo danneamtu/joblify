@@ -6,6 +6,7 @@ let schema = new mongoose.Schema({
   },
   skills: Array,
   favorites: Array,
+  userId: String,
 })
 
 const Visitors = mongoose.model('visitors', schema)

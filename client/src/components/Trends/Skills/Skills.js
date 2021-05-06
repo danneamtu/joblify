@@ -50,7 +50,7 @@ const Logo = styled.div`
 `
 
 function Skills() {
-  const skills = ['react', 'node', 'type script', 'express', 'landba', 'javascript', 'html', 'css']
+  const skills = ['React', 'Node.js', 'TypeScript', 'Express', 'landba', 'JavaScript', 'HTML', 'CSS']
   return (
     <ContainerSkills>
       <Title>Your skills</Title>
