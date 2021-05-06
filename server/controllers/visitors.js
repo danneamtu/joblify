@@ -22,5 +22,24 @@ export const postVisitor = async (req, res) => {
 }
 
 export const patchVisitor = async (req, res) => {
-  console.log('edit visitor')
+  try {
+    const visitorId = req.query.id
+    console.log('visitor id', visitorId)
+    const existingVisitor = await Visitors.findOne({ visitorId })
+    console.log('the existing', existingVisitor)
+    if (existingVisitor) {
+      const result = await Visitors.updateOne(
+        { visitorId },
+        {
+          $push: {
+            pagesVisit: { url: 'joblify.me/2', time: new Date().getTime() },
+          },
+        }
+      )
+      console.log('the result', result)
+      res.status(200).send(result)
+    }
+  } catch (err) {
+    res.status(400).send({ message: err.message || 'Visitor cannot be updated' })
+  }
 }
