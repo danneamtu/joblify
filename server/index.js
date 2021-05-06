@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import jobsRoutes from './routes/jobs.js'
 import locationRoutes from './routes/locations.js'
+import favoritesRoutes from './routes/favorites.js'
 import usersRoutes from './routes/users.js'
 import connectDB from './database/connection.js'
 
@@ -26,6 +27,7 @@ const PORT = process.env.PORT || 5003
 app.use('/api/jobs', jobsRoutes)
 app.use('/api/locations', locationRoutes)
 app.use('/api/users', usersRoutes)
+app.use('/api/favorites', favoritesRoutes)
 
 app.listen(PORT, (result, error) => {
   console.log('server is running at', PORT)

@@ -38,7 +38,6 @@ export const signup = (formData, history) => async (dispatch) => {
   try {
     console.log('try', formData)
     const { data } = await api.signup(formData)
-
     console.log('try data', data)
     dispatch({ type: USER_SIGNUP_LOADING })
     dispatch({ type: USER_SIGNUP_SUCCESS, payload: data })
