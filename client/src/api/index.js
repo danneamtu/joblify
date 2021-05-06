@@ -17,6 +17,6 @@ export const deleteJob = (id) => API.delete(`/jobs/${id}`)
 export const signin = (formData) => API.post(`/api/users/signin`, formData)
 export const signup = (formData) => API.post(`/api/users/signup`, formData)
 
-export const getVisitor = () => API.get(`/api/visitors`)
+export const getVisitor = () => API.post(`/api/visitors`)
 export const patchVisitor = (id) => API.patch(`/api/visitors/${id}`)
 export const postVisitor = (id) => API.post(`/api/visitors/${id}`)

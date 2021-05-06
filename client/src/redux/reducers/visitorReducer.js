@@ -1,7 +1,7 @@
 import { VISITOR_CREATE_LOADING, VISITOR_CREATE_SUCCESS, VISITOR_CREATE_ERROR } from '../constants/actionTypes'
 
 const initialState = {
-  visitorId: null,
+  _id: null,
   favorites: [],
   skills: [],
   loading: false,
@@ -13,10 +13,10 @@ const visitorReducer = (state = initialState, { type, payload }) => {
     case VISITOR_CREATE_LOADING:
       return { ...state, loading: true }
     case VISITOR_CREATE_SUCCESS:
-      localStorage.setItem('visitor', JSON.stringify({ result: payload.result, token: payload.token }))
-      return { ...state, loading: false, visitorId: 22 }
+      localStorage.setItem('visitor', JSON.stringify({ result: payload.data }))
+      return { ...state, loading: false, _id: payload.data._id }
     case VISITOR_CREATE_ERROR:
-      return { ...state, error: 'error' }
+      return { error: payload.error || 'Visitor cannot be added', loading: false }
     default:
       return state
   }

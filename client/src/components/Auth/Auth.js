@@ -26,19 +26,14 @@ function Auth() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('the user data from handle submit', userData)
     if (signIn) {
       dispatch(signin(userData, history))
-      // history.push('/users/1')
-      // get the id
     } else {
       dispatch(signup(userData, history))
-      // history.push('/users/2')
     }
   }
 
   const handleChange = (e) => {
-    console.log('user data from handle change', userData)
     setUserData({ ...userData, [e.target.name]: e.target.value })
   }
 

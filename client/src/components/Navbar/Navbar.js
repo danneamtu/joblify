@@ -4,6 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 import { googleLogout } from '../../redux/actions/userActions'
+import { createVisitor } from '../../redux/actions/visitorActions'
 
 import Search from './Search/Search'
 import { CircleButton } from '../../styled-components/buttons/buttons'
@@ -20,7 +21,12 @@ const Navbar = () => {
   useEffect(() => {
     const token = user?.token
     setUser(JSON.parse(localStorage.getItem('user')))
-    console.log('inside useeffect', user)
+   
+    const visitor = JSON.parse(localStorage.getItem('visitor'))
+    if (!visitor) {
+      console.log('create visitor', visitor)
+      dispatch(createVisitor())
+    }
   }, [location.pathname])
 
   console.log('before inside return', user)
