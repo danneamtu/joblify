@@ -1,5 +1,5 @@
 import express from 'express'
-import { getVisitor, postVisitor, patchVisitor } from '../controllers/vistors.js'
+import { getVisitor, postVisitor, patchVisitor } from '../controllers/visitors.js'
 const router = express.Router()
 
 router.get('/', getVisitor)
