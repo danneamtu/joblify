@@ -3,12 +3,14 @@ import jobReducer from './jobReducer'
 import jobsReducer from './jobsReducer'
 import authReducer from './authReducer'
 import locationsReducer from './locationsReducer'
+import visitorReducer from './visitorReducer'
 
 const rootReducer = combineReducers({
   jobs: jobsReducer,
   job: jobReducer,
   locations: locationsReducer,
   user: authReducer,
+  visitor: visitorReducer,
 })
 
 export default rootReducer

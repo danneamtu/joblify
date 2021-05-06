@@ -1,18 +1,11 @@
 import mongoose from 'mongoose'
 let schema = new mongoose.Schema({
-  visitorId: {
-    type: String,
-    required: true,
-  },
-  firstVisit: {
+  createdAt: {
     type: Date,
     default: new Date(),
   },
-  lastVisit: {
-    type: Date,
-    default: new Date(),
-  },
-  pagesVisit: Array,
+  skills: Array,
+  favorites: Array,
 })
 
 const Visitors = mongoose.model('visitors', schema)
