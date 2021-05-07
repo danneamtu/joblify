@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 import { googleLogout } from '../../redux/actions/userActions'
-import { createVisitor } from '../../redux/actions/visitorActions'
+import { createVisitor, getVisitor } from '../../redux/actions/visitorActions'
 
 import Search from './Search/Search'
 import { CircleButton } from '../../styled-components/buttons/buttons'
@@ -20,10 +20,10 @@ const Navbar = () => {
   const [visitor, setVisitor] = useState(null)
 
   useEffect(() => {
-    const token = user?.token
     setUser(JSON.parse(localStorage.getItem('user')))
     const visitor = JSON.parse(localStorage.getItem('visitor'))
-    !visitor ? dispatch(createVisitor()) : setVisitor(visitor.result._id)
+    console.log('the real id', visitor.result._id)
+    !visitor ? dispatch(createVisitor()) : dispatch(getVisitor(visitor.result._id))
   }, [location.pathname])
 
   const logout = () => {

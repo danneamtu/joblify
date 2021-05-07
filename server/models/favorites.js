@@ -1,7 +1,9 @@
 import mongoose from 'mongoose'
 let schema = new mongoose.Schema({
   userId: String,
-  jobId: Array,
+  visitorId: String,
+  favorites: Array,
+  skills: Array,
 })
 
 const Favorites = mongoose.model('Favorites', schema)
