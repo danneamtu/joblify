@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { addSkill } from '../../../redux/actions/skillsActions'
+import { getVisitor } from '../../../redux/actions/visitorActions'
 
 import { checkCircle, checkCircleFill } from '../../../assets/icons/icons'
 import { lightDark, lightDarker } from '../../../styled-components/typography/colors'
@@ -61,12 +62,13 @@ function Skills() {
   const [mySkills, setMySkills] = useState()
 
   const handleSkill = (skill) => {
-    console.log('insert this skill', skill)
-    dispatch(addSkill({ skill }))
-    // refresh the visitor state
+    dispatch(addSkill({ skill, visitorId }))
+    dispatch(getVisitor(visitorId))
   }
+
   const allSkills = ['React', 'Node.js', 'TypeScript', 'Express', 'landba', 'JavaScript', 'HTML', 'CSS']
   const { _id, skills } = useSelector((state) => state.visitor)
+  const skillsIntersection = allSkills.filter((skill) => !skills.includes(skill))
 
   useEffect(() => {
     setVisitorId(_id)
@@ -75,8 +77,8 @@ function Skills() {
 
   return (
     <ContainerSkills>
-      <Title>Your skills</Title>
-      {mySkills
+      <Title>Your {mySkills && mySkills.length} skills</Title>
+      {mySkills && mySkills.length > 0
         ? mySkills.map((skill) => (
             <StyledLink to="#">
               <Logo>
@@ -89,7 +91,7 @@ function Skills() {
           ))
         : '...loading your skills'}
 
-      {allSkills.map((skill) => (
+      {skillsIntersection.map((skill) => (
         <StyledLink to="#">
           <Logo>
             <img src="https://styled-components.com/atom.png" alt="" />
@@ -99,7 +101,8 @@ function Skills() {
           <ToggleSkill onClick={() => handleSkill(skill)}>{checkCircle}</ToggleSkill>
         </StyledLink>
       ))}
-      <StyledLinkMore to="#">View more {visitorId && visitorId}</StyledLinkMore>
+
+      <StyledLinkMore to="#">View more</StyledLinkMore>
     </ContainerSkills>
   )
 }
