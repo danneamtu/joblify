@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { star, checkCircle } from '../../../assets/icons/icons'
-import { lightDark, lightDarker, darkLight } from '../../../styled-components/typography/colors'
+import { addSkill } from '../../../redux/actions/skillsActions'
+
+import { checkCircle, checkCircleFill } from '../../../assets/icons/icons'
+import { lightDark, lightDarker } from '../../../styled-components/typography/colors'
 import { Chip } from '../../../styled-components/buttons/buttons'
 
 const ContainerSkills = styled.div`
@@ -48,23 +52,54 @@ const Logo = styled.div`
     width: 100%;
   }
 `
+const ToggleSkill = styled.div``
 
 function Skills() {
-  const skills = ['React', 'Node.js', 'TypeScript', 'Express', 'landba', 'JavaScript', 'HTML', 'CSS']
+  const dispatch = useDispatch()
+  const [skillIcon, setSkillIcon] = useState(true)
+  const [visitorId, setVisitorId] = useState(null)
+  const [mySkills, setMySkills] = useState()
+
+  const handleSkill = (skill) => {
+    console.log('insert this skill', skill)
+    dispatch(addSkill({ skill }))
+    // refresh the visitor state
+  }
+  const allSkills = ['React', 'Node.js', 'TypeScript', 'Express', 'landba', 'JavaScript', 'HTML', 'CSS']
+  const { _id, skills } = useSelector((state) => state.visitor)
+
+  useEffect(() => {
+    setVisitorId(_id)
+    setMySkills(skills)
+  }, [skills])
+
   return (
     <ContainerSkills>
       <Title>Your skills</Title>
-      {skills.map((item) => (
+      {mySkills
+        ? mySkills.map((skill) => (
+            <StyledLink to="#">
+              <Logo>
+                <img src="https://styled-components.com/atom.png" alt="" />
+              </Logo>
+              <div> {skill}</div>
+              <Chip style={{ marginLeft: 'auto', marginRight: '0.5em' }}>22</Chip>
+              <ToggleSkill onClick={() => handleSkill(skill)}>{checkCircleFill}</ToggleSkill>
+            </StyledLink>
+          ))
+        : '...loading your skills'}
+
+      {allSkills.map((skill) => (
         <StyledLink to="#">
           <Logo>
             <img src="https://styled-components.com/atom.png" alt="" />
           </Logo>
-          <div> {item}</div>
+          <div> {skill}</div>
           <Chip style={{ marginLeft: 'auto', marginRight: '0.5em' }}>22</Chip>
-          {checkCircle}
+          <ToggleSkill onClick={() => handleSkill(skill)}>{checkCircle}</ToggleSkill>
         </StyledLink>
       ))}
-      <StyledLinkMore to="#">View more</StyledLinkMore>
+      <StyledLinkMore to="#">View more {visitorId && visitorId}</StyledLinkMore>
     </ContainerSkills>
   )
 }

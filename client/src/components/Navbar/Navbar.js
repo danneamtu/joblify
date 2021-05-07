@@ -22,7 +22,7 @@ const Navbar = () => {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('user')))
     const visitor = JSON.parse(localStorage.getItem('visitor'))
-    console.log('the real id', visitor.result._id)
+    setVisitor(visitor.result._id)
     !visitor ? dispatch(createVisitor()) : dispatch(getVisitor(visitor.result._id))
   }, [location.pathname])
 
@@ -33,7 +33,6 @@ const Navbar = () => {
   }
   return (
     <>
-      {console.log('inside navbar', user)}
       <NavbarContainer>
         <Container>
           <Row>

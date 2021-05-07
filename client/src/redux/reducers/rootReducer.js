@@ -4,6 +4,7 @@ import jobsReducer from './jobsReducer'
 import authReducer from './authReducer'
 import locationsReducer from './locationsReducer'
 import visitorReducer from './visitorReducer'
+import skillsReducer from './skillsReducer'
 
 const rootReducer = combineReducers({
   jobs: jobsReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   locations: locationsReducer,
   user: authReducer,
   visitor: visitorReducer,
+  skills: skillsReducer,
 })
 
 export default rootReducer

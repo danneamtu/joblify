@@ -1,15 +1,10 @@
 import Visitors from '../models/visitors.js'
-
-import mongoose from 'mongoose'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
-dotenv.config()
-
-export const createSkills = async (req, res) => {
+export const addSkills = async (req, res) => {
   const visitorId = '609452e50a797de55471ea31'
+  const { skill } = req.body
+  console.log('this is the skills from body', skill)
   try {
-    const result = await Visitors.updateOne({ _id: visitorId }, { $addToSet: { skills: 'php' } })
+    const result = await Visitors.updateOne({ _id: visitorId }, { $addToSet: { skills: skill } })
     res.status(200).send(result.nModified)
   } catch (err) {
     res.status(400).send({ message: err.message || 'Skill cannot be added' })

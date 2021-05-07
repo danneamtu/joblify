@@ -20,3 +20,5 @@ export const signup = (formData) => API.post(`/api/users/signup`, formData)
 export const createVisitor = () => API.post(`/api/visitors`)
 export const getVisitor = (id) => API.get(`/api/visitors/${id}`)
 export const postVisitor = (id) => API.post(`/api/visitors/${id}`)
+
+export const addSkill = (skill) => API.post(`/api/skills`, skill)
