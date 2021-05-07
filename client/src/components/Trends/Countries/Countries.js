@@ -21,6 +21,7 @@ const StyledLink = styled(Link)`
   padding-bottom: 4px;
   min-width: 100%;
   text-decoration: none;
+  text-transform: capitalize;
   color: ${lightDarker};
   transition: 0.2s;
   &:hover {
@@ -56,8 +57,7 @@ function Countries({ allLocations }) {
         {allLocations.map(
           (item) =>
             item.justCountry?.length > 2 && (
-              <StyledLink to="#">
-                {console.log('teitem', item.justCountry)}
+              <StyledLink to={`/jobs/search?location=${item.justCountry}&currentJobId=${null}&start=1`}>
                 <div> {item.justCountry}</div>
                 <Chip style={{ marginLeft: 'auto', marginRight: '0.5em' }}>{item.total}</Chip>
               </StyledLink>

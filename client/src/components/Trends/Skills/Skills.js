@@ -7,7 +7,7 @@ import { addSkill } from '../../../redux/actions/skillsActions'
 import { getVisitor } from '../../../redux/actions/visitorActions'
 
 import { checkCircle, checkCircleFill } from '../../../assets/icons/icons'
-import { lightDark, lightDarker } from '../../../styled-components/typography/colors'
+import { lightDark, lightDarker, accentGreen } from '../../../styled-components/typography/colors'
 import { Chip } from '../../../styled-components/buttons/buttons'
 
 const ContainerSkills = styled.div`
@@ -34,6 +34,9 @@ const StyledLink = styled(Link)`
   & svg {
     font-size: 0.6em;
   }
+  &.active svg {
+    color: ${accentGreen};
+  }
 `
 const StyledLinkMore = styled(StyledLink)`
   font-size: 0.9em;
@@ -55,54 +58,56 @@ const Logo = styled.div`
 `
 const ToggleSkill = styled.div``
 
-function Skills() {
+function Skills({ allSkills }) {
   const dispatch = useDispatch()
   const [skillIcon, setSkillIcon] = useState(true)
   const [visitorId, setVisitorId] = useState(null)
   const [mySkills, setMySkills] = useState()
+
+  const newAllSkills = allSkills.map((item) => item.skill)
 
   const handleSkill = (skill) => {
     dispatch(addSkill({ skill, visitorId }))
     dispatch(getVisitor(visitorId))
   }
 
-  const allSkills = ['React', 'Node.js', 'TypeScript', 'Express', 'landba', 'JavaScript', 'HTML', 'CSS']
   const { _id, skills } = useSelector((state) => state.visitor)
-  const skillsIntersection = allSkills.filter((skill) => !skills.includes(skill))
+  const skillsIntersection = newAllSkills.filter((skill) => {
+    return !skills.includes(skill)
+  })
 
   useEffect(() => {
     setVisitorId(_id)
     setMySkills(skills)
   }, [skills])
 
+  const getTotalJobs = (skill) => {
+    const item = allSkills.filter((item) => item.skill === skill)
+    return item[0].total
+  }
+
   return (
     <ContainerSkills>
-      <Title>Your {mySkills && mySkills.length} skills</Title>
+      <Title>Popular Skills</Title>
       {mySkills && mySkills.length > 0
         ? mySkills.map((skill) => (
-            <StyledLink to="#">
-              <Logo>
-                <img src="https://styled-components.com/atom.png" alt="" />
-              </Logo>
-              <div> {skill}</div>
-              <Chip style={{ marginLeft: 'auto', marginRight: '0.5em' }}>22</Chip>
+            <StyledLink to={`/jobs/search?location=all&currentJobId=608c55e4995adefb92619fb8&start=1&skill=${skill}`} className="active">
+              {skill}
+              <Chip style={{ marginLeft: 'auto', marginRight: '0.5em' }}>{getTotalJobs(skill)}</Chip>
               <ToggleSkill onClick={() => handleSkill(skill)}>{checkCircleFill}</ToggleSkill>
             </StyledLink>
           ))
         : '...loading your skills'}
 
       {skillsIntersection.map((skill) => (
-        <StyledLink to="#">
-          <Logo>
-            <img src="https://styled-components.com/atom.png" alt="" />
-          </Logo>
-          <div> {skill}</div>
-          <Chip style={{ marginLeft: 'auto', marginRight: '0.5em' }}>22</Chip>
+        <StyledLink to={`/jobs/search?location=all&currentJobId=608c55e4995adefb92619fb8&start=1&skill=${skill}`}>
+          <div>{skill}</div>
+          <Chip style={{ marginLeft: 'auto', marginRight: '0.5rem' }}>{getTotalJobs(skill, newAllSkills)}</Chip>
           <ToggleSkill onClick={() => handleSkill(skill)}>{checkCircle}</ToggleSkill>
         </StyledLink>
       ))}
 
-      <StyledLinkMore to="#">View more</StyledLinkMore>
+      {/* <StyledLinkMore to="#">View more</StyledLinkMore> */}
     </ContainerSkills>
   )
 }

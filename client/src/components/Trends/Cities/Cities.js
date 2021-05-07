@@ -21,6 +21,7 @@ const StyledLink = styled(Link)`
   padding-bottom: 4px;
   min-width: 100%;
   text-decoration: none;
+  text-transform: capitalize;
   color: ${lightDarker};
   transition: 0.2s;
   &:hover {
@@ -48,21 +49,22 @@ const Logo = styled.div`
     width: 100%;
   }
 `
+
 function Cities({ allLocations }) {
   return (
     <>
       <ContainerSkills>
-        <Title>Popular cities</Title>
+        <Title>Top 20 Popular Cities</Title>
         {allLocations.map(
           (item, index) =>
-            item.city?.length > 2 && (
-              <StyledLink to="#">
+            item.city?.length > 2 &&
+            index < 20 && (
+              <StyledLink to={`/jobs/search?location=${item.city}&currentJobId=${null}&start=1`}>
                 <div> {item.city}</div>
                 <Chip style={{ marginLeft: 'auto', marginRight: '0.5em' }}>{item.total}</Chip>
               </StyledLink>
             )
         )}
-        <StyledLinkMore to="#">View all</StyledLinkMore>
       </ContainerSkills>
     </>
   )
