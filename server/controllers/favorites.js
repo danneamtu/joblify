@@ -1,11 +1,17 @@
 import Favorites from '../models/favorites.js'
+import Visitors from '../models/visitors.js'
 
-export const createFavorite = async (req, res) => {
+export const insertFavorite = async (req, res) => {
+  const idJob = req.query.idJob
+  const idVisitor = req.query.idVisitor
   try {
-    let favorites = await Favorites.find()
-    res.status(200).json(favorites)
+    if (skill) {
+      const result = await Visitors.updateOne({ _id: idVisitor }, { $push: { favorites: idJob } })
+      res.status(200).send(result)
+    } else {
+      res.status(200).send('add a favorite')
+    }
   } catch (err) {
-    console.log(err)
-    res.status(409).json({ message: err.message || 'Jobs not found' })
+    res.status(400).send({ message: err.message || 'favorite cannot be inserted' })
   }
 }
