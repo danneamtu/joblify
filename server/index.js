@@ -7,6 +7,8 @@ import locationRoutes from './routes/locations.js'
 import favoritesRoutes from './routes/favorites.js'
 import usersRoutes from './routes/users.js'
 import visitorsRoutes from './routes/visitors.js'
+import skillsRoutes from './routes/skills.js'
+
 import connectDB from './database/connection.js'
 
 connectDB()
@@ -30,6 +32,7 @@ app.use('/api/locations', locationRoutes)
 app.use('/api/users', usersRoutes)
 app.use('/api/favorites', favoritesRoutes)
 app.use('/api/visitors', visitorsRoutes)
+app.use('/api/skills', skillsRoutes)
 
 app.listen(PORT, (result, error) => {
   console.log('server is running at', PORT)

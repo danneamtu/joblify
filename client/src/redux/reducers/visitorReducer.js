@@ -15,7 +15,7 @@ const visitorReducer = (state = initialState, { type, payload }) => {
     case VISITOR_GET_SUCCESS:
       return { ...state, ...payload }
     case VISITOR_GET_ERROR:
-      return { error: payload.error || 'Visitor cannot be adde22d', loading: false }
+      return { error: payload.error || 'Visitor cannot be added', loading: false }
 
     case VISITOR_CREATE_LOADING:
       return { ...state, loading: true }
@@ -23,7 +23,7 @@ const visitorReducer = (state = initialState, { type, payload }) => {
       localStorage.setItem('visitor', JSON.stringify({ result: payload.data }))
       return { ...state, loading: false, _id: payload.data._id }
     case VISITOR_CREATE_ERROR:
-      return { error: payload.error || 'Visitor cannot be added111', loading: false }
+      return { error: payload.error || 'Visitor cannot be created', loading: false }
 
     default:
       return state
