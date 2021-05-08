@@ -25,3 +25,4 @@ export const addSkill = (skill) => API.post(`/api/skills`, skill)
 export const getAllSkills = () => API.get(`/api/skills/all`)
 
 export const addFavorite = (id, visitorId) => API.post(`/api/favorites?id=${id}&vid=${visitorId}`)
+export const removeFavorite = (id, visitorId) => API.delete(`/api/favorites?id=${id}&vid=${visitorId}`)

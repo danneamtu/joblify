@@ -1,4 +1,4 @@
-import { VISITOR_CREATE_LOADING, VISITOR_CREATE_SUCCESS, VISITOR_CREATE_ERROR, VISITOR_GET_LOADING, VISITOR_GET_SUCCESS, VISITOR_GET_ERROR, VISITOR_ADD_FAVORITE_LOADING, VISITOR_ADD_FAVORITE_SUCCESS, VISITOR_ADD_FAVORITE_ERROR } from '../constants/actionTypes'
+import { VISITOR_CREATE_LOADING, VISITOR_CREATE_SUCCESS, VISITOR_CREATE_ERROR, VISITOR_GET_LOADING, VISITOR_GET_SUCCESS, VISITOR_GET_ERROR, VISITOR_ADD_FAVORITE_LOADING, VISITOR_ADD_FAVORITE_SUCCESS, VISITOR_ADD_FAVORITE_ERROR, VISITOR_REMOVE_FAVORITE_LOADING, VISITOR_REMOVE_FAVORITE_SUCCESS, VISITOR_REMOVE_FAVORITE_ERROR } from '../constants/actionTypes'
 
 const initialState = {
   _id: null,
@@ -30,8 +30,15 @@ const visitorReducer = (state = initialState, { type, payload }) => {
     case VISITOR_ADD_FAVORITE_SUCCESS:
       const set = new Set([...state.favorites, payload])
       return { ...state, loading: false, favorites: [...set] }
-
     case VISITOR_ADD_FAVORITE_ERROR:
+      return { ...state, error: payload.error || 'Favorite cannot be added', loading: false }
+
+    case VISITOR_REMOVE_FAVORITE_LOADING:
+      return { ...state, loading: true }
+    case VISITOR_REMOVE_FAVORITE_SUCCESS:
+      const removed = state.favorites.filter((item) => item !== payload)
+      return { ...state, loading: false, favorites: removed }
+    case VISITOR_REMOVE_FAVORITE_ERROR:
       return { ...state, error: payload.error || 'Favorite cannot be added', loading: false }
 
     default:

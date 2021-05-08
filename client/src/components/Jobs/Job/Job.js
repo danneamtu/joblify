@@ -6,6 +6,8 @@ import { Row } from '../../../styled-components/responsive/row'
 import { star, starFill } from '../../../assets/icons/icons'
 import { CircleButton } from '../../../styled-components/buttons/buttons'
 import { addFavorite } from '../../../redux/actions/visitorActions'
+import FavoriteStar from './Favorite/Favorite'
+
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
@@ -36,9 +38,7 @@ function Job({ jobData, index }) {
 
   return (
     <JobContainer>
-      <Favorite onClick={handleFavorite}>
-        <CircleButton>{!favorite ? star : starFill}</CircleButton>
-      </Favorite>
+      <FavoriteStar jobId={jobId} />
       <Link style={{ textDecoration: 'none' }} to={theUri}>
         <Row>
           <CompanyLogo>{companyLogo}</CompanyLogo>
