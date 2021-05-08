@@ -14,14 +14,15 @@ function TechnologiesDetected({ tags }) {
       <Col md={12} mb={4}>
         <h4>Skills detected</h4>
       </Col>
-      {tags?.map((tag) => (
-        <Col md={6}>
-          <Tag className={lowerSkills.indexOf(tag) > 0 && 'active'}>
-            {checkCircleFill}
-            {tag}
-          </Tag>
-        </Col>
-      ))}
+      {tags &&
+        tags?.map((tag) => (
+          <Col md={6}>
+            <Tag className={lowerSkills.indexOf(tag) > 0 && 'active'}>
+              {checkCircleFill}
+              {tag}
+            </Tag>
+          </Col>
+        ))}
     </Row>
   )
 }

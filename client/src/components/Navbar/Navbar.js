@@ -20,10 +20,11 @@ const Navbar = () => {
   const [visitor, setVisitor] = useState(null)
 
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('user')))
     const visitor = JSON.parse(localStorage.getItem('visitor'))
-    setVisitor(visitor.result._id)
-    !visitor ? dispatch(createVisitor()) : dispatch(getVisitor(visitor.result._id))
+
+    !visitor ? dispatch(createVisitor()) : dispatch(getVisitor(visitor.result?._id))
+    setVisitor(visitor.result?._id)
+    setUser(JSON.parse(localStorage.getItem('user')))
   }, [location.pathname])
 
   const logout = () => {

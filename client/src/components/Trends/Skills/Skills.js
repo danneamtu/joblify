@@ -72,6 +72,7 @@ function Skills({ allSkills }) {
   }
 
   const { _id, skills } = useSelector((state) => state.visitor)
+  
   const skillsIntersection = newAllSkills.filter((skill) => {
     return !skills.includes(skill)
   })

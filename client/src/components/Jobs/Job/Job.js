@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { companyLogo, JobContainer, CompanyLogo, CompanyInfo, Favorite, JobTitle, JobSubTitle, Chip, Date } from './styled'
 import { Row } from '../../../styled-components/responsive/row'
 import { star, starFill } from '../../../assets/icons/icons'
 import { CircleButton } from '../../../styled-components/buttons/buttons'
-
+import { addFavorite } from '../../../redux/actions/visitorActions'
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
@@ -12,6 +13,7 @@ const useQuery = () => {
 function Job({ jobData, index }) {
   const { _id: jobId, title, location, companyName } = jobData
   const [favorite, setFavorite] = useState(false)
+  const dispatch = useDispatch()
 
   let query = useQuery()
   let hasLocation, hasStart
@@ -23,9 +25,18 @@ function Job({ jobData, index }) {
   }
   let theUri = `/jobs/search?currentJobId=${jobId}${hasLocation}${hasStart}`
 
+  const { _id: visitorId } = useSelector((state) => state.visitor)
+  console.log('visitor id1', visitorId)
+
+  const handleFavorite = () => {
+    setFavorite(!favorite)
+    console.log('visitor id2', visitorId)
+    dispatch(addFavorite(jobId, visitorId))
+  }
+
   return (
     <JobContainer>
-      <Favorite onClick={() => setFavorite(!favorite)}>
+      <Favorite onClick={handleFavorite}>
         <CircleButton>{!favorite ? star : starFill}</CircleButton>
       </Favorite>
       <Link style={{ textDecoration: 'none' }} to={theUri}>
