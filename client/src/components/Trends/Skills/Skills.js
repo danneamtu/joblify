@@ -16,12 +16,12 @@ function Skills() {
   const [mySkills, setMySkills] = useState([])
   const [showLoadMore, setShowLoadMore] = useState(true)
   const [start, setStart] = useState(5)
-
   const { data: stateSkills } = useSelector((state) => state.skills)
   const { _id, skills } = useSelector((state) => state.visitor)
 
   useEffect(() => {
-    const filterData = `start=0`
+    const arrSkills = skills.map((item) => item.skill)
+    const filterData = `start=0&nin=${arrSkills}`
     dispatch(getSkills(filterData))
     setVisitorId(_id)
   }, [])
@@ -31,16 +31,17 @@ function Skills() {
   }, [skills])
 
   const loadMoreSkills = (totalResults) => {
+    const arrSkills = skills.map((item) => item.skill)
     setStart(start + 5)
-    const filterData = `start=${start}`
+    const filterData = `start=${start}&nin=${arrSkills}`
     dispatch(getSkills(filterData))
-    console.log('the show mroe logic', totalResults, start, filterData)
     totalResults < start + 5 && setShowLoadMore(false)
   }
   return (
     <ContainerSkills>
       <Title>Popular Skills</Title>
-      {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill item={item} />)}
+      {mySkills && mySkills.map((item) => item.skill && <Skill active={true} data={item} visitorId={_id} item={item} />)}
+      {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill visitorId={_id} item={item} />)}
       {showLoadMore && (
         <StyledLinkMore onClick={() => loadMoreSkills(stateSkills[0].totalSkills)} to="#">
           View more

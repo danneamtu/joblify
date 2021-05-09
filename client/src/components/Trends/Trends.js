@@ -17,9 +17,11 @@ function Filter() {
     data: { data: allLocations },
   } = useSelector((state) => state.locations)
 
+  const { skills } = useSelector((state) => state.visitor)
+
   return (
     <FilterContainer>
-      <Skills />
+      <Skills visitorSkills={skills} />
       {allLocations && <Countries allLocations={allLocations} />}
       {allLocations && <Cities allLocations={allLocations} />}
     </FilterContainer>

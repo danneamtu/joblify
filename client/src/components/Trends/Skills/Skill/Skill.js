@@ -1,27 +1,40 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addSkill } from '../../../../redux/actions/skillsActions'
-import { getVisitor } from '../../../../redux/actions/visitorActions'
+import { getVisitor, addVisitorSkill, removeVisitorSkill } from '../../../../redux/actions/visitorActions'
 import { getSkills } from '../../../../redux/actions/skillsActions'
 
 import { checkCircle, checkCircleFill } from '../../../../assets/icons/icons'
 import { Chip } from '../../../../styled-components/buttons/buttons'
-import { StyledLink, ToggleSkill } from './styled'
+import { StyledLink, ToggleSkill, SkillLi } from './styled'
 
-function Skill({ item }) {
+function Skill({ item, active, visitorId }) {
   const dispatch = useDispatch()
 
-  const handleSkill = (skill) => {
-    dispatch(addSkill(skill))
+  const data = {
+    skill: item,
+    visitorId,
+  }
+  const addSkill = () => {
+    console.log('add ski', data)
+    dispatch(addVisitorSkill(data))
+  }
+  const removeSkill = () => {
+    console.log('rem ski', data)
+    dispatch(removeVisitorSkill(data))
   }
 
+  console.log('thisis item', item)
   return (
-    <StyledLink to={`/jobs/search?location=all&currentJobId=608c55e4995adefb92619fb8&start=1&skill=${item.skill}`}>
-      <div>{item.skill}</div>
-      <Chip style={{ marginLeft: 'auto', marginRight: '0.5rem' }}>{item.total}</Chip>
-      <ToggleSkill onClick={() => handleSkill(item)}>{checkCircle}</ToggleSkill>
-    </StyledLink>
+    item && (
+      <SkillLi className={active && 'active'}>
+        <StyledLink to={`/jobs/search?location=all&currentJobId=608c55e4995adefb92619fb8&start=1&skill=${item.skill}`}>
+          <div>{item.skill}</div>
+          <Chip style={{ marginLeft: 'auto', marginRight: '0.5rem' }}>{item.total}</Chip>
+        </StyledLink>
+        <ToggleSkill onClick={!active ? addSkill : removeSkill}>{active ? checkCircleFill : checkCircle}</ToggleSkill>
+      </SkillLi>
+    )
   )
 }
 

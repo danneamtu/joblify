@@ -21,10 +21,11 @@ export const createVisitor = () => API.post(`/api/visitors`)
 export const getVisitor = (id) => API.get(`/api/visitors/${id}`)
 export const postVisitor = (id) => API.post(`/api/visitors/${id}`)
 
-export const addSkill = (skill) => API.post(`/api/skills`, skill)
+export const addVisitorSkill = (skill) => API.post(`/api/skills`, skill)
+export const removeVisitorSkill = (skill) => API.post(`/api/skills/remove`, skill)
+
 export const getAllSkills = () => API.get(`/api/skills/all`)
 export const getSkills = (filter) => API.get(`/api/skills?${filter}`)
-
 
 export const addFavorite = (id, visitorId) => API.post(`/api/favorites?id=${id}&vid=${visitorId}`)
 export const removeFavorite = (id, visitorId) => API.delete(`/api/favorites?id=${id}&vid=${visitorId}`)

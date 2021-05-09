@@ -30,6 +30,20 @@ export const StyledLink = styled(Link)`
     color: ${accentGreen};
   }
 `
+export const SkillLi = styled.div`
+  display: flex;
+  align-items: center;
+
+  & svg {
+    cursor: pointer;
+  }
+  &:hover {
+    color: ${lightDark};
+  }
+  &.active svg {
+    color: ${accentGreen};
+  }
+`
 export const StyledLinkMore = styled(StyledLink)`
   font-size: 0.9em;
   margin-top: 0.5em;
