@@ -8,7 +8,7 @@ import { checkCircle, checkCircleFill } from '../../../../assets/icons/icons'
 
 function TechnologiesDetected({ tags }) {
   const { skills } = useSelector((state) => state.visitor)
-  const lowerSkills = skills.map((skill) => skill.toLowerCase())
+  const lowerSkills = skills.map((skill) => skill)
   return (
     <Row>
       <Col md={12} mb={4}>
