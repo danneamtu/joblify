@@ -10,7 +10,7 @@ import Search from './Search/Search'
 import { CircleButton } from '../../styled-components/buttons/buttons'
 
 import { checkCircleFill, pieChartFill, clockFill, person, personFill, starFill, barChartFill, search } from '../../assets/icons/icons'
-import { CircleAvatar, Container, Row, NavbarContainer, Logo, Profile, InfoAuth } from './styled'
+import { Sup, CircleAvatar, Container, Row, NavbarContainer, Logo, Profile, InfoAuth } from './styled'
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -46,7 +46,7 @@ const Navbar = () => {
             <Link style={{ marginLeft: 'auto' }} to={`/favorites`}>
               <CircleButton>
                 {starFill}
-                <sup> {favorites.length > 0 && favorites.length}</sup>
+                <Sup> {favorites.length > 0 && favorites.length}</Sup>
               </CircleButton>
             </Link>
             {user ? (

@@ -13,6 +13,7 @@ export const CircleButton = styled.div`
   justify-content: center;
   margin-right: 8px;
   transition: 0.2s;
+  position: relative;
   &:hover {
     background: rgba(255, 255, 255, 0.04);
   }

@@ -60,23 +60,19 @@ const ToggleSkill = styled.div``
 
 function Skills({ allSkills }) {
   const dispatch = useDispatch()
-  const [skillIcon, setSkillIcon] = useState(true)
   const [visitorId, setVisitorId] = useState(null)
   const [mySkills, setMySkills] = useState()
 
   const newAllSkills = allSkills.map((item) => item.skill)
+  const { _id, skills } = useSelector((state) => state.visitor)
+  const skillsIntersection = newAllSkills.filter((skill) => {
+    return !skills.includes(skill)
+  })
 
   const handleSkill = (skill) => {
     dispatch(addSkill({ skill, visitorId }))
     dispatch(getVisitor(visitorId))
   }
-
-  const { _id, skills } = useSelector((state) => state.visitor)
-  
-  const skillsIntersection = newAllSkills.filter((skill) => {
-    return !skills.includes(skill)
-  })
-
   useEffect(() => {
     setVisitorId(_id)
     setMySkills(skills)

@@ -65,3 +65,10 @@ export const CircleAvatar = styled.div`
     width: 100%;
   }
 `
+export const Sup = styled.div`
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  font-size: 12px;
+  font-weight: 500;
+`
