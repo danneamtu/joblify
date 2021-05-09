@@ -4,12 +4,10 @@ import Skills from '../models/skills.js'
 export const getSkills = async (req, res) => {
   const page = Number(req.query.page) || 1
   const limit = Number(req.query.limit) || 10
+  const nin = { skill: { $nin: [] } }
   const start = (page - 1) * limit
   try {
-    let skills = await Skills.find()
-      .sort({ total: -1 })
-      .limit(limit + 1)
-      .skip(start)
+    let skills = await Skills.find(nin).sort({ total: -1 }).limit(limit).skip(start)
     res.status(200).json(skills)
   } catch (err) {
     console.log(err)
