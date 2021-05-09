@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
@@ -18,10 +18,10 @@ const Navbar = () => {
   const location = useLocation()
   const [user, setUser] = useState(null)
   const [visitor, setVisitor] = useState(null)
+  const { _id: visitorId, favorites } = useSelector((state) => state.visitor)
 
   useEffect(() => {
     const visitor = JSON.parse(localStorage.getItem('visitor'))
-
     !visitor ? dispatch(createVisitor()) : dispatch(getVisitor(visitor.result?._id))
     setVisitor(visitor.result?._id)
     setUser(JSON.parse(localStorage.getItem('user')))
@@ -41,9 +41,14 @@ const Navbar = () => {
               <Logo>J</Logo>
             </Link>
             <Search />
-            <Profile>{visitor}</Profile>
-            <CircleButton>{checkCircleFill}</CircleButton>
-            <CircleButton>{starFill}</CircleButton>
+            {/* <Profile>{visitor}</Profile> */}
+            {/* <CircleButton>{checkCircleFill}</CircleButton> */}
+            <Link style={{ marginLeft: 'auto' }} to={`/favorites`}>
+              <CircleButton>
+                {starFill}
+                <sup> {favorites.length > 0 && favorites.length}</sup>
+              </CircleButton>
+            </Link>
             {user ? (
               <Link to={`/users/${user.result.googleId || user.result._id}`}>
                 <Row alignItems="center">
