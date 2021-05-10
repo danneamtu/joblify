@@ -20,6 +20,7 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   color: ${lightDarker};
   transition: 0.2s;
+  border-radius: 0.25rem;
   &:hover {
     color: ${lightDark};
   }
@@ -35,6 +36,7 @@ export const SkillLi = styled.div`
   align-items: center;
 
   & svg {
+    margin-left: 4px;
     cursor: pointer;
   }
   &:hover {
@@ -52,7 +54,8 @@ export const StyledLinkMore = styled(StyledLink)`
 export const Title = styled.h4`
   font-size: 1em;
   color: ${lightDarker};
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
+  margin-top: 1em;
 `
 export const Logo = styled.div`
   max-width: 1.5em;

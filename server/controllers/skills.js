@@ -4,7 +4,7 @@ import Skills from '../models/skills.js'
 export const getSkills = async (req, res) => {
   const start = Number(req.query.start) || 0
   const ninskill = req.query.nin.split(',')
-  const limit = 5
+  const limit = 10
   console.log('search this nin', typeof ninskill, 'start', start)
 
   const nin = { skill: { $nin: [...ninskill] } }

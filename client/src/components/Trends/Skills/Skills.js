@@ -15,7 +15,7 @@ function Skills() {
   const [visitorId, setVisitorId] = useState(null)
   const [mySkills, setMySkills] = useState([])
   const [showLoadMore, setShowLoadMore] = useState(true)
-  const [start, setStart] = useState(5)
+  const [start, setStart] = useState(10)
   const { data: stateSkills } = useSelector((state) => state.skills)
   const { _id, skills } = useSelector((state) => state.visitor)
 
@@ -32,16 +32,17 @@ function Skills() {
 
   const loadMoreSkills = (totalResults) => {
     const arrSkills = skills.map((item) => item.skill)
-    setStart(start + 5)
+    setStart(start + 10)
     const filterData = `start=${start}&nin=${arrSkills}`
     dispatch(getSkills(filterData))
-    totalResults < start + 5 && setShowLoadMore(false)
+    totalResults < start + 10 && setShowLoadMore(false)
   }
   return (
     <ContainerSkills>
+      {mySkills.length > 2 && <Title>My Skills</Title>}
+      {mySkills && mySkills.map((item) => item.skill && <Skill loadMoreSkills={loadMoreSkills} start={start} active={true} data={item} visitorId={_id} item={item} />)}
       <Title>Popular Skills</Title>
-      {mySkills && mySkills.map((item) => item.skill && <Skill active={true} data={item} visitorId={_id} item={item} />)}
-      {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill visitorId={_id} item={item} />)}
+      {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill start={start} visitorId={_id} item={item} />)}
       {showLoadMore && (
         <StyledLinkMore onClick={() => loadMoreSkills(stateSkills[0].totalSkills)} to="#">
           View more

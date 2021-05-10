@@ -38,7 +38,8 @@ export const StyledLinkMore = styled(StyledLink)`
 export const Title = styled.h4`
   font-size: 1em;
   color: ${lightDarker};
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
 `
 export const Logo = styled.div`
   max-width: 1.5em;

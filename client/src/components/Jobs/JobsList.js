@@ -13,7 +13,6 @@ const JobsList = (props) => {
 
   let query = useQuery()
   const pageStart = query.get('start')
-
   const dispatch = useDispatch()
   const {
     data: { data: allJobs },

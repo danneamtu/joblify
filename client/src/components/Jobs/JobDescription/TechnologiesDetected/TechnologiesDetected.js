@@ -3,27 +3,40 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row } from '../../../../styled-components/responsive/row'
 import { Col } from '../../../../styled-components/responsive/col'
-import { Tag, StyledLink } from './styled'
+import { Tag, StyledLink, Title, TechnologiesContainer } from './styled'
 import { checkCircle, checkCircleFill } from '../../../../assets/icons/icons'
 
 function TechnologiesDetected({ tags }) {
-  const { skills } = useSelector((state) => state.visitor)
-  const lowerSkills = skills.map((skill) => skill)
+  const { skills: visitorSkills } = useSelector((state) => state.visitor)
+  const visitorSkillsArr = visitorSkills.map((item) => item.skill).filter((item) => item)
+
   return (
-    <Row>
-      <Col md={12} mb={4}>
-        <h4>Skills detected</h4>
-      </Col>
-      {tags &&
-        tags?.map((tag) => (
-          <Col md={6}>
-            <Tag className={lowerSkills.indexOf(tag) > 0 && 'active'}>
-              {checkCircleFill}
-              {tag}
-            </Tag>
-          </Col>
-        ))}
-    </Row>
+    <TechnologiesContainer>
+      <Row>
+        <Col md={12} mb={5}>
+          <Title>Skills detected</Title>
+        </Col>
+        {tags.map((item) =>
+          visitorSkillsArr.includes(item)
+            ? item && (
+                <Col md={6}>
+                  <Tag className={'active'}>
+                    {checkCircleFill}
+                    {item}
+                  </Tag>
+                </Col>
+              )
+            : item && (
+                <Col md={6}>
+                  <Tag>
+                    {checkCircle}
+                    {item}
+                  </Tag>
+                </Col>
+              )
+        )}
+      </Row>
+    </TechnologiesContainer>
   )
 }
 

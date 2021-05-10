@@ -15,8 +15,8 @@ const TheChart = ({ id }) => {
       <PieChart
         startAngle={-100}
         data={[
-          { title: 'Three', value: 40, color: lightDark },
-          { title: 'One', value: 60, color: accentGreen },
+          { title: '40%', value: 20, color: lightDark },
+          { title: '60% Skills', value: 80, color: accentGreen },
         ]}
       />
     )

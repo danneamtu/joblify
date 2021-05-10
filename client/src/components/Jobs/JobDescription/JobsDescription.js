@@ -20,9 +20,10 @@ const JobInfo = styled.div`
   margin-right: 30px;
 `
 const CompanyLogo = styled.div`
-  min-width: 80px;
+  max-width: 84px;
   margin-bottom: 32px;
-  margin-right: 32px;
+  margin-right: 2rem;
+  flex: 1 0 0;
   & img {
     width: 100%;
     border-radius: 4px;
@@ -60,6 +61,9 @@ const TitleInfoDetail = styled.h4`
   margin-bottom: 4px;
   padding: 0;
 `
+const ColD = styled.div`
+  flex: 1 0 0;
+`
 
 const JobSubTitle = styled.p`
   font-size: 16px;
@@ -73,14 +77,15 @@ const ButtonApply = styled.button`
   background: #0261fb;
   color: rgba(255, 255, 255, 0.89);
   margin-right: 16px;
-  padding: 12px 30px;
+  padding: 0.8rem 2rem;
   border: none;
   font-weight: 500;
   border-radius: 24px;
-
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
   & svg {
-    margin-left: 8px;
-    margin-bottom: -1px;
+    margin-left: 0.5rem;
   }
 `
 const ButtonSave = styled.button`
@@ -88,15 +93,18 @@ const ButtonSave = styled.button`
   background: #292a32;
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
-  padding: 12px 14px;
+  padding: 0.8rem 2rem;
   border: none;
   border-radius: 24px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
   & svg {
+    margin-left: 0.5rem;
   }
 `
 const ColInfo = styled.div`
   flex: 1 0 0%;
-
   border: solid 1px rgba(255, 255, 255, 0.1);
   padding: 16px;
   &:first-child,
@@ -113,7 +121,11 @@ const Content = styled.div`
   padding-bottom: 48px;
   color: rgba(255, 255, 255, 0.6);
 `
-
+const JobButtons = styled.div`
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+`
 function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
@@ -147,10 +159,8 @@ const JobDescription = (props) => {
     <>
       <JobInfo>
         <Row>
-          <Col md={2}>
-            <CompanyLogo>{companyLogo}</CompanyLogo>
-          </Col>
-          <Col md={9}>
+          <CompanyLogo>{companyLogo}</CompanyLogo>
+          <ColD>
             <Title>
               {jobDetailsFromState ? console.log(jobDetailsFromState.title) : ''}
               {jobDetailsFromState ? jobDetailsFromState.data.title : '...loading'}
@@ -158,9 +168,12 @@ const JobDescription = (props) => {
             <JobSubTitle>
               {jobDetailsFromState ? jobDetailsFromState.data.companyName : '...loading'} &middot; {jobDetailsFromState ? jobDetailsFromState.data.location : '...loading'}
             </JobSubTitle>
-            <ButtonApply>Apply {boxArrowUp} </ButtonApply>
-            <ButtonSave>Unsave {star} </ButtonSave>
-          </Col>
+            <JobSubTitle>Added 3 days ago</JobSubTitle>
+            <JobButtons>
+              <ButtonApply>Apply {boxArrowUp} </ButtonApply>
+              <ButtonSave>Unsave {star} </ButtonSave>
+            </JobButtons>
+          </ColD>
           <Col md={1}>
             <CompanyShare></CompanyShare>
           </Col>
@@ -188,7 +201,8 @@ const JobDescription = (props) => {
               <TheChart id={searchJobId} />
             </Col>
           </Row>
-          <h3>Original Job description</h3>
+
+          <TitleInfo>Job description</TitleInfo>
           {/* {jobDetailsFromState && jobDetailsFromState.data.description} */}
           {jobDetailsFromState && <p dangerouslySetInnerHTML={{ __html: jobDetailsFromState.data.descriptionH }}></p>}
         </Content>

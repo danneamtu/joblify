@@ -8,8 +8,11 @@ import { checkCircle, checkCircleFill } from '../../../../assets/icons/icons'
 import { Chip } from '../../../../styled-components/buttons/buttons'
 import { StyledLink, ToggleSkill, SkillLi } from './styled'
 
-function Skill({ item, active, visitorId }) {
+function Skill({ item, active, visitorId, start, loadMoreSkills }) {
   const dispatch = useDispatch()
+  const { _id, skills } = useSelector((state) => state.visitor)
+  const arrSkills = skills.map((item) => item.skill)
+  const filterData = `start=${start}&nin=${arrSkills}`
 
   const data = {
     skill: item,

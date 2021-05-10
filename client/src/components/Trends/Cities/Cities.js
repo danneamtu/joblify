@@ -54,7 +54,7 @@ function Cities({ allLocations }) {
   return (
     <>
       <ContainerSkills>
-        <Title>Top 20 Popular Cities</Title>
+        <Title>Cities</Title>
         {allLocations.map(
           (item, index) =>
             item.city?.length > 2 &&

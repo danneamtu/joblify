@@ -7,12 +7,15 @@ export const JobTags = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
+export const Title = styled.h4`
+  margin-bottom: 1rem;
+`
 export const Tag = styled.div`
   padding-top: 4px;
   padding-bottom: 4px;
   color: ${light};
   text-decoration: none;
-  cursor: pointer;
+
   display: flex;
   align-items: center;
   &.active svg {
@@ -22,6 +25,9 @@ export const Tag = styled.div`
     margin-right: 8px;
     color: ${lightDarker};
   }
+`
+export const TechnologiesContainer = styled.div`
+  margin-bottom: 20px;
 `
 
 export const StyledLink = styled(Link)`
