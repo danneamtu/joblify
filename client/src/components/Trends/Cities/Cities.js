@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { star } from '../../../assets/icons/icons'
@@ -51,15 +51,26 @@ const Logo = styled.div`
 `
 
 function Cities({ allLocations }) {
+  useEffect(() => {}, [])
+
+  const goTo = (e) => {
+    e.preventDefault()
+    console.log('get the id: ')
+    console.log('clic on link, now create the link')
+    // http://localhost:3000/jobs/search?location=amsterdam&currentJobId=609a0c4854ebaf4c5d6d5d2b&start=1
+  }
+
+  const lastId = () => {}
+
   return (
     <>
       <ContainerSkills>
-        <Title>Cities</Title>
+        <Title>Locations</Title>
         {allLocations.map(
           (item, index) =>
             item.city?.length > 2 &&
             index < 20 && (
-              <StyledLink to={`/jobs/search?location=${item.city}&currentJobId=${null}&start=1`}>
+              <StyledLink lastId={lastId} onClick={goTo} to={`/search?location=${item.city}`}>
                 <div> {item.city}</div>
                 <Chip style={{ marginLeft: 'auto', marginRight: '0.5em' }}>{item.total}</Chip>
               </StyledLink>

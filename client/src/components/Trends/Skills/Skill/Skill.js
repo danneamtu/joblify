@@ -31,7 +31,7 @@ function Skill({ item, active, visitorId, start, loadMoreSkills }) {
   return (
     item && (
       <SkillLi className={active && 'active'}>
-        <StyledLink to={`/jobs/search?location=all&currentJobId=608c55e4995adefb92619fb8&start=1&skill=${item.skill}`}>
+        <StyledLink to={`/jobs/search?skills=${item.skill}`}>
           <div>{item.skill}</div>
           <Chip style={{ marginLeft: 'auto', marginRight: '0.5rem' }}>{item.total}</Chip>
         </StyledLink>

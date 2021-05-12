@@ -8,6 +8,8 @@ import JobsList from '../components/Jobs/JobsList'
 import JobsDescription from '../components/Jobs/JobDescription/JobsDescription'
 
 function HomePage(props) {
+  console.log('get here all the jobs')
+
   return (
     <Container maxWidth="xl">
       <Container>

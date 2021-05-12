@@ -135,6 +135,7 @@ function createMarkup(desc) {
 }
 
 const JobDescription = (props) => {
+  console.log('the job description props')
   // we have
   let query = useQuery()
   const searchJobId = query.get('currentJobId')

@@ -48,9 +48,9 @@ function Search() {
         <SearchResults>
           {searchResults &&
             searchResults.map((res) => (
-              <Link to={`/jobs/search?currentJobId=6085c51038b5be014c306581&location=${res.item.city}`}>
+              <Link to={`/jobs/search?location=${res.item.city}`}>
                 <SearchResult onClick={() => setSearchModal({ open: false, value: '' })}>
-                  {res.item.justCountry}, {res.item.city}, {res.item.country} - {res.item.total}
+                  {res.item.city}, {res.item.country} - {res.item.total}
                 </SearchResult>
               </Link>
             ))}

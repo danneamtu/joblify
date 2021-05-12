@@ -32,6 +32,10 @@ const Navbar = () => {
     history.push('/')
     setUser(null)
   }
+
+
+  
+
   return (
     <>
       <NavbarContainer>
