@@ -53,6 +53,9 @@ const Logo = styled.div`
 function Cities({ allLocations }) {
   useEffect(() => {}, [])
 
+  const replaceMe = (string) => {
+    return string.replace(/\s+/g, '-')
+  }
   const lastId = () => {}
 
   return (
@@ -63,7 +66,7 @@ function Cities({ allLocations }) {
           (item, index) =>
             item.city?.length > 2 &&
             index < 20 && (
-              <StyledLink to={`/jobs/search?location=${item.city}`}>
+              <StyledLink to={`/jobs/search?location=${replaceMe(item.city)}`}>
                 <div> {item.city}</div>
                 <Chip style={{ marginLeft: 'auto', marginRight: '0.5em' }}>{item.total}</Chip>
               </StyledLink>
