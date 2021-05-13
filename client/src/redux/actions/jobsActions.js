@@ -1,9 +1,11 @@
-import axios from 'axios'
+import * as api from '../../api/index.js'
+import { useSelector } from 'react-redux'
+
 import { JOBS_API_URI, JOBS_LOADING, JOBS_ERROR, JOBS_SUCCESS } from '../constants/actionTypes'
-export const getJobs = (page) => async (dispatch) => {
+export const getJobs = (filterData) => async (dispatch) => {
   try {
     dispatch({ type: JOBS_LOADING })
-    const result = await axios.get(`${JOBS_API_URI}?page=${page}`)
+    const result = await api.fetchJobs(filterData)
     // find the count
     dispatch({ type: JOBS_SUCCESS, payload: result })
   } catch (error) {

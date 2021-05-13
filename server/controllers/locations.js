@@ -6,9 +6,7 @@ export const getLocations = async (req, res) => {
   try {
     let locations = await Location.find().sort({ total: -1 })
     res.status(200).send(locations)
-    console.log(locations)
   } catch (err) {
-    console.log(err)
     res.status(409).json({ message: err.message || 'Location not found' })
   }
 }

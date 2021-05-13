@@ -2,11 +2,41 @@ import Jobs from '../models/jobs.js'
 import mongoose from 'mongoose'
 
 export const getJobs = async (req, res) => {
-  const page = Number(req.query.page) || 1
-  const limit = Number(req.query.limit) || 10
-  const start = (page - 1) * limit
+  const filters = req.query
+
+  const { pageStart, location, skills } = filters
+
+  console.log('this is controller2', pageStart, location, skills)
+  let friendlyLocation = location.replace(/-/g, ' ')
+
+  const limit = 10
+  const start = (pageStart - 1) * limit
+  let setFilters
+
+  if (skills) {
+    setFilters = {
+      tags: [skills],
+    }
+  }
+
+  if (friendlyLocation) {
+    setFilters = {
+      city: friendlyLocation,
+    }
+  }
+  if (friendlyLocation && skills) {
+    setFilters = {
+      $and: [{ city: friendlyLocation }, { tags: skills }],
+    }
+  }
+
+  console.log('set filters', setFilters)
+  {
+    $and: [{ price: { $ne: 1.99 } }, { price: { $exists: true } }]
+  }
+
   try {
-    let jobs = await Jobs.find()
+    let jobs = await Jobs.find(setFilters)
       .sort({ timestamp: -1 })
       .limit(limit + 1)
       .skip(start)

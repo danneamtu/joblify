@@ -50,7 +50,7 @@ function Search() {
             searchResults.map((res) => (
               <Link to={`/jobs/search?location=${res.item.city}`}>
                 <SearchResult onClick={() => setSearchModal({ open: false, value: '' })}>
-                  {res.item.city}, {res.item.country} - {res.item.total}
+                  {res.item.city} - {res.item.total}
                 </SearchResult>
               </Link>
             ))}

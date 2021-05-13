@@ -5,13 +5,10 @@ export const getSkills = async (req, res) => {
   const start = Number(req.query.start) || 0
   const ninskill = req.query.nin.split(',')
   const limit = 10
-  console.log('search this nin', typeof ninskill, 'start', start)
 
   const nin = { skill: { $nin: [...ninskill] } }
-  console.log('ninin', nin)
   try {
     let skills = await Skills.find(nin).sort({ total: -1 }).limit(limit).skip(start)
-    console.log('al', skills)
     res.status(200).json(skills)
   } catch (err) {
     console.log(err)
@@ -21,10 +18,8 @@ export const getSkills = async (req, res) => {
 
 export const addVisitorSkill = async (req, res) => {
   const { skill, visitorId } = req.body
-  console.log('add this skill, skill uid', skill, visitorId)
   try {
     const result = await Visitors.updateOne({ _id: visitorId }, { $addToSet: { skills: skill } })
-    console.log('result2 visitor', skill.skill)
     res.status(200).send('done')
   } catch (err) {
     res.status(400).send({ message: err.message || 'Skill cannot be added' })
@@ -33,7 +28,6 @@ export const addVisitorSkill = async (req, res) => {
 
 export const removeVisitorSkill = async (req, res) => {
   const { skill, visitorId } = req.body
-  console.log('remove skill, skill uid', skill, visitorId)
   try {
     const result = await Visitors.updateOne({ _id: visitorId }, { $pull: { skills: { skill: skill.skill } } })
     console.log('result1', skill.skill)

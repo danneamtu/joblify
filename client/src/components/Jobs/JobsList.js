@@ -17,31 +17,29 @@ const JobsList = (props) => {
   const filterLocation = query.get('location')
   const filterSkills = query.get('skills')
 
-  console.log('**** page start:', filterPageStart)
-  console.log('**** filter location', filterLocation)
-  console.log('****  filter Skills', filterSkills)
-
   const dispatch = useDispatch()
   const {
     data: { data: allJobs },
     count,
   } = useSelector((state) => state.jobs)
 
-  console.log('the list of jobs from state redux, can you take ')
+  const filters = {
+    pageStart: filterPageStart || 1,
+    location: filterLocation,
+    skills: filterSkills,
+  }
+
+  console.log('**** filters:', filters)
 
   useEffect(() => {
-    dispatch(getJobs(filterPageStart))
-  }, [dispatch, filterPageStart])
+    dispatch(getJobs(filters))
+  }, [dispatch, filterLocation, filterSkills])
 
-  let jobNextId
-  allJobs && (jobNextId = allJobs[10]._id)
-  const href = `/jobs/search?location=all&currentJobId=${jobNextId}`
-  console.log('href', href)
   return (
     <>
       <TotalResults total={count} />
       {allJobs && allJobs.map((job, index) => index < 10 && <Job index={index} jobData={job} key={job._id} />)}
-      {allJobs && <Pagination href={href} pageCurrent={filterPageStart} totalResults={count} pagePer={10} />}
+      {allJobs && <Pagination pageCurrent={filterPageStart} totalResults={count} pagePer={10} />}
     </>
   )
 }

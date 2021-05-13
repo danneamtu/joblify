@@ -9,7 +9,11 @@ API.interceptors.request.use((req) => {
   return req
 })
 
-export const fetchJobs = () => API.get(`/jobs`)
+export const fetchJobs = (filterData) =>
+  API.get(`/api/jobs`, {
+    params: filterData,
+  })
+
 export const createJob = (job) => API.post(`/jobs`, job)
 export const patchJob = (id, updatedJob) => API.patch(`/${id}`, updatedJob)
 export const deleteJob = (id) => API.delete(`/jobs/${id}`)

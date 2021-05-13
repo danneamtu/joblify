@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const SearchBox = styled.div`
   position: relative;
   z-index: 1;
@@ -46,9 +45,10 @@ export const SearchBox = styled.div`
 
 export const SearchResults = styled.div`
   position: absolute;
-  width: 460px;
+  width: 290px;
   left: 0;
   top: 34px;
+  z-index: 99;
 `
 
 export const SearchResult = styled.div`
@@ -56,9 +56,11 @@ export const SearchResult = styled.div`
   background: #2a2b34;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.7);
-  :last-child {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  &:last-child {
+    /* border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; */
   }
   :hover {
     background: #1d1e26;

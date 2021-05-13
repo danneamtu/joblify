@@ -53,13 +53,6 @@ const Logo = styled.div`
 function Cities({ allLocations }) {
   useEffect(() => {}, [])
 
-  const goTo = (e) => {
-    e.preventDefault()
-    console.log('get the id: ')
-    console.log('clic on link, now create the link')
-    // http://localhost:3000/jobs/search?location=amsterdam&currentJobId=609a0c4854ebaf4c5d6d5d2b&start=1
-  }
-
   const lastId = () => {}
 
   return (
@@ -70,7 +63,7 @@ function Cities({ allLocations }) {
           (item, index) =>
             item.city?.length > 2 &&
             index < 20 && (
-              <StyledLink lastId={lastId} onClick={goTo} to={`/search?location=${item.city}`}>
+              <StyledLink to={`/jobs/search?location=${item.city}`}>
                 <div> {item.city}</div>
                 <Chip style={{ marginLeft: 'auto', marginRight: '0.5em' }}>{item.total}</Chip>
               </StyledLink>
