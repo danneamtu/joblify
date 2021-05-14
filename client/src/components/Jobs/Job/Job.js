@@ -22,8 +22,10 @@ function Job({ jobData, index }) {
   if (query.get('location')) {
     hasLocation = `&location=${query.get('location')}`
   }
-  if (query.get('start')) {
+  if (query.get('start')&& query.get('start')>1) {
     hasStart = `&start=${query.get('start')}`
+  } else {
+    hasStart = `&start=1`
   }
   let theUri = `/jobs/search?currentJobId=${jobId}${hasLocation}${hasStart}`
 

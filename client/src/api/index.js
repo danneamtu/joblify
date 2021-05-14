@@ -33,3 +33,5 @@ export const getSkills = (filter) => API.get(`/api/skills?${filter}`)
 
 export const addFavorite = (id, visitorId) => API.post(`/api/favorites?id=${id}&vid=${visitorId}`)
 export const removeFavorite = (id, visitorId) => API.delete(`/api/favorites?id=${id}&vid=${visitorId}`)
+
+export const getLocations = () => API.get(`/api/locations`)

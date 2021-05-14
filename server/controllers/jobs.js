@@ -7,11 +7,11 @@ export const getJobs = async (req, res) => {
   const { pageStart, location, skills } = filters
 
   console.log('this is controller2', pageStart, location, skills)
-  let friendlyLocation = location.replace(/-/g, ' ')
 
   const limit = 10
-  const start = (pageStart - 1) * limit
+  const start = (pageStart - 1) * limit //0
   let setFilters
+  let friendlyLocation
 
   if (skills) {
     setFilters = {
@@ -19,27 +19,49 @@ export const getJobs = async (req, res) => {
     }
   }
 
-  if (friendlyLocation) {
+  if (location) {
+    friendlyLocation = location.replace(/-/g, ' ')
     setFilters = {
       city: friendlyLocation,
     }
   }
-  if (friendlyLocation && skills) {
+
+  if (location && skills) {
     setFilters = {
       $and: [{ city: friendlyLocation }, { tags: skills }],
     }
   }
 
-  console.log('set filters', setFilters)
-  {
-    $and: [{ price: { $ne: 1.99 } }, { price: { $exists: true } }]
-  }
-
   try {
-    let jobs = await Jobs.find(setFilters)
-      .sort({ timestamp: -1 })
-      .limit(limit + 1)
-      .skip(start)
+    let jobs = await Jobs.aggregate([
+      {
+        $facet: {
+          Jobs: [
+            {
+              $match: {
+                $or: [setFilters],
+              },
+            },
+            {
+              $skip: start,
+            },
+            {
+              $limit: limit + 1,
+            },
+          ],
+          Count: [
+            {
+              $match: {
+                $or: [setFilters],
+              },
+            },
+            {
+              $count: 'total',
+            },
+          ],
+        },
+      },
+    ])
     res.status(200).json(jobs)
   } catch (err) {
     console.log(err)

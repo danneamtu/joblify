@@ -1,39 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-const Ul = styled.ul`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding-top: 16px;
-`
-const Li = styled.li`
-  list-style-type: none;
-  margin-left: 2px;
-  margin-right: 2px;
-
-  & a {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
-    font-size: 14px;
-    border-radius: 50%;
-    color: rgba(255, 255, 255, 0.7);
-    background: ${(props) => (props.pageCurrent && props.pageCurrent === props.page ? '#1d1e26;' : 'none')};
-  }
-  & a:hover {
-    background: #1d1e26;
-  }
-`
+import { Ul, Li } from './styled'
 
 const Pagination = ({ href, pageCurrent, pagePer, totalResults }) => {
   const createPagination = (href, pageCurrent, pagePer, totalResults) => {
     // get pages raport
+    console.log('----- 1==== total results', totalResults)
+
     const pageStart = 1
     const pageEnd = Math.ceil(totalResults / pagePer)
     const pageCur = Number(pageCurrent)

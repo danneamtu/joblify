@@ -2,12 +2,20 @@ import Visitors from '../models/visitors.js'
 import Skills from '../models/skills.js'
 
 export const getSkills = async (req, res) => {
-  const start = Number(req.query.start) || 0
-  const ninskill = req.query.nin.split(',')
-  const limit = 10
-
-  const nin = { skill: { $nin: [...ninskill] } }
   try {
+    console.log('this is skills controllers')
+    const start = Number(req.query.start) || 0
+    const limit = 10
+    let nin
+    if (req.query.nin) {
+      const ninskill = req.query.nin.split(',')
+      nin = { skill: { $nin: [...ninskill] } }
+    } else {
+      nin = {}
+    }
+
+    console.log('nin', nin)
+
     let skills = await Skills.find(nin).sort({ total: -1 }).limit(limit).skip(start)
     res.status(200).json(skills)
   } catch (err) {

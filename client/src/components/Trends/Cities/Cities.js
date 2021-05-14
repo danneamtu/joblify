@@ -53,10 +53,10 @@ const Logo = styled.div`
 function Cities({ allLocations }) {
   useEffect(() => {}, [])
 
+  console.log('these are all locations', allLocations)
   const replaceMe = (string) => {
-    return string.replace(/\s+/g, '-')
+    return string.replace(/\s+/g, '-').toLowerCase()
   }
-  const lastId = () => {}
 
   return (
     <>

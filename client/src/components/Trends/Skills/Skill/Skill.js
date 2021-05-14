@@ -19,15 +19,12 @@ function Skill({ item, active, visitorId, start, loadMoreSkills }) {
     visitorId,
   }
   const addSkill = () => {
-    console.log('add ski', data)
     dispatch(addVisitorSkill(data))
   }
   const removeSkill = () => {
-    console.log('rem ski', data)
     dispatch(removeVisitorSkill(data))
   }
 
-  console.log('thisis item', item)
   return (
     item && (
       <SkillLi className={active && 'active'}>

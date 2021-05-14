@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getJobs } from '../../redux/actions/jobsActions'
 import Job from './Job/Job'
-import Pagination from '../Pagination/Pagination'
+import Pagination from './Pagination/Pagination'
 import TotalResults from '../Jobs/Total/TotalResults'
 
 const JobsList = (props) => {
@@ -28,9 +28,6 @@ const JobsList = (props) => {
     location: filterLocation,
     skills: filterSkills,
   }
-
-  console.log('**** filters:', filters)
-
   useEffect(() => {
     dispatch(getJobs(filters))
   }, [dispatch, filterLocation, filterSkills])
@@ -39,7 +36,7 @@ const JobsList = (props) => {
     <>
       <TotalResults total={count} />
       {allJobs && allJobs.map((job, index) => index < 10 && <Job index={index} jobData={job} key={job._id} />)}
-      {allJobs && <Pagination pageCurrent={filterPageStart} totalResults={count} pagePer={10} />}
+      {allJobs && <Pagination pageCurrent={filterPageStart} totalResults={allJobs.length} pagePer={10} />}
     </>
   )
 }
