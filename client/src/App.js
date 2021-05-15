@@ -12,6 +12,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
+        <Route path="/:jobs" component={HomePage}></Route>
         <Route path="/jobs/:currentJobId" component={HomePage}></Route>
         <Route path="/auth" component={Auth}></Route>
         <Route path="/favorites" component={Favorites}></Route>

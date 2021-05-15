@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import { Col } from '../../../styled-components/responsive/col'
 
 const InputField = styled.input`
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.7rem;
   border-radius: 0.5rem;
+  margin-bottom: 0.25rem;
+  border: none;
   left: 0;
   right: 0;
   width: 100%;

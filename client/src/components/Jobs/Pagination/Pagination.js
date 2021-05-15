@@ -4,9 +4,6 @@ import { Ul, Li } from './styled'
 
 const Pagination = ({ href, pageCurrent, pagePer, totalResults }) => {
   const createPagination = (href, pageCurrent, pagePer, totalResults) => {
-    // get pages raport
-    console.log('----- 1==== total results', totalResults)
-
     const pageStart = 1
     const pageEnd = Math.ceil(totalResults / pagePer)
     const pageCur = Number(pageCurrent)
@@ -34,11 +31,6 @@ const Pagination = ({ href, pageCurrent, pagePer, totalResults }) => {
       }
     }
 
-    console.log('Total Pages:', pageEnd)
-    console.log('Curent page:', pageCur)
-    console.log('left:', left, 'indexStart:', indexStart)
-    console.log('right:', right, 'indexRight:', indexEnd)
-
     const range = (start, end, length = end - start + 1) => Array.from({ length }, (_, i) => start + i)
     const pages = range(indexStart, indexEnd)
     return {
@@ -58,26 +50,26 @@ const Pagination = ({ href, pageCurrent, pagePer, totalResults }) => {
       {pager.indexStart - 2 > 1 && (
         <>
           <Li>
-            <Link to={`${pager.href}&start=1`}>1</Link>
+            <Link to={`${pager.href}`}>1</Link>
           </Li>
           <Li>
-            <Link to={`${pager.href}&start=2`}>...</Link>
+            <Link to={`${pager.href}start=2`}>...</Link>
           </Li>
         </>
       )}
 
       {pager.pages.map((page, index) => (
         <Li pageCurrent={pager.pageCurrent} page={page} key={index}>
-          <Link to={`${pager.href}&start=${page}`}>{page}</Link>
+          <Link to={`${pager.href}start=${page}`}>{page}</Link>
         </Li>
       ))}
       {pager.indexEnd < pager.totalPages && (
         <>
           <Li>
-            <Link to={`${pager.href}&start=${pager.totalPages - 1}`}>...</Link>
+            <Link to={`${pager.href}start=${pager.totalPages - 1}`}>...</Link>
           </Li>
           <Li pageCurrent={pager.pageCurrent}>
-            <Link to={`${pager.href}&start=${pager.totalPages}`}>{pager.totalPages}</Link>
+            <Link to={`${pager.href}start=${pager.totalPages}`}>{pager.totalPages}</Link>
           </Li>
         </>
       )}

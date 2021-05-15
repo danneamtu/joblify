@@ -3,32 +3,31 @@ import mongoose from 'mongoose'
 
 export const getJobs = async (req, res) => {
   const filters = req.query
-
   const { pageStart, location, skills } = filters
-
   console.log('this is controller2', pageStart, location, skills)
-
   const limit = 10
   const start = (pageStart - 1) * limit //0
   let setFilters
   let friendlyLocation
 
+  if (location && skills) {
+    setFilters = {
+      $and: [{ city: friendlyLocation }, { tags: skills }],
+    }
+  }
   if (skills) {
     setFilters = {
       tags: [skills],
     }
+  }
+  if (!location && !skills) {
+    setFilters = {}
   }
 
   if (location) {
     friendlyLocation = location.replace(/-/g, ' ')
     setFilters = {
       city: friendlyLocation,
-    }
-  }
-
-  if (location && skills) {
-    setFilters = {
-      $and: [{ city: friendlyLocation }, { tags: skills }],
     }
   }
 

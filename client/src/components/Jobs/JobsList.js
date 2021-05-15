@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getJobs } from '../../redux/actions/jobsActions'
 import Job from './Job/Job'
@@ -13,30 +13,51 @@ const JobsList = (props) => {
 
   let query = useQuery()
 
+  const { jobs } = useParams()
+  console.log('the job param', jobs)
   const filterPageStart = query.get('start')
   const filterLocation = query.get('location')
   const filterSkills = query.get('skills')
 
   const dispatch = useDispatch()
-  const {
-    data: { data: allJobs },
-    count,
-  } = useSelector((state) => state.jobs)
+
+  const data = useSelector((state) => state.jobs)
+  let allJobs = null
+  let totalJobs
+  if (data.data.data) {
+    allJobs = data.data.data[0].Jobs
+    if (data.data.data[0].Count.length > 0) {
+      totalJobs = data.data.data[0].Count[0].total
+    }
+  }
 
   const filters = {
     pageStart: filterPageStart || 1,
     location: filterLocation,
     skills: filterSkills,
   }
+
+  let href
+  let addParam
+  !jobs ? (addParam = 'jobs/') : (addParam = '')
+  if (filterLocation && filterSkills) {
+    href = `${addParam}search?location=${filterLocation}&skills=${filterSkills}&`
+  } else {
+    filterLocation ? (href = `${addParam}search?location=${filterLocation}&`) : (href = `${addParam}search?skills=${filterSkills}&`)
+  }
+  if (!filterLocation && !filterSkills) {
+    href = `${addParam}search?`
+  }
+
   useEffect(() => {
     dispatch(getJobs(filters))
-  }, [dispatch, filterLocation, filterSkills])
+  }, [dispatch, filters.filterLocation, filters.filterSkills, filters.pageStart])
 
   return (
     <>
-      <TotalResults total={count} />
+      <TotalResults total={0} />
       {allJobs && allJobs.map((job, index) => index < 10 && <Job index={index} jobData={job} key={job._id} />)}
-      {allJobs && <Pagination pageCurrent={filterPageStart} totalResults={allJobs.length} pagePer={10} />}
+      {allJobs && <Pagination href={href} pageCurrent={filters.filterPageStart} totalResults={totalJobs} pagePer={10} />}
     </>
   )
 }

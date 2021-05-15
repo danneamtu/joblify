@@ -135,16 +135,13 @@ function createMarkup(desc) {
 }
 
 const JobDescription = (props) => {
-  console.log('the job description props')
-  // we have
   let query = useQuery()
   const searchJobId = query.get('currentJobId')
-  const searchLocation = query.get('location')
-  const searchStart = query.get('start')
 
   useEffect(() => {
     console.log('changed id', searchJobId)
   }, [searchJobId])
+
 
   const dispatch = useDispatch()
   const jobState = useSelector((state) => state.job)
@@ -155,7 +152,6 @@ const JobDescription = (props) => {
     dispatch(getJob(searchJobId))
   }, [searchJobId])
 
-  const countries = []
   return (
     <>
       <JobInfo>

@@ -18,6 +18,8 @@ const Navbar = () => {
   const location = useLocation()
   const [user, setUser] = useState(null)
   const [visitor, setVisitor] = useState(null)
+  const [modalOpen, setModalOpen] = useState(false)
+
   const { _id: visitorId, favorites } = useSelector((state) => state.visitor)
 
   useEffect(() => {
@@ -32,9 +34,6 @@ const Navbar = () => {
     history.push('/')
     setUser(null)
   }
-
-
-  
 
   return (
     <>
@@ -68,15 +67,13 @@ const Navbar = () => {
                 </Row>
               </Link>
             ) : (
-              <Link to="/auth">
-                <Row alignItems="center">
-                  <CircleButton>{personFill}</CircleButton>
-                  <InfoAuth>
-                    Welcome, <br />
-                    <small>Sign in or Register</small>
-                  </InfoAuth>
-                </Row>
-              </Link>
+              <Row onClick={() => setModalOpen(true)} alignItems="center">
+                <CircleButton>{personFill}</CircleButton>
+                <InfoAuth>
+                  Welcome, <br />
+                  <small>Sign in or Register</small>
+                </InfoAuth>
+              </Row>
             )}
           </Row>
         </Container>
