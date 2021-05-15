@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { companyLogo, JobContainer, CompanyLogo, CompanyInfo, Favorite, JobTitle, JobSubTitle, Chip, Date } from './styled'
 import { Row } from '../../../styled-components/responsive/row'
@@ -18,23 +18,35 @@ function Job({ jobData, index }) {
   const dispatch = useDispatch()
 
   let query = useQuery()
-  let hasLocation, hasStart
-  if (query.get('location')) {
-    hasLocation = `&location=${query.get('location')}`
+  const paramStart = query.get('start')
+  const paramLocation = query.get('location')
+  const paramSkills = query.get('skills')
+
+  let createParams = ''
+  let createStart = ''
+
+  console.log('the params for this are:', paramLocation, paramSkills)
+
+  if (paramLocation && paramSkills) {
+    createParams = `&location=${paramLocation}&skills=${paramSkills}`
   }
-  if (query.get('start')&& query.get('start')>1) {
-    hasStart = `&start=${query.get('start')}`
-  } else {
-    hasStart = `&start=1`
+  if (paramLocation) {
+    createParams = `&location=${paramLocation}`
   }
-  let theUri = `/jobs/search?currentJobId=${jobId}${hasLocation}${hasStart}`
+  if (paramSkills) {
+    createParams = `&skills=${paramSkills}`
+  }
+  if (paramStart) {
+    createStart = `&start=${paramStart}`
+  }
+
+  let theUri = `/jobs/search?currentJobId=${jobId}${createParams}${createStart}`
 
   const { _id: visitorId } = useSelector((state) => state.visitor)
   console.log('visitor id1', visitorId)
 
   const handleFavorite = () => {
     setFavorite(!favorite)
-    console.log('visitor id2', visitorId)
     dispatch(addFavorite(jobId, visitorId))
   }
 
