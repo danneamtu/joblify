@@ -59,7 +59,15 @@ export const JobSubTitle = styled.p`
   margin-bottom: 16px;
   padding: 0;
 `
-export const ButtonApply = styled.button`
+
+export const JobSubSubTitle = styled.p`
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  margin-bottom: 16px;
+  padding: 0;
+`
+export const ButtonApply = styled.a`
   font-size: 14px;
   background: #0261fb;
   color: rgba(255, 255, 255, 0.89);
@@ -71,6 +79,7 @@ export const ButtonApply = styled.button`
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  text-decoration: none;
   & svg {
     margin-left: 0.5rem;
   }

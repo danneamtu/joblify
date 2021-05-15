@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext, createContext } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import dayjs from 'dayjs'
+import moment from 'moment'
+
 import { JobDescriptionContext } from './Context/createContext'
 import Score from './Score/Score'
 import { getJob } from '../../../redux/actions/jobActions'
@@ -11,7 +14,7 @@ import TechnologiesDetected from './TechnologiesDetected/TechnologiesDetected'
 import TheChart from './PieChart/TheChart'
 
 import { boxArrowUp, star } from '../../../assets/icons/icons'
-import { JobInfo, CompanyLogo, CompanyInfo, CompanyShare, Title, TitleInfo, TitleInfoDetail, ColD, JobSubTitle, ButtonApply, ButtonSave, ColInfo, Content, JobButtons } from './styled'
+import { JobInfo, CompanyLogo, CompanyInfo, CompanyShare, Title, TitleInfo, JobSubSubTitle, TitleInfoDetail, ColD, JobSubTitle, ButtonApply, ButtonSave, ColInfo, Content, JobButtons } from './styled'
 const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 
 function useQuery() {
@@ -41,6 +44,7 @@ const JobDescription = (props) => {
   const jobDetailsFromState = jobState.data[searchJobId]
 
   const [scoreContext, setScoreContext] = useState({ scoreContext: 0, setScoreContext: 0 })
+  const scoreFormula = (scoreContext.totalScore * 100) / scoreContext.totalSkills
 
   useEffect(() => {
     dispatch(getJob(searchJobId))
@@ -59,9 +63,12 @@ const JobDescription = (props) => {
             <JobSubTitle>
               {jobDetailsFromState ? jobDetailsFromState.data.companyName : '...loading'} &middot; {jobDetailsFromState ? jobDetailsFromState.data.location : '...loading'}
             </JobSubTitle>
-            <JobSubTitle>Added 3 days ago</JobSubTitle>
+            <JobSubSubTitle>{jobDetailsFromState && moment(jobDetailsFromState.data.timestamp).fromNow()}</JobSubSubTitle>
             <JobButtons>
-              <ButtonApply>Apply {boxArrowUp} </ButtonApply>
+              {jobDetailsFromState && jobDetailsFromState.data.apply}
+              <ButtonApply href={jobDetailsFromState && jobDetailsFromState.data.apply} target="_blank" rel="noopener">
+                Apply {boxArrowUp}{' '}
+              </ButtonApply>
               <ButtonSave>Unsave {star} </ButtonSave>
             </JobButtons>
           </ColD>
@@ -73,10 +80,8 @@ const JobDescription = (props) => {
         <Score jobId={searchJobId} />
         <Content>
           <Row alignItems="start">
-            <Col md={7}>{jobDetailsFromState && <TechnologiesDetected jobId={searchJobId} tags={jobDetailsFromState.data.tags} />}</Col>
-            <Col md={5}>
-              <TheChart id={searchJobId} />
-            </Col>
+            <Col md={6}>{jobDetailsFromState && <TechnologiesDetected jobId={searchJobId} tags={jobDetailsFromState.data.tags} />}</Col>
+            <Col md={6}>{jobDetailsFromState && <TheChart id={searchJobId} />}</Col>
           </Row>
 
           <TitleInfo>Job description</TitleInfo>

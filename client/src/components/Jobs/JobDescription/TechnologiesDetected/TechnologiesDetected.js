@@ -24,9 +24,7 @@ function TechnologiesDetected({ tags, jobId }) {
     <TechnologiesContainer>
       <Row>
         <Col md={12} mb={5}>
-          <Title>
-            Skills detected {totalScore} / {totalSkills}
-          </Title>
+          <Title>Matching skills</Title>
         </Col>
         {tags.map((item) =>
           visitorSkillsArr.includes(item)

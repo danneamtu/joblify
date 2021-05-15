@@ -1,33 +1,24 @@
-import { PieChart } from 'react-minimal-pie-chart'
-import { useState, useEffect } from 'react'
-import { light, lightDark, accentBlue, accentGreen } from '../../../../styled-components/typography/colors'
-
-const data = [
-  { name: 'html, css, js', value: 33 },
-  { name: 'react, node, axios', value: 55 },
-]
+import { useContext, useEffect, useState } from 'react'
+import { Doughnut } from 'react-chartjs-2'
+import { JobDescriptionContext } from '../Context/createContext'
 
 const TheChart = ({ id }) => {
-  const [pieStatus, setPieStatus] = useState(true)
+  const { scoreContext } = useContext(JobDescriptionContext)
 
-  const showChart = () => {
-    return (
-      <PieChart
-        startAngle={-100}
-        data={[
-          { title: '40%', value: 20, color: lightDark },
-          { title: '60% Skills', value: 80, color: accentGreen },
-        ]}
-      />
-    )
+  const scoreFormula = (scoreContext.totalScore * 100) / scoreContext.totalSkills
+
+  const data = {
+    datasets: [
+      {
+        data: [scoreFormula, scoreFormula - 100],
+        backgroundColor: ['#438D83', '#2A2B33'],
+        borderWidth: 0,
+      },
+    ],
+    labels: ['Your Skills', 'Other Skills'],
   }
 
-  useEffect(() => {
-    showChart()
-  }, [id])
-
-  const lineWidth = 60
-  return <>{showChart()}</>
+  return <>{scoreContext.totalSkills && <Doughnut data={data} />}</>
 }
 
 export default TheChart

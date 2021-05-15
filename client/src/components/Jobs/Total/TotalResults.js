@@ -27,7 +27,7 @@ const TotalSubTitle = styled.h4`
 function TotalResults({ total }) {
   return (
     <TotalContainer>
-      <TotalTitle>Front End Developer in Amsterdam</TotalTitle>
+      <TotalTitle>Front End Developer in Belgium</TotalTitle>
       <TotalSubTitle>{total || 0} results</TotalSubTitle>
     </TotalContainer>
   )

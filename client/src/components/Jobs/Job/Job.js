@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import moment from 'moment'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { companyLogo, JobContainer, CompanyLogo, CompanyInfo, Favorite, JobTitle, JobSubTitle, Chip, Date } from './styled'
@@ -13,7 +14,7 @@ const useQuery = () => {
 }
 
 function Job({ jobData, index }) {
-  const { _id: jobId, title, location, companyName } = jobData
+  const { _id: jobId, title, location, timestamp, companyName } = jobData
   const [favorite, setFavorite] = useState(false)
   const dispatch = useDispatch()
 
@@ -67,7 +68,7 @@ function Job({ jobData, index }) {
         <Row alignItems="center">
           <Chip>Mid-Senior level</Chip>
           <Chip>Score 38%</Chip>
-          <Date>3d</Date>
+          <Date>{moment(timestamp).fromNow().replace('seconds ago', 's').replace('weeks ago', 'w').replace('days ago', 'd')}</Date>
         </Row>
       </Link>
     </JobContainer>
