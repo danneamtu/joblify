@@ -26,7 +26,7 @@ function Auth({ open, setOpen }) {
     password: '',
   }
 
-  const [signIn, setSignIn] = useState(false)
+  const [signIn, setSignIn] = useState(true)
   const [userData, setUserData] = useState(initialUserData)
   const dispatch = useDispatch()
   const history = useHistory()
@@ -34,9 +34,9 @@ function Auth({ open, setOpen }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (signIn) {
-      dispatch(signin(userData, history))
+      dispatch(signin(userData, history, setOpen))
     } else {
-      dispatch(signup(userData, history))
+      dispatch(signup(userData, history, setOpen))
     }
   }
 
@@ -89,7 +89,7 @@ function Auth({ open, setOpen }) {
         <Overlay>
           <ContainerForm ref={outsideForm}>
             <FormHeader>
-              <Title>Sign in to Joblify</Title>
+              <Title>Sign {!signIn ? 'In' : 'Up'} to Joblify</Title>
               <CircleButton onClick={() => setOpen(false)}>{x}</CircleButton>
             </FormHeader>
 

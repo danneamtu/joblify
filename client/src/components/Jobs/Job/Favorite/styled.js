@@ -11,8 +11,8 @@ export const Favorite = styled.div`
     props.save === false &&
     `display: inline-block;
       position: absolute;
-      right: 4px;
-      top: 8px;
+      right: 0px;
+      top: 12px;
     `}
 `
 

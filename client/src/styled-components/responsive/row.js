@@ -3,6 +3,12 @@ import styled from 'styled-components'
 export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+
   ${(props) => {
     switch (props.alignItems) {
       case 'center':

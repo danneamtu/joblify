@@ -4,7 +4,6 @@ export const JobInfo = styled.div`
   background: #1d1d25;
   padding: 32px;
   border-radius: 4px;
-  margin-right: 30px;
 `
 export const CompanyLogo = styled.div`
   max-width: 84px;

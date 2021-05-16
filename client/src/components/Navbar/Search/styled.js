@@ -8,10 +8,10 @@ export const SearchBox = styled.div`
     position: absolute;
     z-index: 2;
     color: ${darkLight};
-    top: 0;
+    top: -2px;
     margin-top: auto;
     margin-bottom: auto;
-    left: 8px;
+    left: 10px;
     bottom: 0;
     width: 14px;
     height: 14px;
@@ -21,9 +21,9 @@ export const SearchBox = styled.div`
   .searchInput {
     color: rgba(255, 255, 255, 0.8);
     width: 290px;
-    height: 30px;
+    height: 36px;
     font-size: 15px;
-    line-height: 30px;
+    line-height: 36px;
     padding-left: 32px;
     padding-right: 16px;
     border-radius: 5px;
@@ -48,8 +48,12 @@ export const SearchResults = styled.div`
   position: absolute;
   width: 290px;
   left: 0;
-  top: 34px;
+  top: 38px;
   z-index: 99999;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  overflow: hidden;
 `
 
 export const SearchResult = styled.div`
@@ -62,9 +66,10 @@ export const SearchResult = styled.div`
   text-transform: capitalize;
   display: flex;
   align-items: center;
+
   &:last-child {
-    /* border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
   :hover {
     background: ${darkLighter};

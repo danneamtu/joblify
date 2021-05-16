@@ -1,6 +1,12 @@
 import styled from 'styled-components'
 
 export const Col = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px;
+
   @media (min-width: 768px) {
     ${(props) => {
       switch (props.md) {

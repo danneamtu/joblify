@@ -7,12 +7,10 @@ export const JobContainer = styled.div`
   background: #1d1d25;
   border-radius: 4px;
   color: white;
-  margin-bottom: 8px;
-  padding: 16px;
-  margin-right: 24px;
+  margin-bottom: 12px;
+  padding: 20px;
   cursor: pointer;
   z-index: 0;
-
   ${(props) => {
     if (props.active) {
       return 'background: rgba(74, 74, 97, 0.23)'
@@ -31,8 +29,8 @@ export const CompanyLogo = styled.div`
 `
 export const CompanyInfo = styled.div`
   flex: 1 0 0%;
-  margin-right: 40px;
   margin-bottom: 16px;
+  margin-right: 40px;
 `
 export const Favorite = styled.div`
   position: absolute;
@@ -45,6 +43,7 @@ export const Favorite = styled.div`
 `
 export const JobTitle = styled.h2`
   font-size: 16px;
+  line-height: 1.2;
   margin-bottom: 4px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.94);

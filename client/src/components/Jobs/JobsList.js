@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { getJobs } from '../../redux/actions/jobsActions'
 import Job from './Job/Job'
 import Pagination from './Pagination/Pagination'
@@ -14,7 +15,6 @@ const JobsList = (props) => {
   let query = useQuery()
 
   const { jobs } = useParams()
-  console.log('the job param', jobs)
   const filterPageStart = query.get('start')
   const filterLocation = query.get('location')
   const filterSkills = query.get('skills')
@@ -53,12 +53,10 @@ const JobsList = (props) => {
     dispatch(getJobs(filters))
   }, [dispatch, filters.filterLocation, filters.filterSkills, filters.pageStart])
 
-  console.log('========', filters.pageStart)
-
   return (
     <>
       <TotalResults location={filterLocation} total={totalJobs} />
-      {allJobs && allJobs.map((job, index) => index < 10 && <Job index={index} jobData={job} key={job._id} />)}
+      {allJobs && allJobs.map((job, index) => <Job index={index} jobData={job} key={job._id} />)}
       {allJobs && <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} />}
     </>
   )

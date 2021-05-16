@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-
+import { Container } from '../../styled-components/responsive/container'
+import { Row } from '../../styled-components/responsive/row'
+import { Col } from '../../styled-components/responsive/col'
 import { googleLogout } from '../../redux/actions/userActions'
 import { createVisitor, getVisitor } from '../../redux/actions/visitorActions'
 
@@ -12,7 +14,7 @@ import Auth from '../Auth/Auth'
 import { CircleButton } from '../../styled-components/buttons/buttons'
 
 import { checkCircleFill, pieChartFill, clockFill, person, personFill, starFill, barChartFill, search } from '../../assets/icons/icons'
-import { Sup, CircleAvatar, Container, Row, NavbarContainer, Logo, Profile, InfoAuth } from './styled'
+import { Sup, CircleAvatar, NavbarContainer, Logo, Profile, InfoAuth } from './styled'
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -42,41 +44,41 @@ const Navbar = () => {
       <NavbarContainer>
         <Container>
           <Row>
-            <Link to="/">
-              <Logo>J</Logo>
-            </Link>
-            <Search />
-            {/* <Profile>{visitor}</Profile> */}
-            {/* <CircleButton>{checkCircleFill}</CircleButton> */}
-            <Link style={{ marginLeft: 'auto' }} to={`/favorites`}>
-              <CircleButton>
-                {starFill}
-                <Sup> {favorites.length > 0 && favorites.length}</Sup>
-              </CircleButton>
-            </Link>
-            {user ? (
-              <Link to={`/users/${user.result.googleId || user.result._id}`}>
-                <Row alignItems="center">
-                  {user.result?.imageUrl ? (
-                    <CircleAvatar>
-                      <img alt={user.result?.givenName} src={user.result?.imageUrl} />
-                    </CircleAvatar>
-                  ) : (
-                    <CircleAvatar>{user.result?.givenName.charAt(0)}</CircleAvatar>
-                  )}
-                  Hi {user.result?.givenName}
-                  <InfoAuth onClick={logout}>Logout</InfoAuth>
-                </Row>
+            <Col md={12} style={{ display: 'flex' }}>
+              <Link to="/">
+                <Logo>J</Logo>
               </Link>
-            ) : (
-              <Row onClick={() => setModalOpen(true)} alignItems="center">
-                <CircleButton>{personFill}</CircleButton>
-                <InfoAuth>
-                  Welcome, <br />
-                  <small>Sign in or Register</small>
-                </InfoAuth>
-              </Row>
-            )}
+              <Search />
+              <Link style={{ marginLeft: 'auto' }} to={`/favorites`}>
+                <CircleButton>
+                  {starFill}
+                  <Sup> {favorites.length > 0 && favorites.length}</Sup>
+                </CircleButton>
+              </Link>
+              {user ? (
+                <Link to={`/users/${user.result.googleId || user.result._id}`}>
+                  <Row alignItems="center">
+                    {user.result?.imageUrl ? (
+                      <CircleAvatar>
+                        <img alt={user.result?.givenName} src={user.result?.imageUrl} />
+                      </CircleAvatar>
+                    ) : (
+                      <CircleAvatar>{user.result?.givenName.charAt(0)}</CircleAvatar>
+                    )}
+                    <InfoAuth style={{ marginRight: '8px' }}>Hi {user.result?.givenName}</InfoAuth>
+                    <InfoAuth onClick={logout}>Logout</InfoAuth>
+                  </Row>
+                </Link>
+              ) : (
+                <Row onClick={() => setModalOpen(true)} alignItems="center">
+                  <CircleButton>{personFill}</CircleButton>
+                  <InfoAuth>
+                    Welcome, <br />
+                    <small>Sign in or Register</small>
+                  </InfoAuth>
+                </Row>
+              )}
+            </Col>
           </Row>
         </Container>
       </NavbarContainer>

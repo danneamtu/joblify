@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { accentGreen, lightDark } from '../../styled-components/typography/colors'
+import { accentGreen, lightDark, accentBlue, accentBlueHover } from '../../styled-components/typography/colors'
 
 export const NavbarContainer = styled.header`
   color: rgba(255, 255, 255, 0.64);
@@ -11,23 +11,14 @@ export const NavbarContainer = styled.header`
     text-decoration: none;
   }
 `
-export const Container = styled.div`
-  color: rgba(255, 255, 255, 0.64);
-  width: 1200px;
-  margin: auto;
-`
-export const Row = styled.div`
-  display: flex;
-  align-items: center;
-`
+
 export const Logo = styled.div`
-  margin-left: -16px;
-  width: 33px;
+  width: 36px;
   overflow: hidden;
-  height: 33px;
-  background: blue;
+  height: 36px;
+  background: ${accentBlue};
   color: white;
-  line-height: 33px;
+  line-height: 36px;
   text-align: center;
   font-size: 21px;
   border-radius: 4px;
@@ -35,7 +26,7 @@ export const Logo = styled.div`
   font-weight: 500;
   cursor: pointer;
   &:hover {
-    background: #0561fb;
+    background: ${accentBlueHover};
   }
 `
 export const Profile = styled.div`

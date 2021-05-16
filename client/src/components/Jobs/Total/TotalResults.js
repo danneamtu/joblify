@@ -8,7 +8,6 @@ const TotalContainer = styled.div`
   margin-bottom: 16px;
   border-left: solid 3px blue;
   padding: 16px;
-  margin-right: 24px;
 `
 const TotalTitle = styled.h4`
   font-size: 16px;
