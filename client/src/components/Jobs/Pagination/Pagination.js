@@ -57,7 +57,6 @@ const Pagination = ({ href, pageCurrent, pagePer, totalResults }) => {
           </Li>
         </>
       )}
-
       {pager.pages.map((page, index) => (
         <Li pageCurrent={pager.pageCurrent} page={page} key={index}>
           <Link to={`${pager.href}start=${page}`}>{page}</Link>

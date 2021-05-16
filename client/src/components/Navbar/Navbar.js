@@ -7,6 +7,8 @@ import { googleLogout } from '../../redux/actions/userActions'
 import { createVisitor, getVisitor } from '../../redux/actions/visitorActions'
 
 import Search from './Search/Search'
+import Auth from '../Auth/Auth'
+
 import { CircleButton } from '../../styled-components/buttons/buttons'
 
 import { checkCircleFill, pieChartFill, clockFill, person, personFill, starFill, barChartFill, search } from '../../assets/icons/icons'
@@ -78,6 +80,8 @@ const Navbar = () => {
           </Row>
         </Container>
       </NavbarContainer>
+
+      <Auth open={modalOpen} setOpen={setModalOpen} />
     </>
   )
 }

@@ -23,6 +23,8 @@ export const Row = styled.div`
         return 'justify-content:start'
       case 'end':
         return 'justify-content:end'
+      case 'between':
+        return 'justify-content:space-between'
       default:
         return
     }

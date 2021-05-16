@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ReactDom from 'react-dom'
 
 import { GoogleLogin } from 'react-google-login'
@@ -12,10 +12,13 @@ import { googleAuth } from '../../redux/actions/userActions'
 import Input from './Input/Input'
 import { Row } from '../../styled-components/responsive/row'
 import { Col } from '../../styled-components/responsive/col'
+import { Btn } from '../../styled-components/buttons/buttons'
+import { x, google } from '../../assets/icons/icons'
+import { ContainerForm, Button, ButtonGoogle, Overlay, FormHeader, CloseModal, Title, Small, Or, Name } from './styled'
+import { CircleButton } from '../../styled-components/buttons/buttons'
 
-import { ContainerForm, Button, ButtonGoogle, Overlay } from './styled'
-
-function Auth() {
+function Auth({ open, setOpen }) {
+  //
   const initialUserData = {
     familyName: '',
     givenName: '',
@@ -62,39 +65,71 @@ function Auth() {
   const googleFailure = (err) => {
     console.log('google error', err)
   }
-  const closeModal = () => {}
+
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setOpen(false)
+        }
+      }
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [ref])
+  }
+
+  const outsideForm = useRef(null)
+  useOutsideAlerter(outsideForm)
 
   return ReactDom.createPortal(
-    <Overlay>
-      <ContainerForm>
-        <button onClikc={closeModal}>Close</button>
-        <form onSubmit={handleSubmit}>
-          <Row>
-            {!signIn && (
-              <>
-                <Input handleChange={handleChange} md={6} placeholder="First Name" name="givenName" />
-                <Input handleChange={handleChange} md={6} placeholder="Last Name" name="familyName" />
-              </>
-            )}
-            <Input handleChange={handleChange} md={12} placeholder="Email" name="email" />
-            <Input handleChange={handleChange} md={12} placeholder="Password" type="password" name="password" />
-            <Button>{!signIn ? 'Register' : 'Login'}</Button>
-            <GoogleLogin
-              onSuccess={googleSuccess}
-              onFailure={googleFailure}
-              cookiePolicy="single_host_origin"
-              clientId="878291105482-j5jqqlccdaqol3f4iu74oe5mh20cca26.apps.googleusercontent.com"
-              render={(renderProps) => (
-                <ButtonGoogle onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                  Google SignIn
-                </ButtonGoogle>
-              )}
-            />
-            <Button onClick={handleSwitch}>{signIn ? 'Not Register? then sign up' : 'Already have an account? then sign in'}</Button>
-          </Row>
-        </form>
-      </ContainerForm>
-    </Overlay>,
+    open && (
+      <>
+        <Overlay>
+          <ContainerForm ref={outsideForm}>
+            <FormHeader>
+              <Title>Sign in to Joblify</Title>
+              <CircleButton onClick={() => setOpen(false)}>{x}</CircleButton>
+            </FormHeader>
+
+            <form onSubmit={handleSubmit}>
+              <Row justifyContent="between">
+                {!signIn && (
+                  <>
+                    <Input md={6} handleChange={handleChange} placeholder="First Name" name="givenName" />
+                    <Input md={6} handleChange={handleChange} placeholder="Last Name" name="familyName" />
+                  </>
+                )}
+                <Input handleChange={handleChange} md={12} placeholder="Email" name="email" />
+                <Input handleChange={handleChange} md={12} placeholder="Password" type="password" name="password" />
+                <Btn as="button" className="btn-primary btn-block">
+                  {!signIn ? 'Register' : 'Login'}
+                </Btn>
+                <Or>
+                  <span>or</span>
+                </Or>
+                <GoogleLogin
+                  onSuccess={googleSuccess}
+                  onFailure={googleFailure}
+                  cookiePolicy="single_host_origin"
+                  clientId="878291105482-j5jqqlccdaqol3f4iu74oe5mh20cca26.apps.googleusercontent.com"
+                  render={(renderProps) => (
+                    <Btn className="btn-outline btn-block left-icon" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                      {google} Google SignIn
+                    </Btn>
+                  )}
+                />
+                <Button as="button" onClick={handleSwitch}>
+                  {signIn ? 'Not Register?' : 'Already have an account?'}
+                  <Small>{signIn ? 'Create an account' : 'Please sign in'}</Small>
+                </Button>
+              </Row>
+            </form>
+          </ContainerForm>
+        </Overlay>
+      </>
+    ),
     document.getElementById('auth')
   )
 }

@@ -8,6 +8,8 @@ import { searchIcon } from '../../../assets/icons/icons'
 import locations from '../locations.json'
 
 function Search() {
+
+  
   function useOutsideAlerter(ref) {
     useEffect(() => {
       function handleClickOutside(event) {
