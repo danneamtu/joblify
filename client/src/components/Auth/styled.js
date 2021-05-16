@@ -19,6 +19,8 @@ export const Button = styled.button`
   display: block;
   width: 100%;
   border: none;
+  margin-top: 8px;
+  line-height: 1.7;
 `
 export const ButtonGoogle = styled.button`
   padding: 1rem;

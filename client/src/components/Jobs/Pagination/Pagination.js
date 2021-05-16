@@ -45,6 +45,8 @@ const Pagination = ({ href, pageCurrent, pagePer, totalResults }) => {
 
   const pager = createPagination(href, pageCurrent, pagePer, totalResults)
 
+  pageCurrent && console.log('---- 1page current', pageCurrent)
+
   return (
     <Ul>
       {pager.indexStart - 2 > 1 && (

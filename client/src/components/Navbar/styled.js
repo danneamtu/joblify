@@ -6,6 +6,7 @@ export const NavbarContainer = styled.header`
   background: #1d1d25;
   padding: 8px;
   margin-bottom: 16px;
+  z-index: 9999;
   a {
     text-decoration: none;
   }

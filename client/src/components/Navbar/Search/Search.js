@@ -3,13 +3,11 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Fuse from 'fuse.js'
 
-import { SearchBox, SearchResults, SearchResult } from './styled'
+import { SearchBox, SearchResults, SearchResult, TotalJobs } from './styled'
 import { searchIcon } from '../../../assets/icons/icons'
 import locations from '../locations.json'
 
 function Search() {
-
-  
   function useOutsideAlerter(ref) {
     useEffect(() => {
       function handleClickOutside(event) {
@@ -52,7 +50,7 @@ function Search() {
             searchResults.map((res) => (
               <Link to={`/jobs/search?location=${res.item.city}`}>
                 <SearchResult onClick={() => setSearchModal({ open: false, value: '' })}>
-                  {res.item.city} - {res.item.total}
+                  {res.item.city} <TotalJobs>{res.item.total}</TotalJobs>
                 </SearchResult>
               </Link>
             ))}

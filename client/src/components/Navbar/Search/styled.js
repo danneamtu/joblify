@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { lightDark, lightDarker, darkLight, dark, darkLighter } from '../../../styled-components/typography/colors'
 
 export const SearchBox = styled.div`
   position: relative;
@@ -6,7 +7,7 @@ export const SearchBox = styled.div`
   & svg {
     position: absolute;
     z-index: 2;
-    color: rgba(0, 0, 0, 0.664);
+    color: ${darkLight};
     top: 0;
     margin-top: auto;
     margin-bottom: auto;
@@ -48,21 +49,33 @@ export const SearchResults = styled.div`
   width: 290px;
   left: 0;
   top: 34px;
-  z-index: 99;
+  z-index: 99999;
 `
 
 export const SearchResult = styled.div`
   padding: 10px 25px;
-  background: #2a2b34;
+  background: ${dark};
   cursor: pointer;
   color: rgba(255, 255, 255, 0.7);
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
   &:last-child {
     /* border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px; */
   }
   :hover {
-    background: #1d1e26;
+    background: ${darkLighter};
   }
+`
+export const TotalJobs = styled.span`
+  margin-left: auto;
+  padding: 4px;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.64);
+  background: ${dark};
+  font-size: 12px;
+  display: inline-block;
 `

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { lightDark, lightDarker, dark08, light, dark, darkLight, darkLighter } from '../typography/colors'
+import { lightDark, lightDarker, light, dark, darkLight, darkLighter } from '../typography/colors'
 
 export const CircleButton = styled.div`
   width: 38px;
@@ -35,22 +35,23 @@ export const Btn = styled.a`
   font-weight: 500;
   border-radius: 24px;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
+  display: inline-block;
   text-align: center;
   cursor: pointer;
   position: relative;
-  transition: 0.3s;
-  & svg {
-    margin-left: 0.5rem;
-  }
+  transition: 0.24s;
+  text-decoration: none;
   &.btn-primary {
     background: #0261fb;
     border-color: #0261fb;
     color: rgba(255, 255, 255, 0.89);
   }
+  &.btn-dark {
+    background: ${darkLighter};
+    border-color: ${darkLighter};
+    color: rgba(255, 255, 255, 0.89);
+  }
+
   &.btn-outline {
     background: transparent;
     border-color: ${lightDarker};
@@ -64,12 +65,54 @@ export const Btn = styled.a`
   &.btn-block {
     min-width: 100%;
   }
+  &.d-inline-flex {
+    display: inline-flex;
+  }
+  &.d-flex {
+    display: flex;
+  }
+  &.ai-center {
+    align-items: center;
+  }
+  &.jc-center {
+    justify-content: center;
+  }
+
+  &.text-center {
+    text-align: center;
+  }
   &.left-icon svg {
+    margin-right: 8px;
+  }
+  &.right-icon svg {
+    margin-left: 8px;
+  }
+  &.absolute-left svg {
+    margin-left: 8px;
     position: absolute;
-    left: 16px;
-    margin-top: auto;
-    margin-bottom: auto;
+    left: 0;
     top: 0;
     bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  &.btn-circle {
+    width: 38px !important;
+    height: 38px !important;
+    text-align: center;
+    cursor: pointer;
+    color: ${lightDark};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    position: relative;
+    padding: 0;
+    margin-right: 8px;
+    &:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
   }
 `

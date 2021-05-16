@@ -115,14 +115,14 @@ function Auth({ open, setOpen }) {
                   cookiePolicy="single_host_origin"
                   clientId="878291105482-j5jqqlccdaqol3f4iu74oe5mh20cca26.apps.googleusercontent.com"
                   render={(renderProps) => (
-                    <Btn className="btn-outline btn-block left-icon" onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                      {google} Google SignIn
+                    <Btn className="btn-outline d-flex ai-center jc-center text-center  btn-block left-icon" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                      {google} Google Sign in
                     </Btn>
                   )}
                 />
                 <Button as="button" onClick={handleSwitch}>
                   {signIn ? 'Not Register?' : 'Already have an account?'}
-                  <Small>{signIn ? 'Create an account' : 'Please sign in'}</Small>
+                  <Small>{signIn ? 'Create an Account' : 'Please Sign in'}</Small>
                 </Button>
               </Row>
             </form>

@@ -11,7 +11,7 @@ export const JobContainer = styled.div`
   padding: 16px;
   margin-right: 24px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 0;
 
   ${(props) => {
     if (props.active) {
@@ -36,7 +36,7 @@ export const CompanyInfo = styled.div`
 `
 export const Favorite = styled.div`
   position: absolute;
-  right: 4px;
+
   top: 8px;
   cursor: pointer;
   z-index: 22;

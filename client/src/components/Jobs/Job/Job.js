@@ -53,7 +53,7 @@ function Job({ jobData, index }) {
 
   return (
     <JobContainer>
-      <FavoriteStar jobId={jobId} />
+      <FavoriteStar circle save={false} jobId={jobId} />
       <Link style={{ textDecoration: 'none' }} to={theUri}>
         <Row>
           <CompanyLogo>{companyLogo}</CompanyLogo>

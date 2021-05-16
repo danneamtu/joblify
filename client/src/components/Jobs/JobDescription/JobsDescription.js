@@ -10,8 +10,10 @@ import { getJob } from '../../../redux/actions/jobActions'
 
 import { Row } from '../../../styled-components/responsive/row'
 import { Col } from '../../../styled-components/responsive/col'
+import { Btn } from '../../../styled-components/buttons/buttons'
 import TechnologiesDetected from './TechnologiesDetected/TechnologiesDetected'
 import TheChart from './PieChart/TheChart'
+import FavoriteStar from '../Job/Favorite/Favorite'
 
 import { boxArrowUp, star } from '../../../assets/icons/icons'
 import { JobInfo, CompanyLogo, CompanyInfo, CompanyShare, Title, TitleInfo, JobSubSubTitle, TitleInfoDetail, ColD, JobSubTitle, ButtonApply, ButtonSave, ColInfo, Content, JobButtons } from './styled'
@@ -65,11 +67,11 @@ const JobDescription = (props) => {
             </JobSubTitle>
             <JobSubSubTitle>{jobDetailsFromState && moment(jobDetailsFromState.data.timestamp).fromNow()}</JobSubSubTitle>
             <JobButtons>
-              {jobDetailsFromState && jobDetailsFromState.data.apply}
-              <ButtonApply href={jobDetailsFromState && jobDetailsFromState.data.apply} target="_blank" rel="noopener">
-                Apply {boxArrowUp}{' '}
-              </ButtonApply>
-              <ButtonSave>Unsave {star} </ButtonSave>
+              {/* {jobDetailsFromState && jobDetailsFromState.data.apply} */}
+              <Btn className="btn-primary ai-center d-inline-flex right-icon" href={jobDetailsFromState && jobDetailsFromState.data.apply} target="_blank" rel="noopener">
+                Apply Now {boxArrowUp}
+              </Btn>
+              <FavoriteStar save={true} jobId={searchJobId} />
             </JobButtons>
           </ColD>
           <Col md={1}>

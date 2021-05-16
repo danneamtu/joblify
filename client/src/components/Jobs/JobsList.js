@@ -53,11 +53,13 @@ const JobsList = (props) => {
     dispatch(getJobs(filters))
   }, [dispatch, filters.filterLocation, filters.filterSkills, filters.pageStart])
 
+  console.log('========', filters.pageStart)
+
   return (
     <>
-      <TotalResults total={0} />
+      <TotalResults location={filterLocation} total={totalJobs} />
       {allJobs && allJobs.map((job, index) => index < 10 && <Job index={index} jobData={job} key={job._id} />)}
-      {allJobs && <Pagination href={href} pageCurrent={filters.filterPageStart} totalResults={totalJobs} pagePer={10} />}
+      {allJobs && <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} />}
     </>
   )
 }

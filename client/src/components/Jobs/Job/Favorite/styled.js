@@ -1,13 +1,19 @@
 import styled from 'styled-components'
 
 export const Favorite = styled.div`
-  position: absolute;
-  right: 4px;
-  top: 8px;
   cursor: pointer;
   z-index: 22;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: rgba(255, 255, 255, 0.6);
+  ${(props) =>
+    props.save === false &&
+    `display: inline-block;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    `}
 `
 
 export const Chip = styled.span`
