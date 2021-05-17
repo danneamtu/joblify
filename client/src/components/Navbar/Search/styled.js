@@ -19,8 +19,12 @@ export const SearchBox = styled.div`
   }
 
   .searchInput {
+    width: 200px;
+    @media (min-width: 768px) {
+      width: 290px;
+    }
     color: rgba(255, 255, 255, 0.8);
-    width: 290px;
+
     height: 36px;
     font-size: 15px;
     line-height: 36px;
@@ -36,7 +40,6 @@ export const SearchBox = styled.div`
     border: solid 1px #2a2b34;
   }
   .searchInput:focus {
-    /* width: 410px; */
     outline-offset: 0;
     outline: none;
     border-bottom-left-radius: 0;
@@ -45,8 +48,11 @@ export const SearchBox = styled.div`
 `
 
 export const SearchResults = styled.div`
+  width: 200px;
+  @media (min-width: 768px) {
+    width: 290px;
+  }
   position: absolute;
-  width: 290px;
   left: 0;
   top: 38px;
   z-index: 99999;

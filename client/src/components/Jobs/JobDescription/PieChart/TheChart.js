@@ -18,7 +18,11 @@ const TheChart = ({ id }) => {
     labels: ['Your Skills', 'Other Skills'],
   }
 
-  return <>{scoreContext.totalSkills && <Doughnut data={data} />}</>
+  return (
+    <>
+      <Doughnut data={data} />
+    </>
+  )
 }
 
 export default TheChart

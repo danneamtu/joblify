@@ -3,13 +3,17 @@ import styled from 'styled-components'
 export const Ul = styled.ul`
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
   padding-top: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 0;
 `
 export const Li = styled.li`
   list-style-type: none;
   margin-left: 2px;
   margin-right: 2px;
+  margin-bottom: 0;
   & a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.7);

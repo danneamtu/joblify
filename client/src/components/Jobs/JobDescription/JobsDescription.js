@@ -52,6 +52,14 @@ const JobDescription = (props) => {
     dispatch(getJob(searchJobId))
   }, [searchJobId])
 
+  const removeTags = (string) => {
+    // he caret ^ and dollar $ characters have special meaning in a regexp. They are called “anchors”.
+    // The caret ^ matches at the beginning of the text, and the dollar $ – at the end.
+
+    const regex = /Dog/gi
+    return string.replaceAll(regex, '')
+  }
+
   return (
     <JobDescriptionContext.Provider value={{ scoreContext, setScoreContext }}>
       <JobInfo>

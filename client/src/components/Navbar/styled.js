@@ -39,6 +39,10 @@ export const InfoAuth = styled.div`
   font-size: 14px;
   color: rgba(255, 255, 255, 0.64);
   cursor: pointer;
+  display: none;
+  @media (min-width: 768px) {
+    display: inline-block;
+  }
 `
 export const CircleAvatar = styled.div`
   width: 33px;

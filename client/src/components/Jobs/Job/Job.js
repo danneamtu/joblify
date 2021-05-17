@@ -41,20 +41,20 @@ function Job({ jobData, index }) {
     createStart = `&start=${paramStart}`
   }
 
-  let theUri = `/jobs/search?currentJobId=${jobId}${createParams}${createStart}`
-
   const { _id: visitorId } = useSelector((state) => state.visitor)
-  console.log('visitor id1', visitorId)
-
   const handleFavorite = () => {
     setFavorite(!favorite)
     dispatch(addFavorite(jobId, visitorId))
   }
 
+  let theUri = `/jobs/search?currentJobId=${jobId}${createParams}${createStart}`
+  let theMobileUri = `/jobs/view/search?currentJobId=${jobId}${createParams}`
+  const isMobile = window.matchMedia('(max-width: 768px)')
+
   return (
     <JobContainer>
       <FavoriteStar circle save={false} jobId={jobId} />
-      <Link style={{ textDecoration: 'none' }} to={theUri}>
+      <Link style={{ textDecoration: 'none' }} to={isMobile && isMobile.matches ? theMobileUri : theUri}>
         <Row>
           <CompanyLogo>{companyLogo}</CompanyLogo>
           <CompanyInfo>

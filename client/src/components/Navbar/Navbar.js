@@ -65,14 +65,18 @@ const Navbar = () => {
                     ) : (
                       <CircleAvatar>{user.result?.givenName.charAt(0)}</CircleAvatar>
                     )}
-                    <InfoAuth style={{ marginRight: '8px' }}>Hi {user.result?.givenName}</InfoAuth>
-                    <InfoAuth onClick={logout}>Logout</InfoAuth>
+                    <InfoAuth className="show-md" style={{ marginRight: '8px' }}>
+                      Hi {user.result?.givenName}
+                    </InfoAuth>
+                    <InfoAuth className="show-md" onClick={logout}>
+                      Logout
+                    </InfoAuth>
                   </Row>
                 </Link>
               ) : (
                 <Row onClick={() => setModalOpen(true)} alignItems="center">
                   <CircleButton>{personFill}</CircleButton>
-                  <InfoAuth>
+                  <InfoAuth className="show-md">
                     Welcome, <br />
                     <small>Sign in or Register</small>
                   </InfoAuth>
