@@ -5,7 +5,7 @@ export const ContainerForm = styled.div`
   background: ${darkLight};
   padding: 1.4rem;
   border-radius: 0.5rem;
-  width: 340px;
+  max-width: 340px;
   margin: auto;
   margin-top: 90px;
 `

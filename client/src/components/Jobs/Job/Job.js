@@ -22,6 +22,7 @@ function Job({ jobData, index }) {
   const paramStart = query.get('start')
   const paramLocation = query.get('location')
   const paramSkills = query.get('skills')
+  const paramFavorites = query.get('favorites')
 
   let createParams = ''
   let createStart = ''
@@ -37,6 +38,10 @@ function Job({ jobData, index }) {
   if (paramSkills) {
     createParams = `&skills=${paramSkills}`
   }
+  if (paramFavorites) {
+    createParams = `&favorites=${paramFavorites}`
+  }
+
   if (paramStart) {
     createStart = `&start=${paramStart}`
   }

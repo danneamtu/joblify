@@ -11,7 +11,6 @@ function App() {
   return (
     <Router>
       <GlobalStyle />
-      <Navbar />
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
         <Route path="/users/:id" component={User}></Route>

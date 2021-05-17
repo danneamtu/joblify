@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Container } from '../../styled-components/responsive/container'
 import { Row } from '../../styled-components/responsive/row'
@@ -23,6 +23,7 @@ const Navbar = () => {
   const [user, setUser] = useState(null)
   const [visitor, setVisitor] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
+  const { jobs: paramJobs } = useParams()
 
   const { _id: visitorId, favorites } = useSelector((state) => state.visitor)
 
@@ -49,7 +50,7 @@ const Navbar = () => {
                 <Logo>J</Logo>
               </Link>
               <Search />
-              <Link style={{ marginLeft: 'auto' }} to={`/favorites`}>
+              <Link style={{ marginLeft: 'auto' }} to={paramJobs ? `search?favorites=show` : `jobs/search?favorites=show`}>
                 <CircleButton>
                   {starFill}
                   <Sup> {favorites.length > 0 && favorites.length}</Sup>

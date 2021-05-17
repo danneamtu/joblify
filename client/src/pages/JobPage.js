@@ -14,7 +14,10 @@ function JobPage(props) {
   return (
     <Container>
       <Row>
-        <Col md={12}>
+        <Col className="d-none d-md-block" md={5} xl={4}>
+          <JobsList />
+        </Col>
+        <Col md={7} xl={8}>
           <JobsDescription />
         </Col>
       </Row>

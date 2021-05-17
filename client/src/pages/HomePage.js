@@ -9,22 +9,27 @@ import JobsDescription from '../components/Jobs/JobDescription/JobsDescription'
 import { Container } from '../styled-components/responsive/container'
 import { Row } from '../styled-components/responsive/row'
 import { Col } from '../styled-components/responsive/col'
+import Navbar from '../components/Navbar/Navbar'
+let isMobile = window.matchMedia('(max-width: 768px)')
 
 function HomePage(props) {
   return (
-    <Container>
-      <Row>
-        <Col md={4}>
-          <JobsList />
-        </Col>
-        <Col md={6}>
-          <JobsDescription />
-        </Col>
-        <Col md={2}>
-          <Trends />
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Navbar />
+      <Container>
+        <Row>
+          <Col md={5} xl={4}>
+            <JobsList />
+          </Col>
+          <Col className="d-none d-md-block" md={7} xl={6}>
+            <JobsDescription />
+          </Col>
+          <Col className="d-none d-xl-block" show={'xl'} xl={2}>
+            <Trends />
+          </Col>
+        </Row>
+      </Container>
+    </>
   )
 }
 

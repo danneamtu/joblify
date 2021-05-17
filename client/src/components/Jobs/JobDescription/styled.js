@@ -6,12 +6,19 @@ export const JobInfo = styled.div`
   border-radius: 4px;
 `
 export const CompanyLogo = styled.div`
-  max-width: 84px;
+  min-width: 100%;
+  max-width: 100%;
+  flex: 1 0 0;
+  @media (min-width: 992px) {
+    min-width: 84px;
+    max-width: 84px;
+  }
+
   margin-bottom: 32px;
   margin-right: 2rem;
-  flex: 1 0 0;
+
   & img {
-    width: 100%;
+    max-width: 84px;
     border-radius: 4px;
   }
 `

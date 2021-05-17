@@ -6,7 +6,7 @@ import { getJobs } from '../../redux/actions/jobsActions'
 import Job from './Job/Job'
 import Pagination from './Pagination/Pagination'
 import TotalResults from '../Jobs/Total/TotalResults'
-
+import Footer from './Footer/Footer'
 const JobsList = (props) => {
   function useQuery() {
     return new URLSearchParams(useLocation().search)
@@ -18,6 +18,7 @@ const JobsList = (props) => {
   const filterPageStart = query.get('start')
   const filterLocation = query.get('location')
   const filterSkills = query.get('skills')
+  const filterFavorites = query.get('favorites')
 
   const dispatch = useDispatch()
 
@@ -35,18 +36,24 @@ const JobsList = (props) => {
     pageStart: filterPageStart || 1,
     location: filterLocation,
     skills: filterSkills,
+    favorites: filterFavorites,
   }
 
   let href
   let addParam
   !jobs ? (addParam = 'jobs/') : (addParam = '')
+
   if (filterLocation && filterSkills) {
     href = `${addParam}search?location=${filterLocation}&skills=${filterSkills}&`
   } else {
     filterLocation ? (href = `${addParam}search?location=${filterLocation}&`) : (href = `${addParam}search?skills=${filterSkills}&`)
   }
   if (!filterLocation && !filterSkills) {
-    href = `${addParam}search?`
+    if (!filterFavorites) {
+      href = `${addParam}search?`
+    } else {
+      href = `${addParam}search?favorites=show&`
+    }
   }
 
   useEffect(() => {
@@ -58,6 +65,7 @@ const JobsList = (props) => {
       <TotalResults location={filterLocation} total={totalJobs} />
       {allJobs && allJobs.map((job, index) => <Job index={index} jobData={job} key={job._id} />)}
       {allJobs && <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} />}
+      <Footer />
     </>
   )
 }
