@@ -1,21 +1,30 @@
 import styled from 'styled-components'
+import { light, dark, darkLightHover, lightDark, lightDarker, darkLight, darkLighter } from '../../../styled-components/typography/colors'
 
 export const JobInfo = styled.div`
-  background: #1d1d25;
+  background: ${darkLightHover};
   padding: 32px;
   border-radius: 4px;
 `
 export const CompanyLogo = styled.div`
   min-width: 100%;
   max-width: 100%;
-  flex: 1 0 0;
+  line-height: 84px;
+  background: ${darkLighter};
+  color: ${lightDark};
+  margin-bottom: 32px;
+  margin-right: 2rem;
+  text-align: center;
+
   @media (min-width: 992px) {
     min-width: 84px;
     max-width: 84px;
+    max-height: 84px;
+    flex: 0 0 84px;
+    line-height: 84px;
+    font-size: 42px;
+    border-radius: 5px;
   }
-
-  margin-bottom: 32px;
-  margin-right: 2rem;
 
   & img {
     max-width: 84px;
@@ -122,6 +131,9 @@ export const Content = styled.div`
   padding-top: 48px;
   padding-bottom: 48px;
   color: rgba(255, 255, 255, 0.6);
+  button {
+    display: none;
+  }
 `
 export const JobButtons = styled.div`
   width: 100%;

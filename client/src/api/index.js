@@ -9,9 +9,9 @@ API.interceptors.request.use((req) => {
   return req
 })
 
-export const fetchJobs = (filterData) =>
+export const fetchJobs = (filterData, favorites) =>
   API.get(`/api/jobs`, {
-    params: filterData,
+    params: { filterData, favorites },
   })
 
 export const createJob = (job) => API.post(`/jobs`, job)

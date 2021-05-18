@@ -17,7 +17,6 @@ import FavoriteStar from '../Job/Favorite/Favorite'
 
 import { boxArrowUp, star } from '../../../assets/icons/icons'
 import { JobInfo, CompanyLogo, CompanyInfo, CompanyShare, Title, TitleInfo, JobSubSubTitle, TitleInfoDetail, ColD, JobSubTitle, ButtonApply, ButtonSave, ColInfo, Content, JobButtons } from './styled'
-const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -64,7 +63,7 @@ const JobDescription = (props) => {
     <JobDescriptionContext.Provider value={{ scoreContext, setScoreContext }}>
       <JobInfo>
         <Row>
-          <CompanyLogo>{companyLogo}</CompanyLogo>
+          <CompanyLogo>{jobDetailsFromState ? jobDetailsFromState.data.companyLogo ? <img src={jobDetailsFromState && jobDetailsFromState.data.companyLogo} alt={jobDetailsFromState && jobDetailsFromState.data.companyName} /> : jobDetailsFromState.data.companyName.charAt(0) : '...'}</CompanyLogo>
           <ColD>
             <Title>
               {jobDetailsFromState ? console.log(jobDetailsFromState.title) : ''}

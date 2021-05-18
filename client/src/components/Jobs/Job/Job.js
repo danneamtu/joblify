@@ -8,13 +8,14 @@ import { star, starFill } from '../../../assets/icons/icons'
 import { CircleButton } from '../../../styled-components/buttons/buttons'
 import { addFavorite } from '../../../redux/actions/visitorActions'
 import FavoriteStar from './Favorite/Favorite'
+import { timeAgo } from '../../../utils/utils'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
 
-function Job({ jobData, index }) {
-  const { _id: jobId, title, location, timestamp, companyName } = jobData
+function Job({ jobData, index, key }) {
+  const { _id: jobId, title, companyLogo, location, timestamp, companyName } = jobData
   const [favorite, setFavorite] = useState(false)
   const dispatch = useDispatch()
 
@@ -23,6 +24,7 @@ function Job({ jobData, index }) {
   const paramLocation = query.get('location')
   const paramSkills = query.get('skills')
   const paramFavorites = query.get('favorites')
+  const currentJobId = query.get('currentJobId')
 
   let createParams = ''
   let createStart = ''
@@ -57,23 +59,26 @@ function Job({ jobData, index }) {
   const isMobile = window.matchMedia('(max-width: 768px)')
 
   return (
-    <JobContainer>
+    <JobContainer active={currentJobId === jobId ? true : false}>
       <FavoriteStar circle save={false} jobId={jobId} />
       <Link style={{ textDecoration: 'none' }} to={isMobile && isMobile.matches ? theMobileUri : theUri}>
         <Row>
-          <CompanyLogo>{companyLogo}</CompanyLogo>
+          <CompanyLogo>{companyLogo ? <img src={companyLogo} alt={companyName} /> : companyName.charAt(0)}</CompanyLogo>
           <CompanyInfo>
             <JobTitle>
+              {currentJobId === jobId ? 'true' : 'false'}
               {index}
               {title}
             </JobTitle>
-            <JobSubTitle>{location}</JobSubTitle>
+            <JobSubTitle>
+              {companyName} &middot; {location}
+            </JobSubTitle>
           </CompanyInfo>
         </Row>
         <Row alignItems="center">
           <Chip>Mid-Senior level</Chip>
-          <Chip>Score 38%</Chip>
-          <Date>{moment(timestamp).fromNow().replace('seconds ago', 's').replace('weeks ago', 'w').replace('days ago', 'd')}</Date>
+          <Chip>Score1</Chip>
+          <Date>{timeAgo(timestamp)}</Date>
         </Row>
       </Link>
     </JobContainer>

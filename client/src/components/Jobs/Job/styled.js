@@ -1,27 +1,34 @@
 import styled from 'styled-components'
-export const companyLogo = <img alt="some alt" src="https://media-exp1.licdn.com/dms/image/C4D0BAQGZqU18UiRgmA/company-logo_100_100/0/1584036996496?e=1627516800&v=beta&t=fRi_xTII3AcPqBlZxY_K9pq7XzIltHjuplrqj24SvEI" />
+import { light, dark, lightDark, lightDarker, darkLightHover, darkLight, darkLighter } from '../../../styled-components/typography/colors'
 
 export const JobContainer = styled.div`
   position: relative;
   text-decoration: none;
-  background: #1d1d25;
+  background: ${darkLight};
   border-radius: 4px;
-  color: white;
+  color: ${light};
   margin-bottom: 12px;
   padding: 20px;
   cursor: pointer;
   z-index: 0;
-  ${(props) => {
-    if (props.active) {
-      return 'background: rgba(74, 74, 97, 0.23)'
-    }
-  }}
+  transition: 0.2s;
+  background: ${(props) => props.active && darkLightHover};
+  &:hover {
+    background: ${darkLightHover};
+  }
 `
 
 export const CompanyLogo = styled.div`
-  min-width: 42px;
-  max-width: 42px;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  text-align: center;
+  line-height: 42px;
   margin-right: 12px;
+  border-radius: 4px;
+  font-size: 22px;
+  background: ${darkLighter};
+  color: ${lightDark};
   & img {
     width: 100%;
     border-radius: 4px;

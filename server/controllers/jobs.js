@@ -3,8 +3,13 @@ import mongoose from 'mongoose'
 
 export const getJobs = async (req, res) => {
   const filters = req.query
-  const { pageStart, location, skills } = filters
-  console.log('this is controller2', pageStart, location, skills)
+  const { pageStart, location, skills, favorites } = JSON.parse(filters.filterData)
+  const visitorFavoritesJobs = filters.favorites
+  console.log('-- filters', filters)
+  console.log('--visitorFavoritesJobs', visitorFavoritesJobs)
+
+  console.log('controllers data xxxx:', pageStart, location, skills, favorites)
+
   const limit = 10
   const start = (pageStart - 1) * limit //0
   let setFilters
@@ -15,13 +20,11 @@ export const getJobs = async (req, res) => {
       $and: [{ city: friendlyLocation }, { tags: skills }],
     }
   }
+
   if (skills) {
     setFilters = {
       tags: [skills],
     }
-  }
-  if (!location && !skills) {
-    setFilters = {}
   }
 
   if (location) {
@@ -30,6 +33,21 @@ export const getJobs = async (req, res) => {
       city: friendlyLocation,
     }
   }
+
+  if (!location && !skills) {
+    setFilters = {}
+  }
+
+  if (visitorFavoritesJobs && visitorFavoritesJobs.length > 0) {
+    let ids = visitorFavoritesJobs.map(function (el) {
+      return mongoose.Types.ObjectId(el)
+    })
+    setFilters = {
+      _id: { $in: ids },
+    }
+  }
+
+  console.log('the actual filters22', setFilters)
 
   try {
     let jobs = await Jobs.aggregate([
@@ -61,6 +79,7 @@ export const getJobs = async (req, res) => {
         },
       },
     ])
+    console.log('..... the result', jobs)
     res.status(200).json(jobs)
   } catch (err) {
     console.log(err)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 const TotalContainer = styled.div`
@@ -25,9 +26,15 @@ const TotalSubTitle = styled.h4`
 `
 
 function TotalResults({ total, location }) {
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search)
+  }
+  let query = useQuery()
+  const paramFavorites = query.get('favorites')
+
   return (
     <TotalContainer>
-      <TotalTitle>Front End Developer in {!location ? 'Belgium' : location}</TotalTitle>
+      <TotalTitle>{paramFavorites ? `Your Favorites Jobs` : `Front End Developer in ${!location ? 'Belgium' : location}`}</TotalTitle>
       <TotalSubTitle>{total || 0} jobs</TotalSubTitle>
     </TotalContainer>
   )
