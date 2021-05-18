@@ -89,14 +89,14 @@ const JobDescription = (props) => {
             <Col md={6}>{jobDetailsFromState && <TheChart id={searchJobId} />}</Col>
           </Row>
 
-          <TitleInfo>Job description</TitleInfo>
+          {/* <TitleInfo>Job description</TitleInfo> */}
           {/* {jobDetailsFromState && jobDetailsFromState.data.description} */}
           {jobDetailsFromState && <p dangerouslySetInnerHTML={{ __html: jobDetailsFromState.data.descriptionH }}></p>}
         </Content>
         <Row>
           <ColInfo>
             <TitleInfo> Company</TitleInfo>
-            <TitleInfoDetail>201-500 employees</TitleInfoDetail>
+            <TitleInfoDetail>{jobDetailsFromState && jobDetailsFromState.data.companyName}</TitleInfoDetail>
           </ColInfo>
           <ColInfo>
             <TitleInfo> Level</TitleInfo>

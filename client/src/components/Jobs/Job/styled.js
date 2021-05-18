@@ -27,8 +27,8 @@ export const CompanyLogo = styled.div`
   margin-right: 12px;
   border-radius: 4px;
   font-size: 22px;
-  background: ${darkLighter};
-  color: ${lightDark};
+  background: ${light};
+  color: ${dark};
   & img {
     width: 100%;
     border-radius: 4px;

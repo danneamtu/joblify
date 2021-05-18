@@ -6,6 +6,7 @@ import Skills from './Skills/Skills'
 import { FilterContainer } from './styled'
 import Countries from './Countries/Countries'
 import Cities from './Cities/Cities'
+import ChartStatistics from './Chart/Chart'
 
 function Filter() {
   const dispatch = useDispatch()
@@ -20,10 +21,13 @@ function Filter() {
   console.log('this is the location', allLocations)
 
   return (
-    <FilterContainer>
-      <Skills visitorSkills={skills} />
+    <>
+      <ChartStatistics />
       {allLocations && <Cities allLocations={allLocations} />}
-    </FilterContainer>
+      <FilterContainer>
+        <Skills visitorSkills={skills} />
+      </FilterContainer>
+    </>
   )
 }
 

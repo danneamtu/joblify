@@ -15,7 +15,7 @@ const TheChart = ({ id }) => {
         borderWidth: 0,
       },
     ],
-    labels: ['Your Skills', 'Other Skills'],
+    labels: ['Your Skills', 'Total Skills'],
   }
 
   return (

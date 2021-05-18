@@ -10,8 +10,8 @@ export const CompanyLogo = styled.div`
   min-width: 100%;
   max-width: 100%;
   line-height: 84px;
-  background: ${darkLighter};
-  color: ${lightDark};
+  background: ${light};
+  color: ${dark};
   margin-bottom: 32px;
   margin-right: 2rem;
   text-align: center;

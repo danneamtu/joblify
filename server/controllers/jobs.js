@@ -59,6 +59,7 @@ export const getJobs = async (req, res) => {
                 $or: [setFilters],
               },
             },
+            { $sort: { timestamp: -1 } },
             {
               $skip: start,
             },

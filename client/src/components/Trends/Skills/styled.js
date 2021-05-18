@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { lightDark, lightDarker, accentGreen } from '../../../styled-components/typography/colors'
+import { lightDark, lightDarker, accentGreen, darkLightHover } from '../../../styled-components/typography/colors'
 
 export const ContainerSkills = styled.div`
-  padding-bottom: 1em;
-  margin-bottom: 1em;
-  border-bottom: solid 1px lightDark;
-  & img {
-    margin-right: 12px;
-  }
+  margin-top: 24px;
+  background: ${darkLightHover};
+  padding: 16px;
+  border-radius: 6px;
+  border-bottom-right-radius: 6px;
 `
 
 export const StyledLink = styled(Link)`

@@ -5,7 +5,7 @@ import { Col } from '../../../../styled-components/responsive/col'
 import { JobInfo, CompanyLogo, CompanyInfo, CompanyShare, Title, TitleInfo, TitleInfoDetail, ColD, JobSubTitle, ButtonApply, ButtonSave, ColInfo, Content, JobButtons } from './styled'
 function Score({ jobId, employmentType }) {
   const { scoreContext } = useContext(JobDescriptionContext)
-  const scoreFormula = (scoreContext.totalScore * 100) / scoreContext.totalSkills
+  const scoreFormula = (scoreContext.totalScore * 100) / scoreContext.totalSkills || 0
 
   return (
     <Row>
@@ -14,7 +14,7 @@ function Score({ jobId, employmentType }) {
         <TitleInfoDetail>Technologies detected</TitleInfoDetail>
       </ColInfo>
       <ColInfo>
-        <TitleInfo>{parseFloat(scoreFormula).toFixed(2)} % </TitleInfo>
+        <TitleInfo>{parseFloat(Number(scoreFormula)).toFixed(2)} % </TitleInfo>
         <TitleInfoDetail>Your overall score</TitleInfoDetail>
       </ColInfo>
       <ColInfo>

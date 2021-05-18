@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import { darkLightHover } from '../../../styled-components/typography/colors'
 export const Ul = styled.ul`
   display: flex;
   align-items: center;
@@ -26,9 +26,9 @@ export const Li = styled.li`
     font-size: 14px;
     border-radius: 50%;
     color: rgba(255, 255, 255, 0.7);
-    background: ${(props) => (props.pageCurrent && props.pageCurrent === props.page ? '#1d1e26;' : 'none')};
+    background: ${(props) => (props.pageCurrent && props.pageCurrent === props.page ? darkLightHover : 'none')};
   }
   & a:hover {
-    background: #1d1e26;
+    background: ${darkLightHover};
   }
 `

@@ -64,7 +64,7 @@ export const SearchResults = styled.div`
 
 export const SearchResult = styled.div`
   padding: 10px 25px;
-  background: ${dark};
+  background: ${darkLight};
   cursor: pointer;
   color: rgba(255, 255, 255, 0.7);
   border-bottom-left-radius: 0px;

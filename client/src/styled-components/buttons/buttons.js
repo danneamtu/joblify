@@ -58,7 +58,7 @@ export const Btn = styled.a`
     color: ${lightDarker};
   }
   &.btn-outline:hover {
-    background: ${dark};
+    background: ${darkLight};
     border-color: ${lightDarker};
     color: ${lightDarker};
   }

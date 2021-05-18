@@ -43,12 +43,12 @@ function Search() {
   return (
     <SearchBox ref={wrapperRef}>
       {searchIcon}
-      <input onChange={handleSearch} onClick={() => setSearchModal({ open: true })} value={searchModal.value} placeholder="Search by country or city" className="searchInput" />
+      <input onChange={handleSearch} onClick={() => setSearchModal({ open: true })} value={searchModal.value} placeholder="Search by city or region" className="searchInput" />
       {searchModal.open && (
         <SearchResults>
           {searchResults &&
             searchResults.map((res) => (
-              <Link to={`/jobs/search?location=${res.item.city}`}>
+              <Link to={`/jobs/search?location=${res.item.city.replace(/\s/gi, '-')}`}>
                 <SearchResult onClick={() => setSearchModal({ open: false, value: '' })}>
                   {res.item.city} <TotalJobs>{res.item.total}</TotalJobs>
                 </SearchResult>

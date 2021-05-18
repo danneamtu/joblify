@@ -38,17 +38,21 @@ function Skills() {
     totalResults < start + 10 && setShowLoadMore(false)
   }
   return (
-    <ContainerSkills>
-      {mySkills.length > 2 && <Title>My Skills</Title>}
-      {mySkills && mySkills.map((item) => item.skill && <Skill loadMoreSkills={loadMoreSkills} start={start} active={true} data={item} visitorId={_id} item={item} />)}
-      <Title>Popular Skills</Title>
-      {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill start={start} visitorId={_id} item={item} />)}
-      {showLoadMore && (
-        <StyledLinkMore onClick={() => loadMoreSkills(stateSkills[0].totalSkills)} to="#">
-          View more
-        </StyledLinkMore>
-      )}
-    </ContainerSkills>
+    <>
+      <ContainerSkills>
+        {mySkills.length > 2 && <Title>My Skills</Title>}
+        {mySkills && mySkills.map((item) => item.skill && <Skill loadMoreSkills={loadMoreSkills} start={start} active={true} data={item} visitorId={_id} item={item} />)}
+      </ContainerSkills>
+      <>
+        <Title>Popular Skills</Title>
+        {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill start={start} visitorId={_id} item={item} />)}
+        {showLoadMore && (
+          <StyledLinkMore onClick={() => loadMoreSkills(stateSkills[0].totalSkills)} to="#">
+            View more
+          </StyledLinkMore>
+        )}
+      </>
+    </>
   )
 }
 

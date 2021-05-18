@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-
 export const FilterContainer = styled.div`
   color: rgba(187, 187, 187, 0.64);
   ul {
