@@ -66,12 +66,11 @@ function Job({ jobData, index, key }) {
           <CompanyLogo>{companyLogo ? <img src={companyLogo} alt={companyName} /> : companyName.charAt(0)}</CompanyLogo>
           <CompanyInfo>
             <JobTitle>
-              {currentJobId === jobId ? 'true' : 'false'}
               {index}
               {title}
             </JobTitle>
             <JobSubTitle>
-              {companyName} &middot; {location}
+              {companyName} &middot; {location.replace(', Belgium', '')}
             </JobSubTitle>
           </CompanyInfo>
         </Row>

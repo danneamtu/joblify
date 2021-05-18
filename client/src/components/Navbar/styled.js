@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { accentGreen, lightDark, accentBlue, accentBlueHover } from '../../styled-components/typography/colors'
+import { accentGreen, lightDark, darkLight, accentBlue, accentBlueHover } from '../../styled-components/typography/colors'
 
 export const NavbarContainer = styled.header`
   color: rgba(255, 255, 255, 0.64);
-  background: #1d1d25;
+  background: ${darkLight};
   padding: 8px;
   margin-bottom: 16px;
   z-index: 9999;

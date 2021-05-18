@@ -65,10 +65,7 @@ const JobDescription = (props) => {
         <Row>
           <CompanyLogo>{jobDetailsFromState ? jobDetailsFromState.data.companyLogo ? <img src={jobDetailsFromState && jobDetailsFromState.data.companyLogo} alt={jobDetailsFromState && jobDetailsFromState.data.companyName} /> : jobDetailsFromState.data.companyName.charAt(0) : '...'}</CompanyLogo>
           <ColD>
-            <Title>
-              {jobDetailsFromState ? console.log(jobDetailsFromState.title) : ''}
-              {jobDetailsFromState ? jobDetailsFromState.data.title : '...loading'}
-            </Title>
+            <Title>{jobDetailsFromState ? jobDetailsFromState.data.title : '...loading'}</Title>
             <JobSubTitle>
               {jobDetailsFromState ? jobDetailsFromState.data.companyName : '...loading'} &middot; {jobDetailsFromState ? jobDetailsFromState.data.location : '...loading'}
             </JobSubTitle>
@@ -85,8 +82,7 @@ const JobDescription = (props) => {
             <CompanyShare></CompanyShare>
           </Col>
         </Row>
-
-        <Score jobId={searchJobId} />
+        <Score employmentType={jobDetailsFromState && jobDetailsFromState.data.employmentType} jobId={searchJobId} />
         <Content>
           <Row alignItems="start">
             <Col md={6}>{jobDetailsFromState && <TechnologiesDetected jobId={searchJobId} tags={jobDetailsFromState.data.tags} />}</Col>
@@ -104,11 +100,11 @@ const JobDescription = (props) => {
           </ColInfo>
           <ColInfo>
             <TitleInfo> Level</TitleInfo>
-            <TitleInfoDetail>Mid-Senior</TitleInfoDetail>
+            <TitleInfoDetail>{jobDetailsFromState ? jobDetailsFromState.data.level : '...loading'}</TitleInfoDetail>
           </ColInfo>
           <ColInfo>
             <TitleInfo> Employment Type</TitleInfo>
-            <TitleInfoDetail>Full time</TitleInfoDetail>
+            <TitleInfoDetail>{jobDetailsFromState ? jobDetailsFromState.data.employmentType : '...loading'}</TitleInfoDetail>
           </ColInfo>
         </Row>
       </JobInfo>
