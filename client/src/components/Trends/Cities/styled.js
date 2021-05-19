@@ -65,4 +65,5 @@ export const Hr = styled.hr`
 export const Total = styled.span`
   display: inline-block;
   margin-left: auto;
+  font-size: 15px;
 `

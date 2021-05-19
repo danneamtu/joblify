@@ -15,8 +15,8 @@ function ChartStatistics() {
         indexAxis: 'x',
         label: 'Skills',
         data: [5, 19, 7, 7, 6, 5, 4],
-        backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)'],
-        borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)'],
+        backgroundColor: ['rgba(224, 75, 107, 0.527)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)'],
+        borderColor: ['rgba(224, 75, 107, 0.527)', 'rgb(255, 159, 64)'],
         borderWidth: 0,
       },
     ],
@@ -26,8 +26,7 @@ function ChartStatistics() {
     <ChartContainer>
       <TitleSmall className="mb-2">Jobs in last 7 days</TitleSmall>
       <Title className="mb-4">991</Title>
-      <TitleSmall className="mb-1">Popular skills</TitleSmall>
-      <Hr />
+      <TitleSmall className="mb-0">Popular</TitleSmall>
       <BarHeight>
         <Bar style={{ height: '55px' }} height={55} options={{ maintainAspectRatio: false }} data={datas} />
       </BarHeight>

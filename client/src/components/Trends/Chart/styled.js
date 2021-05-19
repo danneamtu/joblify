@@ -18,6 +18,9 @@ export const ChartContainer = styled.div`
   .mb-1 {
     margin-bottom: 6px;
   }
+  .mb-0 {
+    margin-bottom: 0;
+  }
 `
 export const Title = styled.h3`
   font-size: 22px;

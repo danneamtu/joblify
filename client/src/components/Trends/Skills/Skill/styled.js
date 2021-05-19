@@ -1,26 +1,33 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { lightDark, lightDarker, accentGreen } from '../../../../styled-components/typography/colors'
+import { lightDark, lightDarker, accentGreen, darkLighter } from '../../../../styled-components/typography/colors'
 
 export const ContainerSkills = styled.div`
   padding-bottom: 1em;
   margin-bottom: 1em;
-  border-bottom: solid 1px lightDark;
   & img {
-    margin-right: 12px;
+    margin-right: 15px;
   }
+`
+export const Total = styled.span`
+  display: inline-block;
+  margin-left: auto;
+  font-size: 15px;
 `
 
 export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   min-width: 100%;
   text-decoration: none;
   color: ${lightDarker};
   transition: 0.2s;
-  border-radius: 0.25rem;
+
+  &:last-child {
+    border-bottom: solid 1px red;
+  }
   &:hover {
     color: ${lightDark};
   }
@@ -34,9 +41,14 @@ export const StyledLink = styled(Link)`
 export const SkillLi = styled.div`
   display: flex;
   align-items: center;
-
+  font-size: 15px;
+  border-bottom: solid 1px ${darkLighter};
+  &:last-child {
+    border-bottom: none;
+  }
   & svg {
     margin-left: 4px;
+    margin-top: 4px;
     cursor: pointer;
   }
   &:hover {
@@ -51,11 +63,16 @@ export const StyledLinkMore = styled(StyledLink)`
   margin-top: 0.5em;
 `
 
-export const Title = styled.h4`
-  font-size: 1em;
-  color: ${lightDarker};
-  margin-bottom: 1em;
-  margin-top: 1em;
+export const Title = styled.h3`
+  font-size: 22px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 16px;
+`
+export const TitleSmall = styled.p`
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.5);
 `
 export const Logo = styled.div`
   max-width: 1.5em;
