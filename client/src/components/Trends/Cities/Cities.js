@@ -17,6 +17,7 @@ function Cities({ allLocations }) {
   return (
     <>
       <CityContainer>
+        <TitleSmall className="mb-2">Popular cities</TitleSmall>
         {allLocations.map(
           (item, index) =>
             item.city?.length > 2 &&

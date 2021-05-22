@@ -4,6 +4,12 @@ import { lightDark, lightDarker, darkLight, dark, darkLighter } from '../../../s
 export const SearchBox = styled.div`
   position: relative;
   z-index: 1;
+  & sup {
+    position: absolute;
+    z-index: 2;
+    color: ${darkLight};
+    top: 0px;
+  }
   & svg {
     position: absolute;
     z-index: 2;
@@ -85,8 +91,7 @@ export const TotalJobs = styled.span`
   margin-left: auto;
   padding: 4px;
   border-radius: 4px;
-  color: rgba(255, 255, 255, 0.64);
-  background: ${dark};
+  color: ${lightDark};
   font-size: 12px;
   display: inline-block;
 `

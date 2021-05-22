@@ -13,6 +13,21 @@ export const CityContainer = styled.div`
   padding: 16px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
+  .mb-4 {
+    margin-bottom: 24px;
+  }
+  .mb-3 {
+    margin-bottom: 18px;
+  }
+  .mb-2 {
+    margin-bottom: 12px;
+  }
+  .mb-1 {
+    margin-bottom: 6px;
+  }
+  .mb-0 {
+    margin-bottom: 0;
+  }
 `
 
 export const ContainerSkills = styled.div`
