@@ -47,8 +47,6 @@ export const getJobs = async (req, res) => {
     }
   }
 
-  console.log('the actual filters22', setFilters)
-
   try {
     let jobs = await Jobs.aggregate([
       {
@@ -68,6 +66,9 @@ export const getJobs = async (req, res) => {
             },
           ],
           Count: [
+            {
+              $count: 'allJobs',
+            },
             {
               $match: {
                 $or: [setFilters],
