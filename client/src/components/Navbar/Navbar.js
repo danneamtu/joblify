@@ -50,7 +50,6 @@ const Navbar = () => {
                 <Logo>J</Logo>
               </Link>
               <Search />
-              <sup style={{ color: 'rgba(255,255,255,0.4)' }}>1920 front end developer jobs</sup>
               <Link style={{ marginLeft: 'auto' }} to={paramJobs ? `search?favorites=show` : `jobs/search?favorites=show`}>
                 <CircleButton>
                   {starFill}

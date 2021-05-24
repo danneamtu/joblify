@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, createContext } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import dayjs from 'dayjs'
+
 import moment from 'moment'
 
 import { JobDescriptionContext } from './Context/createContext'
@@ -16,7 +16,7 @@ import TheChart from './PieChart/TheChart'
 import FavoriteStar from '../Job/Favorite/Favorite'
 
 import { boxArrowUp, star } from '../../../assets/icons/icons'
-import { JobInfo, CompanyLogo, CompanyInfo, CompanyShare, Title, TitleInfo, JobSubSubTitle, TitleInfoDetail, ColD, JobSubTitle, ButtonApply, ButtonSave, ColInfo, Content, JobButtons } from './styled'
+import { JobInfo, CompanyLogo, CompanyShare, Title, TitleInfo, JobSubSubTitle, TitleInfoDetail, ColD, JobSubTitle, ColInfo, Content, JobButtons } from './styled'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -30,6 +30,7 @@ const JobDescription = (props) => {
   const dispatch = useDispatch()
   const jobState = useSelector((state) => state.job)
   const lastJobIdFromState = useSelector((state) => state.jobs)
+
   let searchJobId
   let query = useQuery()
   searchJobId = query.get('currentJobId')
@@ -41,28 +42,26 @@ const JobDescription = (props) => {
     }
   }
 
-  useEffect(() => {}, [searchJobId])
   const jobDetailsFromState = jobState.data[searchJobId]
+  let apply
+  if (jobDetailsFromState) {
+    // to fix redirects
+    Array.isArray(jobDetailsFromState.data.apply) ? (apply = jobDetailsFromState.data.apply[0]) : (apply = jobDetailsFromState.data.apply)
+  } else {
+  }
 
   const [scoreContext, setScoreContext] = useState({ scoreContext: 0, setScoreContext: 0 })
   const scoreFormula = (scoreContext.totalScore * 100) / scoreContext.totalSkills
 
   useEffect(() => {
     dispatch(getJob(searchJobId))
-  }, [searchJobId])
-
-  const removeTags = (string) => {
-    // he caret ^ and dollar $ characters have special meaning in a regexp. They are called “anchors”.
-    // The caret ^ matches at the beginning of the text, and the dollar $ – at the end.
-
-    const regex = /Dog/gi
-    return string.replaceAll(regex, '')
-  }
+  }, [dispatch, searchJobId])
 
   return (
     <JobDescriptionContext.Provider value={{ scoreContext, setScoreContext }}>
       <JobInfo>
         <Row>
+          {console.log('------========= load job description')}
           <CompanyLogo>{jobDetailsFromState ? jobDetailsFromState.data.companyLogo ? <img src={jobDetailsFromState && jobDetailsFromState.data.companyLogo} alt={jobDetailsFromState && jobDetailsFromState.data.companyName} /> : jobDetailsFromState.data.companyName.charAt(0) : '...'}</CompanyLogo>
           <ColD>
             <Title>{jobDetailsFromState ? jobDetailsFromState.data.title : '...loading'}</Title>
@@ -71,26 +70,25 @@ const JobDescription = (props) => {
             </JobSubTitle>
             <JobSubSubTitle>{jobDetailsFromState && moment(jobDetailsFromState.data.timestamp).fromNow()}</JobSubSubTitle>
             <JobButtons>
-              {/* {jobDetailsFromState && jobDetailsFromState.data.apply} */}
-              <Btn className="btn-primary ai-center d-inline-flex right-icon" href={jobDetailsFromState && jobDetailsFromState.data.apply} target="_blank" rel="noopener">
+              <Btn className="btn-primary ai-center d-inline-flex right-icon" href={jobDetailsFromState && apply} target="_blank" rel="noopener">
                 Apply Now {boxArrowUp}
               </Btn>
               <FavoriteStar save={true} jobId={searchJobId} />
             </JobButtons>
           </ColD>
           <Col md={1}>
-            <CompanyShare></CompanyShare>
+            <CompanyShare />
           </Col>
         </Row>
+
         <Score employmentType={jobDetailsFromState && jobDetailsFromState.data.employmentType} jobId={searchJobId} />
+
         <Content>
           <Row alignItems="start">
             <Col md={6}>{jobDetailsFromState && <TechnologiesDetected jobId={searchJobId} tags={jobDetailsFromState.data.tags} />}</Col>
-            <Col md={6}>{jobDetailsFromState && <TheChart id={searchJobId} />}</Col>
+            <Col md={6}>{(console.log('-- this is jobdescription chart load'), jobDetailsFromState && <TheChart id={searchJobId} />)}</Col>
           </Row>
 
-          {/* <TitleInfo>Job description</TitleInfo> */}
-          {/* {jobDetailsFromState && jobDetailsFromState.data.description} */}
           {jobDetailsFromState && <p dangerouslySetInnerHTML={{ __html: jobDetailsFromState.data.descriptionH }}></p>}
         </Content>
         <Row>

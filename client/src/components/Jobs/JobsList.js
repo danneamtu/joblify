@@ -57,10 +57,8 @@ const JobsList = (props) => {
   }
 
   const { favorites } = useSelector((state) => state.visitor)
-
-  const favorites2 = [12, 3, 4, 5]
   console.log('--dispatch favorites', favorites)
-  console.log('--dispatch favorites2', favorites)
+
   useEffect(() => {
     dispatch(getJobs(filters, favorites))
   }, [dispatch, filters.filterLocation, filters.filterSkills, filters.pageStart])
@@ -68,8 +66,8 @@ const JobsList = (props) => {
   return (
     <>
       <TotalResults location={filterLocation} total={totalJobs} />
-      {allJobs && allJobs.map((job, index) => <Job index={index} jobData={job} key={job._id} />)}
-      {allJobs && <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} />}
+      {allJobs ? allJobs.map((job, index) => <Job index={index} jobData={job} key={job._id} />) : '...loading jobs'}
+      {allJobs ? <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} /> : '...loading'}
       <Footer />
     </>
   )

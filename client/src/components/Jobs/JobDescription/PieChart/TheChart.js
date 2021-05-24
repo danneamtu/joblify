@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, useMemo } from 'react'
 import { Doughnut } from 'react-chartjs-2'
 import { JobDescriptionContext } from '../Context/createContext'
 
-const TheChart = ({ id }) => {
+const TheChart = () => {
   const { scoreContext } = useContext(JobDescriptionContext)
-
   const scoreFormula = (scoreContext.totalScore * 100) / scoreContext.totalSkills
 
   const data = {

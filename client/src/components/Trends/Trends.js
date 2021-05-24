@@ -23,6 +23,7 @@ function Filter() {
   return (
     <>
       <ChartStatistics />
+      {console.log('====trends part')}
       {allLocations && <Cities allLocations={allLocations} />}
       <FilterContainer>
         <Skills visitorSkills={skills} />

@@ -15,6 +15,7 @@ let isMobile = window.matchMedia('(max-width: 768px)')
 function HomePage(props) {
   return (
     <>
+      {console.log('---this is homepage')}
       <Navbar />
       <Container>
         <Row>
@@ -22,6 +23,7 @@ function HomePage(props) {
             <JobsList />
           </Col>
           <Col className="d-none d-md-block" md={7} xl={6}>
+            {console.log('++++++++++++++++ this is outisde job description')}
             <JobsDescription />
           </Col>
           <Col className="d-none d-xl-block" show={'xl'} xl={2}>
