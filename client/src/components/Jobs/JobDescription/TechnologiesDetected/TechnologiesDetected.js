@@ -6,19 +6,16 @@ import { Col } from '../../../../styled-components/responsive/col'
 import { Tag, Title, TechnologiesContainer } from './styled'
 import { checkCircle, checkCircleFill } from '../../../../assets/icons/icons'
 
-function TechnologiesDetected({ tags, jobId }) {
-  const { skills: visitorSkills } = useSelector((state) => state.visitor)
-  const visitorSkillsArr = visitorSkills.map((item) => item.skill).filter((item) => item)
-  const skillsIntersection = tags.filter((item) => visitorSkillsArr.includes(item))
+function TechnologiesDetected({ tags }) {
+  //
+  //
+  // @ TECHNOLOGIES DETECTED
+  // @ Show intersecton of job description and visitor skills
+  //
+  //
 
-  const totalScore = skillsIntersection.length
-  const totalSkills = tags.length
-
-  const { scoreContext, setScoreContext } = useContext(JobDescriptionContext)
-
-  useEffect(() => {
-    setScoreContext({ totalScore, totalSkills })
-  }, [jobId])
+  const { skills } = useSelector((state) => state.visitor)
+  const visitorSkills = skills.map((item) => item.skill).filter((item) => item)
 
   return (
     <TechnologiesContainer>
@@ -27,7 +24,7 @@ function TechnologiesDetected({ tags, jobId }) {
           <Title>Matching skills</Title>
         </Col>
         {tags.map((item) =>
-          visitorSkillsArr.includes(item)
+          visitorSkills.includes(item)
             ? item && (
                 <Col md={6}>
                   <Tag className={'active'}>
