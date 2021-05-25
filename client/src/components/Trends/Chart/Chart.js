@@ -16,8 +16,7 @@ function ChartStatistics() {
   let totalJobsAll
   if (data.data.data) {
     if (data.data.data[0].Count.length > 0) {
-      totalJobs = data.data.data[0].Count[0].total
-      totalJobsAll = data.data.data[0].Count[0].allJobs
+      totalJobsAll = data.data.data[0].AllJobs[0].total
     }
   }
 
@@ -44,10 +43,7 @@ function ChartStatistics() {
   return (
     <ChartContainer>
       <TitleSmall className="mb-2">Jobs in last 7 days</TitleSmall>
-      <Title className="mb-4">
-        {totalJobs}
-        {totalJobsAll}
-      </Title>
+      <Title className="mb-4">{totalJobsAll ? totalJobsAll : '...'}</Title>
       <TitleSmall className="mb-0">Popular skills </TitleSmall>
       <BarHeight>
         <Bar

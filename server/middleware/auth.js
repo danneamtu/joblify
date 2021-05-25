@@ -5,7 +5,6 @@ dotenv.config()
 export const auth = async (req, res, next) => {
   try {
     const token = req.header.authorization.split(' ')[1]
-    console.log('auth token length', req.header)
     const isGoogleAuth = token.length > 500
     let decodeData
     if (token && !isGoogleAuth) {

@@ -15,7 +15,7 @@ const useQuery = () => {
 }
 
 function Job({ jobData, index, key }) {
-  const { _id: jobId, title, companyLogo, location, timestamp, companyName } = jobData
+  const { _id: jobId, title, companyLogo, location, tags, timestamp, companyName, employmentType } = jobData
   const [favorite, setFavorite] = useState(false)
   const dispatch = useDispatch()
 
@@ -72,8 +72,11 @@ function Job({ jobData, index, key }) {
           </CompanyInfo>
         </Row>
         <Row alignItems="center">
-          <Chip>Mid-Senior level</Chip>
-          <Chip>Score1</Chip>
+          <Chip>{employmentType}</Chip>
+          <Chip>
+            {tags.length}
+            {tags.length > 1 ? ' skills' : ' skill'}
+          </Chip>
           <Date>{timeAgo(timestamp)}</Date>
         </Row>
       </Link>

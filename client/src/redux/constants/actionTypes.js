@@ -1,6 +1,6 @@
-export const JOBS_API_URI = 'http://localhost:5003/api/jobs'
-export const LOCATION_API_URI = 'http://localhost:5003/api/locations'
-export const API_URI = 'http://localhost:5003/api/'
+export const JOBS_API_URI = 'https://joblify2.herokuapp.com/api/jobs'
+export const LOCATION_API_URI = 'https://joblify2.herokuapp.com/api/locations'
+export const API_URI = 'https://joblify2.herokuapp.com/api/'
 
 export const JOBS_LOADING = 'JOBS_LOADING'
 export const JOBS_SUCCESS = 'JOBS_SUCCESS'

@@ -26,13 +26,17 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
 dotenv.config()
-const PORT = process.env.PORT || 5003
-app.use('/api/jobs', jobsRoutes)
+const PORT = process.env.PORT || 3000
+
 app.use('/api/locations', locationRoutes)
 app.use('/api/users', usersRoutes)
 app.use('/api/favorites', favoritesRoutes)
 app.use('/api/visitors', visitorsRoutes)
 app.use('/api/skills', skillsRoutes)
+app.use('/api/jobs', jobsRoutes)
+app.get('/', (req, res) => {
+  res.send(`run at ${PORT}`)
+})
 
 app.listen(PORT, (result, error) => {
   console.log('server is running at', PORT)

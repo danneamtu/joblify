@@ -7,7 +7,8 @@ import Job from './Job/Job'
 import Pagination from './Pagination/Pagination'
 import TotalResults from '../Jobs/Total/TotalResults'
 import Footer from './Footer/Footer'
-const JobsList = (props) => {
+
+const JobsList = ({ url }) => {
   function useQuery() {
     return new URLSearchParams(useLocation().search)
   }
@@ -57,11 +58,16 @@ const JobsList = (props) => {
   }
 
   const { favorites } = useSelector((state) => state.visitor)
-  console.log('--dispatch favorites', favorites)
+  const location = useLocation()
+  const [state, setState] = useState(location)
 
+  console.log('---location before', location)
   useEffect(() => {
     dispatch(getJobs(filters, favorites))
-  }, [dispatch, filters.filterLocation, filters.filterSkills, filters.pageStart])
+    console.log('----location inside', location)
+  }, [dispatch, location])
+
+  console.log('----location after', location)
 
   return (
     <>

@@ -11,6 +11,4 @@ router.post('/', auth, createJob)
 router.patch('/:id', auth, patchJob)
 router.delete('/:id', auth, deleteJob)
 
-// router.patch('/:id/favorite', auth, favoriteJob)
-
 export default router

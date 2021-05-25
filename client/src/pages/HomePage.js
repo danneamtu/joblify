@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Switch, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import Trends from '../components/Trends/Trends'
@@ -13,6 +13,7 @@ import Navbar from '../components/Navbar/Navbar'
 let isMobile = window.matchMedia('(max-width: 768px)')
 
 function HomePage(props) {
+  const location = useLocation()
   return (
     <>
       {console.log('---this is homepage')}
@@ -20,7 +21,7 @@ function HomePage(props) {
       <Container>
         <Row>
           <Col md={5} xl={4}>
-            <JobsList />
+            <JobsList url={location} />
           </Col>
           <Col className="d-none d-md-block" md={7} xl={6}>
             {console.log('++++++++++++++++ this is outisde job description')}

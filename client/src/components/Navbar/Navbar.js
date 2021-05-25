@@ -25,7 +25,7 @@ const Navbar = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const { jobs: paramJobs } = useParams()
 
-  const { _id: visitorId, favorites } = useSelector((state) => state.visitor)
+  const { favorites } = useSelector((state) => state.visitor)
 
   useEffect(() => {
     const visitor = JSON.parse(localStorage.getItem('visitor'))
@@ -50,7 +50,7 @@ const Navbar = () => {
                 <Logo>J</Logo>
               </Link>
               <Search />
-              <Link style={{ marginLeft: 'auto' }} to={paramJobs ? `search?favorites=show` : `jobs/search?favorites=show`}>
+              <Link style={{ marginLeft: 'auto' }} to={paramJobs ? `search?favorites=show&start=1` : `jobs/search?favorites=show&start=1`}>
                 <CircleButton>
                   {starFill}
                   <Sup> {favorites.length > 0 && favorites.length}</Sup>

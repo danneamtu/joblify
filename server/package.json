@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,5 +21,8 @@
     "netlify-lambda": "^2.0.4",
     "nodemon": "^2.0.7",
     "serverless-http": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=13.0.0"
   }
 }

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import moment from 'moment'
 
-import { JobDescriptionContext } from './Context/createContext'
 import Score from './Score/Score'
 import { getJob } from '../../../redux/actions/jobActions'
 
@@ -22,15 +21,17 @@ function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
 
-const JobDescription = (props) => {
+const JobDescription = ({ url }) => {
   const dispatch = useDispatch()
 
   let currentJobId
   let query = useQuery()
   currentJobId = query.get('currentJobId')
+  console.log('================================ this is curent job -- ', currentJobId)
 
   const jobState = useSelector((state) => state.job)
   const lastJobIdFromState = useSelector((state) => state.jobs)
+
   if (!currentJobId) {
     if (lastJobIdFromState.data.data) {
       const jobDetailsFromState = lastJobIdFromState.data.data[0].Jobs[0]
@@ -52,7 +53,8 @@ const JobDescription = (props) => {
   return (
     <JobInfo>
       <Row>
-        {console.log('------========= load job description')}
+        {console.log('------========= load job descriptionx', jobDetailsFromState)}
+        {jobDetailsFromState && console.log('---- render this inside jobs description')}
         <CompanyLogo>{jobDetailsFromState ? jobDetailsFromState.data.companyLogo ? <img src={jobDetailsFromState && jobDetailsFromState.data.companyLogo} alt={jobDetailsFromState && jobDetailsFromState.data.companyName} /> : jobDetailsFromState.data.companyName.charAt(0) : '...'}</CompanyLogo>
         <ColD>
           <Title>{jobDetailsFromState ? jobDetailsFromState.data.title : '...loading'}</Title>
@@ -77,6 +79,7 @@ const JobDescription = (props) => {
       <Content>
         <Row alignItems="start">
           <Col md={6}>{jobDetailsFromState && <TechnologiesDetected tags={jobDetailsFromState.data.tags} />}</Col>
+
           <Col md={6}>{jobDetailsFromState && <TheChart jobId={currentJobId} />}</Col>
         </Row>
 
