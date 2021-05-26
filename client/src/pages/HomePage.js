@@ -1,8 +1,7 @@
+import Navbar from '../components/Navbar/Navbar'
 import Trends from '../components/Trends/Trends'
 import JobsList from '../components/Jobs/JobsList'
 import JobsDescription from '../components/Jobs/JobDescription/JobsDescription'
-
-import Navbar from '../components/Navbar/Navbar'
 
 import { Container, Row, Col } from '../styled-components/responsive/responsive'
 

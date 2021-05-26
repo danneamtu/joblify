@@ -1,17 +1,20 @@
-import React from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import { TotalContainer, TotalTitle, TotalSubTitle } from './styled'
-function TotalResults({ total, location }) {
-  const useQuery = () => {
-    return new URLSearchParams(useLocation().search)
-  }
-  let query = useQuery()
-  const paramFavorites = query.get('favorites')
+
+function TotalResults() {
+  const query = new URLSearchParams(useLocation().search)
+  const favorites = query.get('favorites')
+  const location = query.get('location')
+  const data = useSelector((state) => state.jobs)
+
+  let totalJobs
+  data.data.data && data.data.data[0].Count.length > 0 && (totalJobs = data.data.data[0].Count[0].total)
 
   return (
     <TotalContainer>
-      <TotalTitle>{paramFavorites ? `Your Favorites Jobs` : `Front End Developer in ${!location ? 'Belgium' : location}`}</TotalTitle>
-      <TotalSubTitle>{total || 0} jobs</TotalSubTitle>
+      <TotalTitle>{favorites ? `Your Favorites Jobs` : `Front End Developer in ${!location ? 'Belgium' : location}`}</TotalTitle>
+      <TotalSubTitle>{totalJobs || 0} jobs</TotalSubTitle>
     </TotalContainer>
   )
 }

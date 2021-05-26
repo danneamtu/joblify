@@ -11,19 +11,15 @@ import Job from './Job/Job'
 
 const JobsList = () => {
   const { jobs } = useParams()
-  function useQuery() {
-    return new URLSearchParams(useLocation().search)
-  }
-  let query = useQuery()
 
+  const query = new URLSearchParams(useLocation().search)
   const filterPageStart = query.get('start')
   const filterLocation = query.get('location')
   const filterSkills = query.get('skills')
   const filterFavorites = query.get('favorites')
 
-  const dispatch = useDispatch()
-
   const data = useSelector((state) => state.jobs)
+
   let allJobs = null
   let totalJobs
   if (data.data.data) {
@@ -60,13 +56,14 @@ const JobsList = () => {
   const { favorites } = useSelector((state) => state.visitor)
   const location = useLocation()
 
+  const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getJobs(filters, favorites))
   }, [location])
 
   return (
     <>
-      <TotalResults location={filterLocation} total={totalJobs} />
+      <TotalResults />
       {allJobs ? allJobs.map((job, index) => <Job index={index} jobData={job} key={job._id} />) : '...loading jobs'}
       {allJobs ? <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} /> : '...loading pagination'}
       <Footer />
