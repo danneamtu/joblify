@@ -37,18 +37,14 @@ function Skills() {
         {mySkills.length > 0 && (
           <MySkills>
             {<Title className="mb-3 mt-2">My Skills</Title>}
-            {mySkills && mySkills.map((item) => item.skill && <Skill loadMoreSkills={loadMoreSkills} start={start} active={true} data={item} visitorId={_id} item={item} />)}
+            {mySkills && mySkills.map((item) => item.skill && <Skill key={item._id} loadMoreSkills={loadMoreSkills} start={start} active={true} data={item} visitorId={_id} item={item} />)}
           </MySkills>
         )}
         <>
           <PopularSkills>
             <Title className="mb-3 mt-2">Skills</Title>
-            {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill popularSkills={true} start={start} visitorId={_id} item={item} />)}
-            {showLoadMore && (
-              <StyledLinkMore onClick={() => loadMoreSkills(stateSkills[0].totalSkills)} to="#">
-                Load more
-              </StyledLinkMore>
-            )}
+            {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill key={item._id} popularSkills={true} start={start} visitorId={_id} item={item} />)}
+            {showLoadMore && <StyledLinkMore onClick={() => loadMoreSkills(stateSkills[0].totalSkills)}>Load more</StyledLinkMore>}
           </PopularSkills>
         </>
       </ContainerSkills>
