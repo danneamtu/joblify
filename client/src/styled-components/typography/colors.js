@@ -2,7 +2,7 @@ export const dark = '#14141d'
 // export const dark = '#191c27'
 export const darkLight = '#1a1a25'
 export const darkLightHover = '#1b1b27'
-export const darkLighter = '#2a2b33'
+export const darkLighter = '#1f1f2c'
 export const dark08 = 'rgba(21, 21, 28, 0.801)'
 
 export const light = 'rgba(255,255,255,0.9)'

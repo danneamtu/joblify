@@ -4,6 +4,7 @@ import { TitleInfo, TitleInfoDetail, ColInfo } from './styled'
 
 function Score({ jobId }) {
   const job = useJob(jobId)
+
   return (
     <Row>
       <ColInfo>
