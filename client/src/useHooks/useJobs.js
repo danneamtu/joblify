@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-export const useAllJobs = () => {
+export const useJobs = () => {
   const data = useSelector((state) => state.jobs)
 
   let allJobs = null

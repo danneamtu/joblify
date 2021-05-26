@@ -1,19 +1,12 @@
 import React, { useState, useEffect, createContext, useContext } from 'react'
 import { useSelector } from 'react-redux'
-import { JobDescriptionContext } from '../Context/createContext'
+
 import { Row } from '../../../../styled-components/responsive/row'
 import { Col } from '../../../../styled-components/responsive/col'
 import { Tag, Title, TechnologiesContainer } from './styled'
 import { checkCircle, checkCircleFill } from '../../../../assets/icons/icons'
 
 function TechnologiesDetected({ tags }) {
-  //
-  //
-  // @ TECHNOLOGIES DETECTED
-  // @ Show intersecton of job description and visitor skills
-  //
-  //
-
   const { skills } = useSelector((state) => state.visitor)
   const visitorSkills = skills.map((item) => item.skill).filter((item) => item)
 

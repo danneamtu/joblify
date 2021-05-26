@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, createContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -17,15 +17,12 @@ import FavoriteStar from '../Job/Favorite/Favorite'
 import { boxArrowUp } from '../../../assets/icons/icons'
 import { JobInfo, CompanyLogo, CompanyShare, Title, TitleInfo, JobSubSubTitle, TitleInfoDetail, ColD, JobSubTitle, ColInfo, Content, JobButtons } from './styled'
 
+import { useJobsFilters } from '../../../useHooks/filters'
+import { useAllJobs } from '../../../useHooks/useJob'
+
 function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
-//
-//
-// @ JOB DESCRIPTION
-// @ total number of job
-//
-//
 
 const JobDescription = ({ url }) => {
   const data = useSelector((state) => state.jobs)

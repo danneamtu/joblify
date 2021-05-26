@@ -4,8 +4,10 @@ import { Doughnut } from 'react-chartjs-2'
 const TheChart = ({ jobId }) => {
   const jobState = useSelector((state) => state.job)
   const jobDetails = jobState.data[jobId]
+
   let jobTags
   let employmentType
+
   if (jobDetails) {
     jobTags = jobDetails.data.tags
     employmentType = jobDetails.data.employmentType
@@ -30,7 +32,7 @@ const TheChart = ({ jobId }) => {
         borderWidth: 0,
       },
     ],
-    labels: ['Your Skills', 'Total Skills'],
+    labels: ['Your Skills', 'Diference'],
   }
 
   return (

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import { useJobsFilters } from '../useHooks/filters'
+import { useJobsFilters } from '../../../useHooks/filters'
 import { timeAgo } from '../../../utils/utils'
 import { Row } from '../../../styled-components/responsive/responsive'
 
