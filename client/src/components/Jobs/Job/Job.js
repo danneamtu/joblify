@@ -1,66 +1,24 @@
-import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-import { Link, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { JobContainer, CompanyLogo, CompanyInfo, JobTitle, JobSubTitle, Chip, Date } from './styled'
-import { Row } from '../../../styled-components/responsive/row'
-
-import { addFavorite } from '../../../redux/actions/visitorActions'
-import FavoriteStar from './Favorite/Favorite'
+import { useJobsFilters } from '../useHooks/filters'
 import { timeAgo } from '../../../utils/utils'
+import { Row } from '../../../styled-components/responsive/responsive'
 
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search)
-}
+import FavoriteStar from './Favorite/Favorite'
+import { JobContainer, CompanyLogo, CompanyInfo, JobTitle, JobSubTitle, Chip, Date } from './styled'
 
-function Job({ jobData, index, key }) {
+function Job({ jobData }) {
   const { _id: jobId, title, companyLogo, location, tags, timestamp, companyName, employmentType } = jobData
 
-  const [favorite, setFavorite] = useState(false)
-  const dispatch = useDispatch()
+  const { filters } = useJobsFilters(jobId)
+  const currentJobId = filters.currentJobId
 
-  let query = useQuery()
-
-  const paramStart = query.get('start')
-  const paramLocation = query.get('location')
-  const paramSkills = query.get('skills')
-  const paramFavorites = query.get('favorites')
-  const currentJobId = query.get('currentJobId')
-
-  let createParams = ''
-  let createStart = ''
-
-  if (paramLocation && paramSkills) {
-    createParams = `&location=${paramLocation}&skills=${paramSkills}`
-  }
-  if (paramLocation) {
-    createParams = `&location=${paramLocation}`
-  }
-  if (paramSkills) {
-    createParams = `&skills=${paramSkills}`
-  }
-  if (paramFavorites) {
-    createParams = `&favorites=${paramFavorites}`
-  }
-  if (paramStart) {
-    createStart = `&start=${paramStart}`
-  }
-
-  const { _id: visitorId } = useSelector((state) => state.visitor)
-
-  const handleFavorite = () => {
-    setFavorite(!favorite)
-    dispatch(addFavorite(jobId, visitorId))
-  }
-
-  let theUri = `/jobs/search?currentJobId=${jobId}${createParams}${createStart}`
-  let theMobileUri = `/jobs/view/search?currentJobId=${jobId}${createParams}`
   const isMobile = window.matchMedia('(max-width: 768px)')
 
   return (
     <JobContainer active={currentJobId === jobId ? true : false}>
       <FavoriteStar circle save={false} jobId={jobId} />
-      <Link style={{ textDecoration: 'none' }} to={isMobile && isMobile.matches ? theMobileUri : theUri}>
+      <Link style={{ textDecoration: 'none' }} to={isMobile && isMobile.matches ? filters.jobUrlMobile : filters.jobUrlDesktop}>
         <Row>
           <CompanyLogo>{companyLogo ? <img src={companyLogo} alt={companyName} /> : companyName.charAt(0)}</CompanyLogo>
           <CompanyInfo>

@@ -35,4 +35,22 @@ export const Row = styled.div`
         return
     }
   }}
+  ${(props) => {
+    switch (props.mx) {
+      case 0:
+        return 'margin-left:0; margin-right:0'
+      case 1:
+        return 'margin-left:.25rem; margin-right:.25rem'
+      case 2:
+        return 'margin-left:.5rem; margin-right:.5rem'
+      case 3:
+        return 'margin-left:1rem; margin-right:1rem'
+      case 4:
+        return 'margin-left:1.5rem; margin-right:1.5rem'
+      case 5:
+        return 'margin-left:3rem; margin-right:3rem'
+      default:
+        return
+    }
+  }}
 `
