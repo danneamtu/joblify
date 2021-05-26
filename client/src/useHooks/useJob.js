@@ -16,6 +16,9 @@ export const useJob = (jobId) => {
   const location = jobDetails.data.location
   const timestamp = jobDetails.data.timestamp
   const apply = jobDetails.data.apply
+  const level = jobDetails.data.level
+  const description = jobDetails.data.description
+  const descriptionH = jobDetails.data.descriptionH
 
   const skillsIntersection = jobTags.filter((item) => visitorSkills.includes(item))
   const totalScore = skillsIntersection.length
@@ -28,8 +31,11 @@ export const useJob = (jobId) => {
     apply,
     timestamp,
     jobTags,
+    level,
     companyLogo,
     companyName,
+    description,
+    descriptionH,
     employmentType,
     visitorSkills,
     totalScore,

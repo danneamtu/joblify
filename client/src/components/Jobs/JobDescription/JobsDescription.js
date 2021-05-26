@@ -5,6 +5,8 @@ import moment from 'moment'
 
 import Score from './Score/Score'
 import Header from './Header/Header'
+import Footer from './Footer/Footer'
+import Description from './Description/Description'
 
 import { getJob } from '../../../redux/actions/jobActions'
 
@@ -74,28 +76,18 @@ const JobDescription = ({ url }) => {
         <JobInfo>
           <Header jobId={currentJobId} />
           <Score jobId={currentJobId} />
-
           <Content>
             <Row alignItems="start">
-              <Col md={6}>{jobDetailsFromState && <TechnologiesDetected jobId={currentJobId} />}</Col>
-              <Col md={6}>{jobDetailsFromState && <TheChart jobId={currentJobId} />}</Col>
+              <Col md={6}>
+                <TechnologiesDetected jobId={currentJobId} />
+              </Col>
+              <Col md={6}>
+                <TheChart jobId={currentJobId} />
+              </Col>
             </Row>
-            {jobDetailsFromState && <p dangerouslySetInnerHTML={{ __html: jobDetailsFromState.data.descriptionH }}></p>}
           </Content>
-          <Row>
-            <ColInfo>
-              <TitleInfo> Company</TitleInfo>
-              <TitleInfoDetail>{jobDetailsFromState && jobDetailsFromState.data.companyName}</TitleInfoDetail>
-            </ColInfo>
-            <ColInfo>
-              <TitleInfo> Level</TitleInfo>
-              <TitleInfoDetail>{jobDetailsFromState ? jobDetailsFromState.data.level : '...loading'}</TitleInfoDetail>
-            </ColInfo>
-            <ColInfo>
-              <TitleInfo> Employment Type</TitleInfo>
-              <TitleInfoDetail>{jobDetailsFromState ? jobDetailsFromState.data.employmentType : '...loading'}</TitleInfoDetail>
-            </ColInfo>
-          </Row>
+          <Description jobId={currentJobId} />
+          <Footer jobId={currentJobId} />
         </JobInfo>
       )}
     </>

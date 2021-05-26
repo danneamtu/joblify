@@ -11,25 +11,26 @@ function TechnologiesDetected({ jobId }) {
         <Col md={12} mb={5}>
           <Title>Matching skills</Title>
         </Col>
-        {job.jobTags.map((item) =>
-          job.visitorSkills.includes(item)
-            ? item && (
-                <Col md={6}>
-                  <Tag className={'active'}>
-                    {checkCircleFill}
-                    {item}
-                  </Tag>
-                </Col>
-              )
-            : item && (
-                <Col md={6}>
-                  <Tag>
-                    {checkCircle}
-                    {item}
-                  </Tag>
-                </Col>
-              )
-        )}
+        {job &&
+          job.jobTags.map((item) =>
+            job.visitorSkills.includes(item)
+              ? item && (
+                  <Col md={6}>
+                    <Tag className={'active'}>
+                      {checkCircleFill}
+                      {item}
+                    </Tag>
+                  </Col>
+                )
+              : item && (
+                  <Col md={6}>
+                    <Tag>
+                      {checkCircle}
+                      {item}
+                    </Tag>
+                  </Col>
+                )
+          )}
       </Row>
     </TechnologiesContainer>
   )

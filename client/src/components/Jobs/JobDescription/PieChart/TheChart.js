@@ -7,7 +7,7 @@ const TheChart = ({ jobId }) => {
   const data = {
     datasets: [
       {
-        data: [job.scoreFormula, job.scoreFormula - 100],
+        data: [job && job.scoreFormula, job && job.scoreFormula - 100],
         backgroundColor: [accentGreen, darkLighter],
         borderWidth: 0,
       },
