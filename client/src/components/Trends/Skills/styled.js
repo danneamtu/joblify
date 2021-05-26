@@ -56,6 +56,7 @@ export const StyledLink = styled(Link)`
   min-width: 100%;
   text-decoration: none;
   color: ${lightDarker};
+  border: none;
   transition: 0.2s;
   &:hover {
     color: ${lightDark};

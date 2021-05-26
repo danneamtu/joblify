@@ -8,7 +8,6 @@ import Skill from './Skill/Skill'
 
 function Skills() {
   const dispatch = useDispatch()
-  const [visitorId, setVisitorId] = useState(null)
   const [mySkills, setMySkills] = useState([])
   const [showLoadMore, setShowLoadMore] = useState(true)
   const [start, setStart] = useState(10)
@@ -19,7 +18,6 @@ function Skills() {
     const arrSkills = skills.map((item) => item.skill)
     const filterData = `start=0&nin=${arrSkills}`
     dispatch(getSkills(filterData))
-    setVisitorId(_id)
   }, [])
 
   useEffect(() => {

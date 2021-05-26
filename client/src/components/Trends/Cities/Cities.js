@@ -1,25 +1,33 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { CityContainer, StyledLink, TitleSmall, Total } from './styled'
+import { replaceSpaceWithDash } from '../../../utils/utils'
+import { getLocations } from '../../../redux/actions/locationsActions'
 
-function Cities({ allLocations }) {
-  useEffect(() => {}, [])
-  const replaceMe = (string) => {
-    return string.replace(/\s+/g, '-').toLowerCase()
-  }
+function Cities() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getLocations())
+  }, [dispatch])
+
+  const {
+    data: { data: allLocations },
+  } = useSelector((state) => state.locations)
   return (
     <>
       <CityContainer>
         <TitleSmall className="mb-2">Popular cities</TitleSmall>
-        {allLocations.map(
-          (item, index) =>
-            item.city?.length > 2 &&
-            index < 6 && (
-              <StyledLink to={`/jobs/search?location=${replaceMe(item.city)}`}>
-                <div> {item.city}</div>
-                <Total>{item.total}</Total>
-              </StyledLink>
-            )
-        )}
+        {allLocations &&
+          allLocations.map(
+            (item, index) =>
+              item.city?.length > 2 &&
+              index < 6 && (
+                <StyledLink to={`/jobs/search?location=${replaceSpaceWithDash(item.city).toLowerCase()}`}>
+                  {item.city}
+                  <Total>{item.total}</Total>
+                </StyledLink>
+              )
+          )}
       </CityContainer>
     </>
   )

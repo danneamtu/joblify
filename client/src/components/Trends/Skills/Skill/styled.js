@@ -50,10 +50,15 @@ export const SkillLi = styled.div`
     margin-left: 4px;
     margin-top: 4px;
     cursor: pointer;
+    color: ${lightDarker};
   }
   &:hover {
     color: ${lightDark};
   }
+  &:hover svg {
+    color: ${lightDark};
+  }
+
   &.active svg {
     color: ${accentGreen};
   }

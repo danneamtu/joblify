@@ -25,3 +25,10 @@ export const timeAgo = (timestamp) => {
       return name
   }
 }
+
+export const replaceSpaceWithDash = (string) => {
+  return string.replace(/\s+/g, '-')
+}
+export const replaceDashWithSpace = (string) => {
+  return string.replace(/-/g, ' ')
+}
