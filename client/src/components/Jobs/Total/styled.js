@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { light, dark, accentBlue, darkLightHover, lightDark, lightDarker, darkLight, darkLighter } from '../../../styled-components/typography/colors'
+import { light, accentBlue, lightDark, darkLight } from '../../../styled-components/typography/colors'
 
 export const TotalContainer = styled.div`
   background: ${darkLight};
@@ -18,7 +18,7 @@ export const TotalTitle = styled.h4`
 `
 export const TotalSubTitle = styled.h4`
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.582);
+  color: ${lightDark};
   margin-top: 4px;
   margin-bottom: 0;
   font-weight: 300;

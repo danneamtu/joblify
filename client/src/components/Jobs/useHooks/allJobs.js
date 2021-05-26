@@ -2,8 +2,10 @@ import { useSelector } from 'react-redux'
 
 export const useAllJobs = () => {
   const data = useSelector((state) => state.jobs)
+
   let allJobs = null
-  let totalJobs
+  let totalJobs = null
+
   if (data.data.data) {
     allJobs = data.data.data[0].Jobs
     if (data.data.data[0].Count.length > 0) {
