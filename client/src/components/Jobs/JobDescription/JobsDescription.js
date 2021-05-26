@@ -93,7 +93,7 @@ const JobDescription = ({ url }) => {
           <Score jobId={currentJobId} />
           <Content>
             <Row alignItems="start">
-              <Col md={6}>{jobDetailsFromState && <TechnologiesDetected tags={jobDetailsFromState.data.tags} />}</Col>
+              <Col md={6}>{jobDetailsFromState && <TechnologiesDetected jobId={currentJobId} />}</Col>
               <Col md={6}>{jobDetailsFromState && <TheChart jobId={currentJobId} />}</Col>
             </Row>
             {jobDetailsFromState && <p dangerouslySetInnerHTML={{ __html: jobDetailsFromState.data.descriptionH }}></p>}

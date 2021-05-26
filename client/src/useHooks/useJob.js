@@ -18,9 +18,9 @@ export const useJob = (jobId) => {
   const scoreFormula = (totalScore * 100) / totalSkills || 0
 
   return {
-    jobTags: jobTags,
+    jobTags,
     employmentType,
-    visitorSkills: visitorSkills,
+    visitorSkills,
     totalScore,
     totalSkills,
     scoreFormula,

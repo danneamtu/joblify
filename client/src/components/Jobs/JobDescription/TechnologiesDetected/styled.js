@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { light, lightDarker, accentBlue, accentGreen } from '../../../../styled-components/typography/colors'
+import { light, lightDarker, accentGreen } from '../../../../styled-components/typography/colors'
 
 export const JobTags = styled.div`
   min-width: 50%;

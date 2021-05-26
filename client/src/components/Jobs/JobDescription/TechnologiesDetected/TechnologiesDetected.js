@@ -1,23 +1,18 @@
-import React, { useState, useEffect, createContext, useContext } from 'react'
-import { useSelector } from 'react-redux'
-
-import { Row } from '../../../../styled-components/responsive/row'
-import { Col } from '../../../../styled-components/responsive/col'
-import { Tag, Title, TechnologiesContainer } from './styled'
+import { useJob } from '../../../../useHooks/useJob'
+import { Row, Col } from '../../../../styled-components/responsive/responsive'
 import { checkCircle, checkCircleFill } from '../../../../assets/icons/icons'
+import { Tag, Title, TechnologiesContainer } from './styled'
 
-function TechnologiesDetected({ tags }) {
-  const { skills } = useSelector((state) => state.visitor)
-  const visitorSkills = skills.map((item) => item.skill).filter((item) => item)
-
+function TechnologiesDetected({ jobId }) {
+  const job = useJob(jobId)
   return (
     <TechnologiesContainer>
       <Row>
         <Col md={12} mb={5}>
           <Title>Matching skills</Title>
         </Col>
-        {tags.map((item) =>
-          visitorSkills.includes(item)
+        {job.jobTags.map((item) =>
+          job.visitorSkills.includes(item)
             ? item && (
                 <Col md={6}>
                   <Tag className={'active'}>
