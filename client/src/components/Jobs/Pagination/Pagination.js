@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { Ul, Li } from './styled'
 
 const Pagination = ({ href, pageCurrent, pagePer, totalResults }) => {
+ 
+  
+ 
   const createPagination = (href, pageCurrent, pagePer, totalResults) => {
     const pageStart = 1
     const pageEnd = Math.ceil(totalResults / pagePer)
@@ -44,8 +47,6 @@ const Pagination = ({ href, pageCurrent, pagePer, totalResults }) => {
   }
 
   const pager = createPagination(href, pageCurrent, pagePer, totalResults)
-
-  pageCurrent && console.log('---- 1page current', pageCurrent)
 
   return (
     <Ul>

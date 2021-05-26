@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getJobs } from '../../redux/actions/jobsActions'
-import Job from './Job/Job'
-import Pagination from './Pagination/Pagination'
-import TotalResults from '../Jobs/Total/TotalResults'
-import Footer from './Footer/Footer'
 
-const JobsList = ({ url }) => {
+import TotalResults from '../Jobs/Total/TotalResults'
+import Pagination from './Pagination/Pagination'
+import Footer from './Footer/Footer'
+import Job from './Job/Job'
+
+const JobsList = () => {
+  const { jobs } = useParams()
   function useQuery() {
     return new URLSearchParams(useLocation().search)
   }
-
   let query = useQuery()
 
-  const { jobs } = useParams()
   const filterPageStart = query.get('start')
   const filterLocation = query.get('location')
   const filterSkills = query.get('skills')
@@ -59,17 +59,16 @@ const JobsList = ({ url }) => {
 
   const { favorites } = useSelector((state) => state.visitor)
   const location = useLocation()
-  const [state, setState] = useState(location)
 
   useEffect(() => {
     dispatch(getJobs(filters, favorites))
-  }, [dispatch, location])
+  }, [location])
 
   return (
     <>
       <TotalResults location={filterLocation} total={totalJobs} />
       {allJobs ? allJobs.map((job, index) => <Job index={index} jobData={job} key={job._id} />) : '...loading jobs'}
-      {allJobs ? <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} /> : '...loading'}
+      {allJobs ? <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} /> : '...loading pagination'}
       <Footer />
     </>
   )
