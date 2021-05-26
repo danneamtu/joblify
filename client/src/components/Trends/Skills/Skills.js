@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getSkills } from '../../../redux/actions/skillsActions'
-import { ContainerSkills, MySkills, PopularSkills, StyledLinkMore, TitleSmall, Title, ToggleSkill } from './styled'
+import { ContainerSkills, MySkills, PopularSkills, StyledLinkMore, Title } from './styled'
 
 import Skill from './Skill/Skill'
 
