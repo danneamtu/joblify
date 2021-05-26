@@ -8,13 +8,17 @@ export const JobContainer = styled.div`
   border-radius: 4px;
   color: ${light};
   margin-bottom: 12px;
-  padding: 22px 24px;
+  padding: 18px 16px;
   cursor: pointer;
   z-index: 0;
   transition: 0.2s;
   background: ${(props) => props.active && darkLightHover};
   &:hover {
     background: ${darkLightHover};
+  }
+  @media (min-width: 768px) {
+    flex-direction: column;
+    padding: 22px 24px;
   }
 `
 

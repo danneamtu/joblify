@@ -40,6 +40,9 @@ function ChartStatistics() {
       },
     ],
   }
+
+  console.log('-2. inside trends chart')
+
   return (
     <ChartContainer>
       <TitleSmall className="mb-2">Jobs in last 7 days</TitleSmall>

@@ -61,13 +61,9 @@ const JobsList = ({ url }) => {
   const location = useLocation()
   const [state, setState] = useState(location)
 
-  console.log('---location before', location)
   useEffect(() => {
     dispatch(getJobs(filters, favorites))
-    console.log('----location inside', location)
   }, [dispatch, location])
-
-  console.log('----location after', location)
 
   return (
     <>

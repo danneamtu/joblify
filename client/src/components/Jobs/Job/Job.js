@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import moment from 'moment'
-import { Link, useLocation, useParams } from 'react-router-dom'
+
+import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { companyLogo, JobContainer, CompanyLogo, CompanyInfo, Favorite, JobTitle, JobSubTitle, Chip, Date } from './styled'
+import { JobContainer, CompanyLogo, CompanyInfo, JobTitle, JobSubTitle, Chip, Date } from './styled'
 import { Row } from '../../../styled-components/responsive/row'
-import { star, starFill } from '../../../assets/icons/icons'
-import { CircleButton } from '../../../styled-components/buttons/buttons'
+
 import { addFavorite } from '../../../redux/actions/visitorActions'
 import FavoriteStar from './Favorite/Favorite'
 import { timeAgo } from '../../../utils/utils'
@@ -16,10 +15,12 @@ const useQuery = () => {
 
 function Job({ jobData, index, key }) {
   const { _id: jobId, title, companyLogo, location, tags, timestamp, companyName, employmentType } = jobData
+
   const [favorite, setFavorite] = useState(false)
   const dispatch = useDispatch()
 
   let query = useQuery()
+
   const paramStart = query.get('start')
   const paramLocation = query.get('location')
   const paramSkills = query.get('skills')
@@ -28,8 +29,6 @@ function Job({ jobData, index, key }) {
 
   let createParams = ''
   let createStart = ''
-
-  console.log('the params for this are:', paramLocation, paramSkills)
 
   if (paramLocation && paramSkills) {
     createParams = `&location=${paramLocation}&skills=${paramSkills}`
@@ -43,12 +42,12 @@ function Job({ jobData, index, key }) {
   if (paramFavorites) {
     createParams = `&favorites=${paramFavorites}`
   }
-
   if (paramStart) {
     createStart = `&start=${paramStart}`
   }
 
   const { _id: visitorId } = useSelector((state) => state.visitor)
+
   const handleFavorite = () => {
     setFavorite(!favorite)
     dispatch(addFavorite(jobId, visitorId))

@@ -18,12 +18,11 @@ function Filter() {
     data: { data: allLocations },
   } = useSelector((state) => state.locations)
   const { skills } = useSelector((state) => state.visitor)
-  console.log('this is the location', allLocations)
 
+  console.log('-1. inside trends')
   return (
     <>
       <ChartStatistics />
-      {console.log('====trends part')}
       {allLocations && <Cities allLocations={allLocations} />}
       <FilterContainer>
         <Skills visitorSkills={skills} />

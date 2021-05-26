@@ -20,20 +20,35 @@ import { JobInfo, CompanyLogo, CompanyShare, Title, TitleInfo, JobSubSubTitle, T
 function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
+//
+//
+// @ JOB DESCRIPTION
+// @ total number of job
+//
+//
 
 const JobDescription = ({ url }) => {
+  const data = useSelector((state) => state.jobs)
+  let allJobs = null
+  let totalJobs
+  if (data.data.data) {
+    allJobs = data.data.data[0].Jobs
+    if (data.data.data[0].Count.length > 0) {
+      totalJobs = data.data.data[0].Count[0].total
+    }
+  }
+
   const dispatch = useDispatch()
 
   let currentJobId
   let query = useQuery()
   currentJobId = query.get('currentJobId')
-  console.log('================================ this is curent job -- ', currentJobId)
 
   const jobState = useSelector((state) => state.job)
   const lastJobIdFromState = useSelector((state) => state.jobs)
 
   if (!currentJobId) {
-    if (lastJobIdFromState.data.data) {
+    if (lastJobIdFromState.data.data && totalJobs > 0) {
       const jobDetailsFromState = lastJobIdFromState.data.data[0].Jobs[0]
       currentJobId = jobDetailsFromState._id
     }
@@ -51,55 +66,58 @@ const JobDescription = ({ url }) => {
   }, [dispatch, currentJobId])
 
   return (
-    <JobInfo>
-      <Row>
-        {console.log('------========= load job descriptionx', jobDetailsFromState)}
-        {jobDetailsFromState && console.log('---- render this inside jobs description')}
-        <CompanyLogo>{jobDetailsFromState ? jobDetailsFromState.data.companyLogo ? <img src={jobDetailsFromState && jobDetailsFromState.data.companyLogo} alt={jobDetailsFromState && jobDetailsFromState.data.companyName} /> : jobDetailsFromState.data.companyName.charAt(0) : '...'}</CompanyLogo>
-        <ColD>
-          <Title>{jobDetailsFromState ? jobDetailsFromState.data.title : '...loading'}</Title>
-          <JobSubTitle>
-            {jobDetailsFromState ? jobDetailsFromState.data.companyName : '...loading'} &middot; {jobDetailsFromState ? jobDetailsFromState.data.location : '...loading'}
-          </JobSubTitle>
-          <JobSubSubTitle>{jobDetailsFromState && moment(jobDetailsFromState.data.timestamp).fromNow()}</JobSubSubTitle>
-          <JobButtons>
-            <Btn className="btn-primary ai-center d-inline-flex right-icon" href={jobDetailsFromState && apply} target="_blank" rel="noopener">
-              Apply Now {boxArrowUp}
-            </Btn>
-            <FavoriteStar save={true} jobId={currentJobId} />
-          </JobButtons>
-        </ColD>
-        <Col md={1}>
-          <CompanyShare />
-        </Col>
-      </Row>
-
-      <Score jobId={currentJobId} />
-
-      <Content>
-        <Row alignItems="start">
-          <Col md={6}>{jobDetailsFromState && <TechnologiesDetected tags={jobDetailsFromState.data.tags} />}</Col>
-
-          <Col md={6}>{jobDetailsFromState && <TheChart jobId={currentJobId} />}</Col>
-        </Row>
-
-        {jobDetailsFromState && <p dangerouslySetInnerHTML={{ __html: jobDetailsFromState.data.descriptionH }}></p>}
-      </Content>
-      <Row>
-        <ColInfo>
-          <TitleInfo> Company</TitleInfo>
-          <TitleInfoDetail>{jobDetailsFromState && jobDetailsFromState.data.companyName}</TitleInfoDetail>
-        </ColInfo>
-        <ColInfo>
-          <TitleInfo> Level</TitleInfo>
-          <TitleInfoDetail>{jobDetailsFromState ? jobDetailsFromState.data.level : '...loading'}</TitleInfoDetail>
-        </ColInfo>
-        <ColInfo>
-          <TitleInfo> Employment Type</TitleInfo>
-          <TitleInfoDetail>{jobDetailsFromState ? jobDetailsFromState.data.employmentType : '...loading'}</TitleInfoDetail>
-        </ColInfo>
-      </Row>
-    </JobInfo>
+    <>
+      {!totalJobs ? (
+        <JobInfo>
+          <Title>Didn't find any jobs.</Title>
+          <JobSubTitle>Keep searching with less filters.</JobSubTitle>
+        </JobInfo>
+      ) : (
+        <JobInfo>
+          <Row>
+            <CompanyLogo>{jobDetailsFromState ? jobDetailsFromState.data.companyLogo ? <img src={jobDetailsFromState && jobDetailsFromState.data.companyLogo} alt={jobDetailsFromState && jobDetailsFromState.data.companyName} /> : jobDetailsFromState.data.companyName.charAt(0) : '...'}</CompanyLogo>
+            <ColD>
+              <Title>{jobDetailsFromState ? jobDetailsFromState.data.title : '...loading'}</Title>
+              <JobSubTitle>
+                {jobDetailsFromState ? jobDetailsFromState.data.companyName : '...loading'} &middot; {jobDetailsFromState ? jobDetailsFromState.data.location : '...loading'}
+              </JobSubTitle>
+              <JobSubSubTitle>{jobDetailsFromState && moment(jobDetailsFromState.data.timestamp).fromNow()}</JobSubSubTitle>
+              <JobButtons>
+                <Btn className="btn-primary ai-center d-inline-flex right-icon" href={jobDetailsFromState && apply} target="_blank" rel="noopener">
+                  Apply Now {boxArrowUp}
+                </Btn>
+                <FavoriteStar save={true} jobId={currentJobId} />
+              </JobButtons>
+            </ColD>
+            <Col md={1}>
+              <CompanyShare />
+            </Col>
+          </Row>
+          <Score jobId={currentJobId} />
+          <Content>
+            <Row alignItems="start">
+              <Col md={6}>{jobDetailsFromState && <TechnologiesDetected tags={jobDetailsFromState.data.tags} />}</Col>
+              <Col md={6}>{jobDetailsFromState && <TheChart jobId={currentJobId} />}</Col>
+            </Row>
+            {jobDetailsFromState && <p dangerouslySetInnerHTML={{ __html: jobDetailsFromState.data.descriptionH }}></p>}
+          </Content>
+          <Row>
+            <ColInfo>
+              <TitleInfo> Company</TitleInfo>
+              <TitleInfoDetail>{jobDetailsFromState && jobDetailsFromState.data.companyName}</TitleInfoDetail>
+            </ColInfo>
+            <ColInfo>
+              <TitleInfo> Level</TitleInfo>
+              <TitleInfoDetail>{jobDetailsFromState ? jobDetailsFromState.data.level : '...loading'}</TitleInfoDetail>
+            </ColInfo>
+            <ColInfo>
+              <TitleInfo> Employment Type</TitleInfo>
+              <TitleInfoDetail>{jobDetailsFromState ? jobDetailsFromState.data.employmentType : '...loading'}</TitleInfoDetail>
+            </ColInfo>
+          </Row>
+        </JobInfo>
+      )}
+    </>
   )
 }
 

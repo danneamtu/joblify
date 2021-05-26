@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { addSkill } from '../../../redux/actions/skillsActions'
-import { getVisitor } from '../../../redux/actions/visitorActions'
 import { getSkills } from '../../../redux/actions/skillsActions'
-import { Hr, ContainerSkills, MySkills, PopularSkills, StyledLink, StyledLinkMore, TitleSmall, Title, ToggleSkill } from './styled'
+import { ContainerSkills, MySkills, PopularSkills, StyledLinkMore, TitleSmall, Title, ToggleSkill } from './styled'
 
 import Skill from './Skill/Skill'
 
@@ -38,23 +34,27 @@ function Skills() {
     totalResults < start + 10 && setShowLoadMore(false)
   }
   return (
-    <ContainerSkills>
-      <MySkills>
-        {mySkills.length > 2 && <Title className="mb-3 mt-2">My Skills</Title>}
-        {mySkills && mySkills.map((item) => item.skill && <Skill loadMoreSkills={loadMoreSkills} start={start} active={true} data={item} visitorId={_id} item={item} />)}
-      </MySkills>
-      <>
-        <PopularSkills>
-          <Title className="mb-3 mt-2">Skills</Title>
-          {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill popularSkills={true} start={start} visitorId={_id} item={item} />)}
-          {showLoadMore && (
-            <StyledLinkMore onClick={() => loadMoreSkills(stateSkills[0].totalSkills)} to="#">
-              Load more
-            </StyledLinkMore>
-          )}
-        </PopularSkills>
-      </>
-    </ContainerSkills>
+    <>
+      <ContainerSkills>
+        {mySkills.length > 0 && (
+          <MySkills>
+            {<Title className="mb-3 mt-2">My Skills</Title>}
+            {mySkills && mySkills.map((item) => item.skill && <Skill loadMoreSkills={loadMoreSkills} start={start} active={true} data={item} visitorId={_id} item={item} />)}
+          </MySkills>
+        )}
+        <>
+          <PopularSkills>
+            <Title className="mb-3 mt-2">Skills</Title>
+            {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill popularSkills={true} start={start} visitorId={_id} item={item} />)}
+            {showLoadMore && (
+              <StyledLinkMore onClick={() => loadMoreSkills(stateSkills[0].totalSkills)} to="#">
+                Load more
+              </StyledLinkMore>
+            )}
+          </PopularSkills>
+        </>
+      </ContainerSkills>
+    </>
   )
 }
 
