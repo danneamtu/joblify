@@ -5,12 +5,17 @@ export const useJob = (jobId) => {
   const { skills } = useSelector((state) => state.visitor)
   const visitorSkills = skills.map((item) => item.skill).filter((item) => item)
   const jobDetails = jobState.data[jobId]
-
-  let jobTags = []
-  let employmentType
-
-  jobDetails && (jobTags = jobDetails.data.tags)
-  jobDetails && (employmentType = jobDetails.data.employmentType)
+  if (!jobDetails) {
+    return
+  }
+  const jobTags = jobDetails.data.tags
+  const employmentType = jobDetails.data.employmentType
+  const companyLogo = jobDetails.data.companyLogo
+  const companyName = jobDetails.data.companyName
+  const title = jobDetails.data.title
+  const location = jobDetails.data.location
+  const timestamp = jobDetails.data.timestamp
+  const apply = jobDetails.data.apply
 
   const skillsIntersection = jobTags.filter((item) => visitorSkills.includes(item))
   const totalScore = skillsIntersection.length
@@ -18,7 +23,13 @@ export const useJob = (jobId) => {
   const scoreFormula = (totalScore * 100) / totalSkills || 0
 
   return {
+    title,
+    location,
+    apply,
+    timestamp,
     jobTags,
+    companyLogo,
+    companyName,
     employmentType,
     visitorSkills,
     totalScore,

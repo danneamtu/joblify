@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
 import moment from 'moment'
 
 import Score from './Score/Score'
+import Header from './Header/Header'
+
 import { getJob } from '../../../redux/actions/jobActions'
 
 import { Row } from '../../../styled-components/responsive/row'
@@ -71,26 +72,9 @@ const JobDescription = ({ url }) => {
         </JobInfo>
       ) : (
         <JobInfo>
-          <Row>
-            <CompanyLogo>{jobDetailsFromState ? jobDetailsFromState.data.companyLogo ? <img src={jobDetailsFromState && jobDetailsFromState.data.companyLogo} alt={jobDetailsFromState && jobDetailsFromState.data.companyName} /> : jobDetailsFromState.data.companyName.charAt(0) : '...'}</CompanyLogo>
-            <ColD>
-              <Title>{jobDetailsFromState ? jobDetailsFromState.data.title : '...loading'}</Title>
-              <JobSubTitle>
-                {jobDetailsFromState ? jobDetailsFromState.data.companyName : '...loading'} &middot; {jobDetailsFromState ? jobDetailsFromState.data.location : '...loading'}
-              </JobSubTitle>
-              <JobSubSubTitle>{jobDetailsFromState && moment(jobDetailsFromState.data.timestamp).fromNow()}</JobSubSubTitle>
-              <JobButtons>
-                <Btn className="btn-primary ai-center d-inline-flex right-icon" href={jobDetailsFromState && apply} target="_blank" rel="noopener">
-                  Apply Now {boxArrowUp}
-                </Btn>
-                <FavoriteStar save={true} jobId={currentJobId} />
-              </JobButtons>
-            </ColD>
-            <Col md={1}>
-              <CompanyShare />
-            </Col>
-          </Row>
+          <Header jobId={currentJobId} />
           <Score jobId={currentJobId} />
+
           <Content>
             <Row alignItems="start">
               <Col md={6}>{jobDetailsFromState && <TechnologiesDetected jobId={currentJobId} />}</Col>
