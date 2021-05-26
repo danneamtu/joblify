@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export const useAllJobs = () => {
   const data = useSelector((state) => state.jobs)

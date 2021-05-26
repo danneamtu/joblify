@@ -26,7 +26,7 @@ const JobsList = () => {
 
   return (
     <>
-      <TotalResults />
+      <TotalResults totalJobs={totalJobs} />
       {allJobs ? allJobs.map((job, index) => <Job index={index} jobData={job} key={job._id} />) : '...loading jobs'}
       {allJobs ? <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} /> : '...loading pagination'}
       <Footer />
