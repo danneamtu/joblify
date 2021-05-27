@@ -1,3 +1,4 @@
+import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
 import { useJob } from '../../../../useHooks/useJob'
 import { accentGreen, darkLighter } from '../../../../styled-components/typography/colors'
@@ -17,4 +18,4 @@ const TheChart = ({ jobId }) => {
   return <Doughnut data={data} />
 }
 
-export default TheChart
+export const TheChartMemoised = React.memo(TheChart)

@@ -22,20 +22,17 @@ const Navbar = () => {
   const [user, setUser] = useState(null)
   const [visitor, setVisitor] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
-  
-  const { jobs: paramJobs } = useParams()
 
+  const { jobs: paramJobs } = useParams()
   const { favorites } = useSelector((state) => state.visitor)
 
   useEffect(() => {
-   
     const visitor = JSON.parse(localStorage.getItem('visitor'))
-   
+
     !visitor ? dispatch(createVisitor()) : dispatch(getVisitor(visitor.result._id))
-   
+
     setVisitor(visitor.result._id)
     setUser(JSON.parse(localStorage.getItem('user')))
-
   }, [location])
 
   const logout = () => {
@@ -80,7 +77,7 @@ const Navbar = () => {
                 </Link>
               ) : (
                 <Row onClick={() => setModalOpen(true)} alignItems="center">
-                  <CircleButton>{personFill}</CircleButton>
+                  <CircleButton style={{ marginLeft: '10px', marginRight: '10px' }}>{personFill}</CircleButton>
                   <InfoAuth className="show-md">
                     Welcome, <br />
                     <small>Sign in or Register</small>

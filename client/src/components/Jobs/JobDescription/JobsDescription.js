@@ -8,7 +8,7 @@ import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import Description from './Description/Description'
 import TechnologiesDetected from './TechnologiesDetected/TechnologiesDetected'
-import TheChart from './PieChart/TheChart'
+import { TheChartMemoised } from './PieChart/TheChart'
 
 import { Row, Col } from '../../../styled-components/responsive/responsive'
 
@@ -21,6 +21,7 @@ const JobDescription = () => {
   useEffect(() => {
     dispatch(getJob(filters.currentJobId))
   }, [dispatch, filters.currentJobId])
+  console.log('this is insidejob description')
 
   return (
     <>
@@ -39,7 +40,7 @@ const JobDescription = () => {
                 <TechnologiesDetected jobId={filters.currentJobId} />
               </Col>
               <Col md={6}>
-                <TheChart jobId={filters.currentJobId} />
+                <TheChartMemoised jobId={filters.currentJobId} />
               </Col>
             </Row>
           </Content>
