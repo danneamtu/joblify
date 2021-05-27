@@ -1,6 +1,7 @@
 import axios from 'axios'
-
-const API = axios.create({ baseURL: 'https://joblify2.herokuapp.com' })
+const baseURL = 'http://localhost:3002/'
+// const baseURL = 'http://joblify2.herokuapp.com/'
+const API = axios.create({ baseURL })
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('user')) {

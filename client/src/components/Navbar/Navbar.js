@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Container } from '../../styled-components/responsive/container'
-import { Row } from '../../styled-components/responsive/row'
-import { Col } from '../../styled-components/responsive/col'
+import { Row, Col } from '../../styled-components/responsive/responsive'
 import { googleLogout } from '../../redux/actions/userActions'
 import { createVisitor, getVisitor } from '../../redux/actions/visitorActions'
 
@@ -13,8 +12,8 @@ import Auth from '../Auth/Auth'
 
 import { CircleButton } from '../../styled-components/buttons/buttons'
 
-import { checkCircleFill, pieChartFill, clockFill, person, personFill, starFill, barChartFill, search } from '../../assets/icons/icons'
-import { Sup, CircleAvatar, NavbarContainer, Logo, Profile, InfoAuth } from './styled'
+import { personFill, starFill } from '../../assets/icons/icons'
+import { Sup, CircleAvatar, NavbarContainer, Logo, InfoAuth } from './styled'
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -23,16 +22,21 @@ const Navbar = () => {
   const [user, setUser] = useState(null)
   const [visitor, setVisitor] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
+  
   const { jobs: paramJobs } = useParams()
 
   const { favorites } = useSelector((state) => state.visitor)
 
   useEffect(() => {
+   
     const visitor = JSON.parse(localStorage.getItem('visitor'))
-    !visitor ? dispatch(createVisitor()) : dispatch(getVisitor(visitor.result?._id))
-    setVisitor(visitor.result?._id)
+   
+    !visitor ? dispatch(createVisitor()) : dispatch(getVisitor(visitor.result._id))
+   
+    setVisitor(visitor.result._id)
     setUser(JSON.parse(localStorage.getItem('user')))
-  }, [location.pathname])
+
+  }, [location])
 
   const logout = () => {
     dispatch(googleLogout())

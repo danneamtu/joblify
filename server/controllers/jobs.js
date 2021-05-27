@@ -36,7 +36,8 @@ export const getJobs = async (req, res) => {
       setFilters = {}
     }
 
-    if (visitorFavoritesJobs && visitorFavoritesJobs.length > 0) {
+    // the problem
+    if (favorites) {
       let ids = visitorFavoritesJobs.map(function (el) {
         return mongoose.Types.ObjectId(el)
       })
@@ -45,7 +46,8 @@ export const getJobs = async (req, res) => {
       }
     }
 
-    console.log('set filter', setFilters)
+    console.log('------visitor favorite job', favorites)
+
     try {
       let jobs = await Jobs.aggregate([
         {

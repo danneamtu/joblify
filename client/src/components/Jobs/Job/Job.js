@@ -18,6 +18,7 @@ function Job({ jobData }) {
   return (
     <JobContainer active={currentJobId === jobId ? true : false}>
       <FavoriteStar circle save={false} jobId={jobId} />
+
       <Link style={{ textDecoration: 'none' }} to={isMobile && isMobile.matches ? filters.jobUrlMobile : filters.jobUrlDesktop}>
         <Row>
           <CompanyLogo>{companyLogo ? <img src={companyLogo} alt={companyName} /> : companyName.charAt(0)}</CompanyLogo>

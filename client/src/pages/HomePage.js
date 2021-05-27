@@ -8,7 +8,7 @@ import { Container, Row, Col } from '../styled-components/responsive/responsive'
 function HomePage() {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <Container>
         <Row>
           <Col md={5} xl={4}>
@@ -18,7 +18,7 @@ function HomePage() {
             <JobsDescription />
           </Col>
           <Col xl={2} show={'xl'} className="d-none d-xl-block">
-             <Trends />
+            <Trends />
           </Col>
         </Row>
       </Container>

@@ -32,6 +32,7 @@ function Skill({ popularSkills, item, active, visitorId, start, loadMoreSkills }
           <div>{item.skill}</div>
           {popularSkills && <Total style={{ marginRight: '32px' }}>{item.total}</Total>}
         </StyledLink>
+
         <ToggleSkill style={{ marginLeft: '-18px' }} onClick={!active ? addSkill : removeSkill}>
           {active ? checkCircleFill : checkCircle}
         </ToggleSkill>
