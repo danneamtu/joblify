@@ -18,7 +18,6 @@ const skillsReducer = (state = initialState, { type, payload }) => {
     case GET_SKILLS_LOADING:
       return { ...state, loading: true }
     case GET_SKILLS_SUCCESS:
-      console.log('get skills success, means reducer', state, payload)
       return { ...state, data: [...state.data, ...payload.data] }
     case GET_SKILLS_ERROR:
       return { error: payload.error || 'No skills', loading: false }

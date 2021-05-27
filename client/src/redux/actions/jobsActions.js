@@ -6,7 +6,6 @@ export const getJobs = (filterData, favorites) => async (dispatch) => {
   try {
     dispatch({ type: JOBS_LOADING })
     const result = await api.fetchJobs(filterData, favorites)
-    console.log('from redux actions jobs', filterData, favorites)
     dispatch({ type: JOBS_SUCCESS, payload: result })
   } catch (error) {
     dispatch({ type: JOBS_ERROR, payload: error })

@@ -22,7 +22,7 @@ function Cities() {
             (item, index) =>
               item.city?.length > 2 &&
               index < 6 && (
-                <StyledLink to={`/jobs/search?location=${replaceSpaceWithDash(item.city).toLowerCase()}`}>
+                <StyledLink key={item._id} to={`/jobs/search?location=${replaceSpaceWithDash(item.city).toLowerCase()}`}>
                   {item.city}
                   <Total>{item.total}</Total>
                 </StyledLink>

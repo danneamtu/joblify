@@ -22,8 +22,6 @@ function Chart() {
     ],
   }
 
-  console.log('-2. inside trends chart')
-
   return (
     <ChartContainer>
       <TitleSmall className="mb-0">Popular skills </TitleSmall>

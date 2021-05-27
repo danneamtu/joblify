@@ -1,14 +1,12 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useFilters } from '../../../useHooks/useFilters'
+import { getJob } from '../../../redux/actions/jobActions'
 
 import Score from './Score/Score'
 import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import Description from './Description/Description'
-
-import { getJob } from '../../../redux/actions/jobActions'
-
 import TechnologiesDetected from './TechnologiesDetected/TechnologiesDetected'
 import TheChart from './PieChart/TheChart'
 

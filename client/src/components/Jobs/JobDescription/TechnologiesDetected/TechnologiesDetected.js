@@ -15,7 +15,7 @@ function TechnologiesDetected({ jobId }) {
           job.jobTags.map((item) =>
             job.visitorSkills.includes(item)
               ? item && (
-                  <Col md={6}>
+                  <Col key={item} md={6}>
                     <Tag className={'active'}>
                       {checkCircleFill}
                       {item}
@@ -23,7 +23,7 @@ function TechnologiesDetected({ jobId }) {
                   </Col>
                 )
               : item && (
-                  <Col md={6}>
+                  <Col key={item} md={6}>
                     <Tag>
                       {checkCircle}
                       {item}
