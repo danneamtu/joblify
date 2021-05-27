@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import { useJobsFilters } from '../../../useHooks/filters'
+import { useFilters } from '../../../useHooks/useFilters'
 import { timeAgo } from '../../../utils/utils'
 import { Row } from '../../../styled-components/responsive/responsive'
 
@@ -10,7 +10,7 @@ import { JobContainer, CompanyLogo, CompanyInfo, JobTitle, JobSubTitle, Chip, Da
 function Job({ jobData }) {
   const { _id: jobId, title, companyLogo, location, tags, timestamp, companyName, employmentType } = jobData
 
-  const { filters } = useJobsFilters(jobId)
+  const { filters } = useFilters(jobId)
   const currentJobId = filters.currentJobId
 
   const isMobile = window.matchMedia('(max-width: 768px)')

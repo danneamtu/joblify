@@ -9,14 +9,14 @@ import Pagination from './Pagination/Pagination'
 import Footer from './Footer/Footer'
 import Job from './Job/Job'
 
-import { useJobsFilters } from '../../useHooks/filters'
+import { useFilters } from '../../useHooks/useFilters'
 import { useJobs } from '../../useHooks/useJobs'
 
 const JobsList = () => {
   const location = useLocation()
   const dispatch = useDispatch()
 
-  const { filters, href } = useJobsFilters()
+  const { filters, href } = useFilters()
   const { allJobs, totalJobs } = useJobs()
   const { favorites } = useSelector((state) => state.visitor)
 
