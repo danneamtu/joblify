@@ -46,8 +46,7 @@ export const removeVisitorSkill = async (req, res) => {
 }
 
 export const insertSkill = async (req, res) => {
-  const skill = req.query.skill
-  console.log('skill', skill)
+  const skill = req.params.skill
   try {
     if (skill) {
       const result = await Skills.updateOne({ skill, total: 0 }, { $set: { skill } }, { upsert: true })

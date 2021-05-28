@@ -12,7 +12,7 @@ import Auth from '../Auth/Auth'
 
 import { CircleButton } from '../../styled-components/buttons/buttons'
 
-import { personFill, starFill } from '../../assets/icons/icons'
+import { personFill, starFill, barVertical } from '../../assets/icons/icons'
 import { Sup, CircleAvatar, NavbarContainer, Logo, InfoAuth } from './styled'
 
 const Navbar = () => {
@@ -51,6 +51,13 @@ const Navbar = () => {
                 <Logo>J</Logo>
               </Link>
               <Search />
+              {/* <Link style={{ marginLeft: 'auto' }} to={`skills`}>
+                <CircleButton>
+                  {barVertical}
+                  <Sup> {favorites.length > 0 && favorites.length}</Sup>
+                </CircleButton>
+              </Link> */}
+
               <Link style={{ marginLeft: 'auto' }} to={paramJobs ? `search?favorites=show&start=1` : `jobs/search?favorites=show&start=1`}>
                 <CircleButton>
                   {starFill}

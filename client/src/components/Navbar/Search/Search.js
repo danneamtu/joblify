@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Fuse from 'fuse.js'
 
 import { SearchBox, SearchResults, SearchResult, TotalJobs } from './styled'
-import { searchIcon } from '../../../assets/icons/icons'
+import { searchIcon, locationIcon } from '../../../assets/icons/icons'
 import locations from '../locations.json'
 
 function Search() {
@@ -42,7 +42,7 @@ function Search() {
   }
   return (
     <SearchBox ref={wrapperRef}>
-      {searchIcon}
+      {locationIcon}
       <input onChange={handleSearch} onClick={() => setSearchModal({ open: true })} value={searchModal.value} placeholder="Search by city or region" className="searchInput" />
       {searchModal.open && (
         <SearchResults>

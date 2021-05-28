@@ -4,6 +4,7 @@ import { useFilters } from '../../../useHooks/useFilters'
 import { timeAgo } from '../../../utils/utils'
 import { Row } from '../../../styled-components/responsive/responsive'
 
+import FavoriteStar from './Favorite/Favorite'
 import { JobContainer, CompanyLogo, CompanyInfo, JobTitle, JobSubTitle, Chip, Date } from './styled'
 
 function Job({ jobData }) {
@@ -16,7 +17,7 @@ function Job({ jobData }) {
 
   return (
     <JobContainer active={currentJobId === jobId ? true : false}>
-      {/* <FavoriteStar circle save={false} jobId={jobId} /> */}
+      <FavoriteStar circle save={false} jobId={jobId} />
 
       <Link style={{ textDecoration: 'none' }} to={isMobile && isMobile.matches ? filters.jobUrlMobile : filters.jobUrlDesktop}>
         <Row>

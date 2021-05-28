@@ -5,6 +5,7 @@ function TotalResults({ totalJobs }) {
   const query = new URLSearchParams(useLocation().search)
   const favorites = query.get('favorites')
   const location = query.get('location')
+  const skills = query.get('skills')
 
   return (
     <TotalContainer>

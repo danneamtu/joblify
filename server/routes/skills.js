@@ -6,6 +6,6 @@ router.get('/', getSkills)
 router.post('/', addVisitorSkill)
 router.post('/remove', removeVisitorSkill)
 
-router.post('/insert', insertSkill)
+router.post('/insert/:skill', insertSkill)
 router.get('/all', getAllSkills)
 export default router

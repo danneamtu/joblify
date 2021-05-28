@@ -45,9 +45,9 @@ function Skills() {
             <Title className="mb-3 mt-2">Popular Skills</Title>
             {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill key={item._id} popularSkills={true} start={start} visitorId={_id} item={item} />)}
             {
-              // <StyledLinkMore to="#" onClick={() => loadMoreSkills(stateSkills[0].totalSkills)}>
-              //   Load more
-              // </StyledLinkMore>
+              <StyledLinkMore to="#" onClick={() => loadMoreSkills(stateSkills[0].totalSkills)}>
+                Load more
+              </StyledLinkMore>
             }
           </PopularSkills>
         </>
