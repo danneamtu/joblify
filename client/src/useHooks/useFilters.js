@@ -1,8 +1,8 @@
 import { useLocation, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 export const useFilters = (jobId = 0) => {
+  
   const query = new URLSearchParams(useLocation().search)
-
   const filterPageStart = query.get('start')
   const filterLocation = query.get('location')
   const filterSkills = query.get('skills')

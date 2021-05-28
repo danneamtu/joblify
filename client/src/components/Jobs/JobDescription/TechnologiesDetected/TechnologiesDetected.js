@@ -1,10 +1,11 @@
+import { useFilters } from '../../../../useHooks/useFilters'
 import { useJob } from '../../../../useHooks/useJob'
 import { Row, Col } from '../../../../styled-components/responsive/responsive'
 import { checkCircle, checkCircleFill } from '../../../../assets/icons/icons'
 import { Tag, Title, TechnologiesContainer } from './styled'
 
-function TechnologiesDetected({ jobId }) {
-  const job = useJob(jobId)
+function TechnologiesDetected({ currentJobId }) {
+  const job = useJob(currentJobId)
   return (
     <TechnologiesContainer>
       <Row>

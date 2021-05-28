@@ -1,6 +1,7 @@
-import { useFilters } from '../../../../useHooks/useFilters'
 import { useJob } from '../../../../useHooks/useJob'
+import { useFilters } from '../../../../useHooks/useFilters'
 import { Row } from '../../../../styled-components/responsive/responsive'
+
 import { TitleInfo, TitleInfoDetail, ColInfo } from './styled'
 
 function Score() {

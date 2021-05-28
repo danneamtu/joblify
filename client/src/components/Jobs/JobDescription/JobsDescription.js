@@ -1,22 +1,19 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { useFilters } from '../../../useHooks/useFilters'
-import { getJob } from '../../../redux/actions/jobActions'
+import { useJob } from '../../../useHooks/useJob'
 
 import Score from './Score/Score'
 import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import Description from './Description/Description'
 import TechnologiesDetected from './TechnologiesDetected/TechnologiesDetected'
-import { TheChartMemoised } from './PieChart/TheChart'
+import { TheChartMemoized } from './PieChart/TheChart'
 
 import { Row, Col } from '../../../styled-components/responsive/responsive'
-
 import { JobInfo, Title, JobSubTitle, Content } from './styled'
 
 const JobDescription = () => {
   const { filters } = useFilters()
-
+  const job = useJob(filters.currentJobId)
   return (
     <>
       {!filters.totalJobs ? (
@@ -31,15 +28,15 @@ const JobDescription = () => {
           <Content>
             <Row alignItems="start">
               <Col md={6}>
-                <TechnologiesDetected jobId={filters.currentJobId} />
+                <TechnologiesDetected currentJobId={filters && filters.currentJobId} />
               </Col>
               <Col md={6}>
-                <TheChartMemoised jobId={filters.currentJobId} />
+                <TheChartMemoized scoreFormula={job && job.scoreFormula} />
               </Col>
             </Row>
           </Content>
-          <Description jobId={filters.currentJobId} />
-          <Footer jobId={filters.currentJobId} />
+          <Description />
+          <Footer />
         </JobInfo>
       )}
     </>

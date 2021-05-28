@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 
 export const useJob = (jobId) => {
   const jobState = useSelector((state) => state.job)

@@ -22,7 +22,6 @@ function Header({ jobId }) {
   console.log('this is insidejob description')
 
   const job = useJob(filters.currentJobId)
-
   return (
     <Row>
       <CompanyLogo>{job ? job.companyLogo ? <img src={job.companyLogo} alt={job.companyName} /> : job.companyName.charAt(0) : '...'}</CompanyLogo>
