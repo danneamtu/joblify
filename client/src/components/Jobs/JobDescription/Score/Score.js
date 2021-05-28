@@ -1,9 +1,11 @@
+import { useFilters } from '../../../../useHooks/useFilters'
 import { useJob } from '../../../../useHooks/useJob'
 import { Row } from '../../../../styled-components/responsive/responsive'
 import { TitleInfo, TitleInfoDetail, ColInfo } from './styled'
 
-function Score({ jobId }) {
-  const job = useJob(jobId)
+function Score() {
+  const { filters } = useFilters()
+  const job = useJob(filters.currentJobId)
 
   return (
     <Row>

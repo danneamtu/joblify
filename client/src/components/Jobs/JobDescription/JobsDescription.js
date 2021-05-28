@@ -15,13 +15,7 @@ import { Row, Col } from '../../../styled-components/responsive/responsive'
 import { JobInfo, Title, JobSubTitle, Content } from './styled'
 
 const JobDescription = () => {
-  const dispatch = useDispatch()
   const { filters } = useFilters()
-
-  useEffect(() => {
-    dispatch(getJob(filters.currentJobId))
-  }, [dispatch, filters.currentJobId])
-  console.log('this is insidejob description')
 
   return (
     <>
@@ -32,8 +26,8 @@ const JobDescription = () => {
         </JobInfo>
       ) : (
         <JobInfo>
-          <Header jobId={filters.currentJobId} />
-          <Score jobId={filters.currentJobId} />
+          <Header />
+          <Score />
           <Content>
             <Row alignItems="start">
               <Col md={6}>

@@ -42,13 +42,13 @@ function Skills() {
         )}
         <>
           <PopularSkills>
-            <Title className="mb-3 mt-2">Skills</Title>
+            <Title className="mb-3 mt-2">Popular Skills</Title>
             {stateSkills && stateSkills.map((item) => !item.totalSkills && <Skill key={item._id} popularSkills={true} start={start} visitorId={_id} item={item} />)}
-            {showLoadMore && (
-              <StyledLinkMore to="#" onClick={() => loadMoreSkills(stateSkills[0].totalSkills)}>
-                Load more
-              </StyledLinkMore>
-            )}
+            {
+              // <StyledLinkMore to="#" onClick={() => loadMoreSkills(stateSkills[0].totalSkills)}>
+              //   Load more
+              // </StyledLinkMore>
+            }
           </PopularSkills>
         </>
       </ContainerSkills>

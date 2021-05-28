@@ -21,7 +21,7 @@ function Cities() {
           allLocations.map(
             (item, index) =>
               item.city?.length > 2 &&
-              index < 6 && (
+              index < 7 && (
                 <StyledLink key={item._id} to={`/jobs/search?location=${replaceSpaceWithDash(item.city).toLowerCase()}`}>
                   {item.city}
                   <Total>{item.total}</Total>

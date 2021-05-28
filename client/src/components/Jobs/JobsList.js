@@ -8,6 +8,7 @@ import TotalResults from '../Jobs/Total/TotalResults'
 import Pagination from './Pagination/Pagination'
 import Footer from './Footer/Footer'
 import Job from './Job/Job'
+import { JobLoader } from '../Loaders/Loaders'
 
 import { useFilters } from '../../useHooks/useFilters'
 import { useJobs } from '../../useHooks/useJobs'
@@ -27,7 +28,7 @@ const JobsList = () => {
   return (
     <>
       <TotalResults totalJobs={totalJobs} />
-      {allJobs ? allJobs.map((job, index) => <Job index={index} jobData={job} key={job._id} />) : '...loading jobs'}
+      {allJobs ? allJobs.map((job, index) => <Job index={index} jobData={job} key={job._id} />) : <JobLoader repeat={10} />}
       {allJobs ? <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} /> : '...loading pagination'}
       <Footer />
     </>
