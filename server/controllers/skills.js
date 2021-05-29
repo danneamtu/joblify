@@ -5,7 +5,7 @@ export const getSkills = async (req, res) => {
   try {
     console.log('this is skills controllers')
     const start = Number(req.query.start) || 0
-    const limit = 10
+    const limit = 12
     let nin
     if (req.query.nin) {
       const ninskill = req.query.nin.split(',')

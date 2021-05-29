@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { lightDark, lightDarker, accentGreen, darkLightHover } from '../../styled-components/typography/colors'
+import { light, dark, darkLight, lightDark, lightDarker, accentGreen, darkLightHover, darkLighter, accentBlue } from '../../styled-components/typography/colors'
 
 export const ContainerSkills = styled.div`
   font-size: 15px;
@@ -9,93 +9,78 @@ export const ContainerSkills = styled.div`
   padding: 16px;
   border-radius: 6px;
   border-bottom-right-radius: 6px;
-  .mt-4 {
-    margin-top: 24px;
-  }
-  .mt-3 {
-    margin-top: 18px;
-  }
-  .mt-2 {
-    margin-top: 12px;
-  }
-  .mt-1 {
-    margin-top: 6px;
-  }
-  .mt-0 {
-    margin-top: 0;
-  }
-  .mb-4 {
-    margin-bottom: 24px;
-  }
-  .mb-3 {
-    margin-bottom: 18px;
-  }
-  .mb-2 {
+  input {
+    border: solid 1px ${darkLighter};
+    padding: 10px 12px;
+    border-radius: 5px;
+    width: calc(66.666%);
     margin-bottom: 12px;
+    background: ${darkLight};
+    color: ${lightDarker};
   }
-  .mb-1 {
-    margin-bottom: 6px;
-  }
-`
-export const PopularSkills = styled.div`
-  margin-top: 16px;
-  font-size: 15px;
-  background: ${darkLightHover};
-  padding: 16px;
-  border-radius: 6px;
-  border-bottom-right-radius: 6px;
 `
 
-export const StyledLink = styled(Link)`
+export const Ul = styled.div`
   display: flex;
-  align-items: center;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  min-width: 100%;
-  text-decoration: none;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 10px;
+  justify-content: space-between;
+`
+
+export const LoadMore = styled.div`
+  border: solid 1px ${darkLighter};
   color: ${lightDarker};
-  border: none;
-  transition: 0.2s;
-  &:hover {
+  padding: 8px 16px;
+  border-radius: 26px;
+
+  cursor: pointer;
+  transition: 0.3s;
+
+  font-weight: 400;
+  :hover {
+    background: ${darkLighter};
+    border: solid 1px ${darkLighter};
     color: ${lightDark};
   }
-  & svg {
-    font-size: 0.6em;
-  }
-  &.active svg {
-    color: ${accentGreen};
-  }
-`
-export const StyledLinkMore = styled(StyledLink)`
-  font-size: 0.9em;
-  margin-top: 0.5em;
 `
 
-export const Title = styled.h4`
-  font-size: 1em;
-  font-weight: 400;
+export const BestMatch = styled.div`
+  border: solid 1px ${darkLighter};
   color: ${lightDarker};
-`
-export const TitleSmall = styled.p`
-  font-size: 14px;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.5);
-`
+  padding: 12px 22px;
+  border-radius: 26px;
+  align-self: start;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s;
 
-export const Logo = styled.div`
-  max-width: 1.5em;
-  max-height: 1.5em;
-  margin-right: 0.5em;
-  & img {
-    width: 100%;
+  &.active {
+    background: ${accentBlue};
+    border: solid 1px ${accentBlue};
+    color: ${light};
+    cursor: pointer;
+  }
+  &.disabled {
+    background: ${darkLighter};
+    border: solid 1px ${darkLighter};
+    color: ${lightDark};
+    cursor: not-allowed;
+    pointer-events: all !important;
+  }
+  :hover {
+    background: ${darkLighter};
+    border: solid 1px ${darkLighter};
+    color: ${lightDark};
   }
 `
-export const ToggleSkill = styled.div``
 
-export const Hr = styled.hr`
-  height: 1px;
-  border: none;
-  background: rgba(255, 255, 255, 0.2);
-  margin-top: 16px;
-  margin-bottom: 16px;
+export const Buttons = styled.h4`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
 `
