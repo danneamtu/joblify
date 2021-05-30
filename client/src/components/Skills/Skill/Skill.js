@@ -12,14 +12,14 @@ function Skill({ skill }) {
   const arrSkills = skills.map((item) => item.skill)
   const intersection = arrSkills.includes(skill.skill)
 
-  console.log('visitor id', _id)
+
 
   const [active, setActive] = useState(intersection)
   const data = {
     skill: skill,
     visitorId: _id,
   }
-  console.log('data', data)
+  
   const addSkill = () => {
     dispatch(addVisitorSkill(data))
     setActive(!active)
@@ -30,7 +30,7 @@ function Skill({ skill }) {
   }
 
   return (
-    <SkillContainer className={active ? 'active' : ''} onClick={!active ? addSkill : removeSkill}>
+    <SkillContainer key={skill._id} className={active ? 'active' : ''} onClick={!active ? addSkill : removeSkill}>
       {skill.skill} {checkCircleFill}
       <small>{skill.total} jobs</small>
     </SkillContainer>

@@ -3,6 +3,21 @@ import Skills from '../models/skills.js'
 
 export const getSkills = async (req, res) => {
   try {
+    const start = Number(req.query.start) || 0
+    const limit = Number(req.query.limit) || 9
+
+    console.log('this is skills controllers', req.query)
+
+    let skills = await Skills.find().sort({ total: -1 }).limit(limit).skip(start)
+    res.status(200).json(skills)
+  } catch (err) {
+    console.log(err)
+    res.status(409).json({ message: err.message || 'Skills not found' })
+  }
+}
+
+export const getSkillsWithNin = async (req, res) => {
+  try {
     console.log('this is skills controllers')
     const start = Number(req.query.start) || 0
     const limit = 12

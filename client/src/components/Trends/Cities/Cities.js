@@ -6,6 +6,7 @@ import { getLocations } from '../../../redux/actions/locationsActions'
 
 function Cities() {
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(getLocations())
   }, [dispatch])

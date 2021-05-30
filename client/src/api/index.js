@@ -13,7 +13,7 @@ API.interceptors.request.use((req) => {
 export const fetchJobs = (filterData, favorites) =>
   API.get(`/api/jobs`, {
     params: { filterData, favorites },
-  })
+})
 
 export const createJob = (job) => API.post(`/jobs`, job)
 export const patchJob = (id, updatedJob) => API.patch(`/${id}`, updatedJob)

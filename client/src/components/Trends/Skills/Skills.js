@@ -13,12 +13,12 @@ function Skills() {
   const [start, setStart] = useState(10)
   const { data: stateSkills } = useSelector((state) => state.skills)
   const { _id, skills } = useSelector((state) => state.visitor)
+  const arrSkills = skills.map((item) => item.skill)
+  const filterData = `start=0&nin=${arrSkills}`
 
   useEffect(() => {
-    const arrSkills = skills.map((item) => item.skill)
-    const filterData = `start=0&nin=${arrSkills}`
     dispatch(getSkills(filterData))
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     setMySkills(skills)
@@ -31,6 +31,7 @@ function Skills() {
     dispatch(getSkills(filterData))
     totalResults < start + 10 && setShowLoadMore(false)
   }
+
   return (
     <>
       <ContainerSkills>

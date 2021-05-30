@@ -58,7 +58,7 @@ const Navbar = () => {
                 </CircleButton>
               </Link>
 
-              <Link style={{ marginLeft: 'auto' }} to={paramJobs ? `search?favorites=show&start=1` : `jobs/search?favorites=show&start=1`}>
+              <Link to={paramJobs ? `search?favorites=show&start=1` : `jobs/search?favorites=show&start=1`}>
                 <CircleButton>
                   {starFill}
                   <Sup> {favorites.length > 0 && favorites.length}</Sup>

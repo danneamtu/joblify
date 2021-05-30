@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { light, dark, darkLight, lightDark, lightDarker, accentGreen, darkLightHover, darkLighter, accentBlue } from '../../styled-components/typography/colors'
+import { light, dark, darkLight, lightDark, lightDarker, accentGreen, darkLightHover, darkLighter, accentBlue, accentBlueHover } from '../../styled-components/typography/colors'
 
 export const ContainerSkills = styled.div`
   font-size: 15px;
@@ -62,7 +62,8 @@ export const BestMatch = styled.div`
     color: ${light};
     cursor: pointer;
   }
-  &.disabled {
+  &.disabled,
+  &.disabled:hover {
     background: ${darkLighter};
     border: solid 1px ${darkLighter};
     color: ${lightDark};
@@ -70,8 +71,9 @@ export const BestMatch = styled.div`
     pointer-events: all !important;
   }
   :hover {
-    background: ${darkLighter};
-    border: solid 1px ${darkLighter};
+    background: ${accentBlueHover};
+    border: solid 1px ${accentBlueHover};
+
     color: ${lightDark};
   }
 `

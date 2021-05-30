@@ -1,22 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Skill from './Skill/Skill'
 import { getSkills } from '../../redux/actions/skillsActions'
 
-import { star, starFill, checkCircle, checkCircleFill } from '../../assets/icons/icons'
-import { ContainerSkills, Ul, Li, Buttons, LoadMore, BestMatch, accentBlue } from './styled'
+import { ContainerSkills, Ul, Buttons, LoadMore, BestMatch } from './styled'
 function Skills() {
   const dispatch = useDispatch()
-  const [start, setStart] = useState(10)
-  const [active, setActive] = useState(false)
+  const [start, setStart] = useState(0)
+  const [limit, setLimit] = useState(9)
+
   const { data: stateSkills } = useSelector((state) => state.skills)
   const { _id, skills } = useSelector((state) => state.visitor)
+  const filterData = `start=${start}&limit=${limit}`
 
   const loadMoreSkills = (totalResults) => {
     setStart(start + 10)
-    const filterData = `start=${start}`
     dispatch(getSkills(filterData))
   }
+
+  useEffect(() => {
+    dispatch(getSkills(filterData))
+    setStart(start + 10)
+  }, [dispatch])
 
   return (
     <>
