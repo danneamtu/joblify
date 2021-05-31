@@ -23,7 +23,7 @@ const JobDescription = () => {
         </JobInfo>
       ) : (
         <JobInfo>
-          <Header />
+          <Header currentJobId={filters && filters.currentJobId} />
           <Score />
           <Content>
             <Row alignItems="start">

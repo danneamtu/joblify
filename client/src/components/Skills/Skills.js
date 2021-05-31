@@ -41,7 +41,7 @@ function Skills() {
         <Ul>{stateSkills && stateSkills.map((item) => <Skill skill={item} key={item._id} />)}</Ul>
         <Buttons>
           {start < 72 && <LoadMore onClick={() => loadMoreSkills()}>Load More</LoadMore>}
-          <Link to="&order=match">
+          <Link to="jobs/search?start=1&order=match">
             <BestMatch className={skills && skills.length > 2 ? 'active' : 'disabled'}>Show best match jobs</BestMatch>
           </Link>
         </Buttons>

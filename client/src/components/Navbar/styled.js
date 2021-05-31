@@ -21,7 +21,7 @@ export const Logo = styled.div`
   line-height: 36px;
   text-align: center;
   font-size: 21px;
-  border-radius: 4px;
+  border-radius: 50%;
   margin-right: 16px;
   font-weight: 500;
   cursor: pointer;

@@ -36,7 +36,7 @@ export const SearchBox = styled.div`
     line-height: 36px;
     padding-left: 32px;
     padding-right: 16px;
-    border-radius: 5px;
+    border-radius: 40px;
     border: none;
     margin-right: 8px;
     transition: 0.3s;
@@ -48,8 +48,7 @@ export const SearchBox = styled.div`
   .searchInput:focus {
     outline-offset: 0;
     outline: none;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-radius: 40px;
   }
 `
 

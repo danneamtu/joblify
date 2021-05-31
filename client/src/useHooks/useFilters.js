@@ -6,6 +6,7 @@ export const useFilters = (jobId = 0) => {
   const filterLocation = query.get('location')
   const filterSkills = query.get('skills')
   const filterFavorites = query.get('favorites')
+  const filterOrder = query.get('order')
   let currentJobId = query.get('currentJobId')
 
   const data = useSelector((state) => state.jobs)
@@ -52,28 +53,33 @@ export const useFilters = (jobId = 0) => {
   const paramLocation = filterLocation
   const paramSkills = filterSkills
   const paramFavorites = filterFavorites
+  const paramOrder = filterOrder
 
   let createParams = ''
   let createStart = ''
+  let order = ''
+  if (paramOrder) {
+    order = `&order=${paramOrder}`
+  }
 
   if (paramLocation && paramSkills) {
-    createParams = `&location=${paramLocation}&skills=${paramSkills}`
+    createParams = `&location=${paramLocation}&skills=${paramSkills}${order}`
   }
   if (paramLocation) {
-    createParams = `&location=${paramLocation}`
+    createParams = `&location=${paramLocation}${order}`
   }
   if (paramSkills) {
-    createParams = `&skills=${paramSkills}`
+    createParams = `&skills=${paramSkills}${order}`
   }
   if (paramFavorites) {
-    createParams = `&favorites=${paramFavorites}`
+    createParams = `&favorites=${paramFavorites}${order}`
   }
   if (paramStart) {
-    createStart = `&start=${paramStart}`
+    createStart = `&start=${paramStart}${order}`
   }
 
-  let theUri = `/jobs/search?currentJobId=${jobId}${createParams}${createStart}`
-  let theMobileUri = `/jobs/view/search?currentJobId=${jobId}${createParams}`
+  let theUri = `/jobs/search?currentJobId=${jobId}${createParams}${createStart}${order}`
+  let theMobileUri = `/jobs/view/search?currentJobId=${jobId}${createParams}${order}`
 
   return {
     filters: {
@@ -86,6 +92,7 @@ export const useFilters = (jobId = 0) => {
       jobUrlMobile: theMobileUri,
       totalJobs,
       visitorSkills,
+      order: filterOrder,
     },
     href,
     visitorSkills,

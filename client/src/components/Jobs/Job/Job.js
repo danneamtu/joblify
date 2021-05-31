@@ -9,7 +9,7 @@ import FavoriteStar from './Favorite/Favorite'
 import { JobContainer, CompanyLogo, CompanyInfo, JobTitle, JobSubTitle, Chip, Date } from './styled'
 
 function Job({ jobData }) {
-  const { _id: jobId, title, companyLogo, location, tags, timestamp, companyName, employmentType } = jobData
+  const { _id: jobId, title, companyLogo, location, tags, timestamp, companyName, employmentType, level } = jobData
 
   const job = useJob(jobId)
 
@@ -34,7 +34,7 @@ function Job({ jobData }) {
         </Row>
         <Row alignItems="center">
           <Chip>{employmentType}</Chip>
-
+          {/* <Chip>{level ? level : '...loading'}</Chip> */}
           <Chip>Score {score ? score.scoreFormula : '...'} %</Chip>
           <Date>{timeAgo(timestamp)}</Date>
         </Row>

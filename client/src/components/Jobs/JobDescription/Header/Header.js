@@ -12,7 +12,7 @@ import { boxArrowUp } from '../../../../assets/icons/icons'
 import { CompanyLogo, Title, JobSubSubTitle, ColD, JobSubTitle, JobButtons } from './styled'
 import { Btn } from '../../../../styled-components/buttons/buttons'
 
-function Header({ jobId }) {
+function Header({ currentJobId }) {
   const dispatch = useDispatch()
   const { filters } = useFilters()
 
@@ -35,7 +35,8 @@ function Header({ jobId }) {
           <Btn className="btn-primary ai-center d-inline-flex right-icon" href={job && job.apply} target="_blank" rel="noopener">
             Apply Now {boxArrowUp}
           </Btn>
-          <FavoriteStar save={true} jobId={jobId} />
+
+          <FavoriteStar save={true} jobId={currentJobId} />
         </JobButtons>
       </ColD>
     </Row>

@@ -4,9 +4,12 @@ import mongoose from 'mongoose'
 export const getJobs = async (req, res) => {
   if (req.query) {
     let filters = req.query
-    const { pageStart, location, skills, favorites } = JSON.parse(filters.filterData)
+
+    const { pageStart, location, skills, favorites, order } = JSON.parse(filters.filterData)
+
     const visitorFavoritesJobs = filters.favorites
     const visitorSkillsJobs = filters.visitorSkills
+
     const limit = 10
     const start = (pageStart - 1) * limit //0
     let setFilters
@@ -42,6 +45,54 @@ export const getJobs = async (req, res) => {
         _id: { $in: ids },
       }
     }
+
+    let withOrder
+    let withScoreFormula
+
+    let sortCondition
+    console.log('order', order)
+
+    if (order === 'match') {
+      withOrder = {
+        $addFields: {
+          total_skills: { $size: '$tags' },
+          skills_count: { $size: { $setIntersection: ['$tags', visitorSkillsJobs] } },
+        },
+      }
+    } else {
+      withOrder = {
+        $addFields: {
+          totalSkills: '0',
+        },
+      }
+    }
+
+    if (order === 'match') {
+      withScoreFormula = {
+        $addFields: {
+          scoreFormulas: { $cond: [{ $eq: ['$skills_count', 0] }, 0, { $divide: ['$skills_count', '$total_skills'] }] },
+        },
+      }
+    } else {
+      withScoreFormula = {
+        $addFields: {
+          scoreFormulas: '0',
+        },
+      }
+    }
+
+    if (order === 'match') {
+      sortCondition = {
+        $sort: { scoreFormulas: -1 },
+      }
+    } else {
+      sortCondition = {
+        $sort: { timestamp: -1 },
+      }
+    }
+
+    console.log('this is ', withScoreFormula, withOrder)
+
     try {
       let jobs = await Jobs.aggregate([
         {
@@ -52,20 +103,11 @@ export const getJobs = async (req, res) => {
                   $or: [setFilters],
                 },
               },
-              {
-                $addFields: {
-                  total_skills: { $size: '$tags' },
-                  skills_count: { $size: { $setIntersection: ['$tags', visitorSkillsJobs] } },
-                },
-              },
-              {
-                $addFields: {
-                  scoreFormula: { $cond: [{ $eq: ['$skills_count', 0] }, -1, { $divide: ['$skills_count', '$total_skills'] }] },
-                },
-              },
-              {
-                $sort: { scoreFormulas: -1 },
-              },
+
+              withOrder,
+              withScoreFormula,
+              sortCondition,
+
               {
                 $skip: start,
               },
@@ -73,13 +115,7 @@ export const getJobs = async (req, res) => {
                 $limit: limit + 1,
               },
             ],
-            Score: [
-              {
-                $project: {
-                  result: { $size: { $setIntersection: ['$tags', visitorSkillsJobs] } },
-                },
-              },
-            ],
+
             Count: [
               {
                 $match: {
@@ -113,6 +149,10 @@ export const getJobs = async (req, res) => {
 export const getJob = async (req, res) => {
   try {
     const id = req.params.id
+    // var id = req.params.id;
+    // const { id } = req.query
+    // console.log('this are params', req.params.id)
+    // const id = '60ac90d790eb0fd64052ec14'
     if (!mongoose.Types.ObjectId.isValid(id)) return false
     const job = await Jobs.findById(id)
     res.status(200).json(job)
@@ -121,15 +161,6 @@ export const getJob = async (req, res) => {
     res.status(404).json({ message: err.message || 'Job not found' })
   }
 }
-
-
-
-
-
-
-
-
-
 
 export const createJob = async (req, res) => {
   const { title, description, location } = req.body

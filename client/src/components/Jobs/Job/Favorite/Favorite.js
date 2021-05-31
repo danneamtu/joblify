@@ -8,12 +8,14 @@ import { Favorite } from './styled'
 function FavoriteStar({ jobId, save, circle }) {
   const { _id: visitorId, favorites } = useSelector((state) => state.visitor)
   const dispatch = useDispatch()
+
   const addJobFavorite = () => {
     dispatch(addFavorite(jobId, visitorId))
   }
   const removeJobFavorite = () => {
     dispatch(removeFavorite(jobId, visitorId))
   }
+
   const circleStar = () =>
     favorites.includes(jobId) ? (
       <Btn className={circle ? 'btn-circle' : 'btn-outline d-inline-flex ai-center right-icon'} onClick={removeJobFavorite}>

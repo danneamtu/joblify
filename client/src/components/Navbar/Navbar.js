@@ -53,14 +53,14 @@ const Navbar = () => {
                 <Logo>J</Logo>
               </Link>
               <Search />
-              <Link style={{ marginLeft: 'auto' }} to={`skills`}>
+              {/* <Link style={{ marginLeft: 'auto' }} to={`skills`}>
                 <CircleButton>
                   {barVertical}
                   <Sup> {favorites.length > 0 && favorites.length}</Sup>
                 </CircleButton>
-              </Link>
+              </Link> */}
 
-              <Link to={paramJobs ? `search?favorites=show&start=1` : `jobs/search?favorites=show&start=1`}>
+              <Link style={{ marginLeft: 'auto' }} to={paramJobs ? `search?favorites=show&start=1` : `jobs/search?favorites=show&start=1`}>
                 <CircleButton>
                   {starFill}
                   <Sup> {favorites.length > 0 && favorites.length}</Sup>

@@ -1,6 +1,6 @@
 import axios from 'axios'
-const baseURL = 'http://localhost:3003/'
-// const baseURL = 'https://joblify2.herokuapp.com/'
+// const baseURL = 'http://localhost:3003/'
+const baseURL = 'https://joblify2.herokuapp.com/'
 const API = axios.create({ baseURL })
 
 API.interceptors.request.use((req) => {

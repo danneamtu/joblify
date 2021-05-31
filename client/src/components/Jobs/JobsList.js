@@ -21,18 +21,15 @@ const JobsList = () => {
   const { allJobs, totalJobs } = useJobs()
   const { favorites } = useSelector((state) => state.visitor)
 
-  console.log('1. ---------- first is state redux', favorites, visitorSkills)
-
   useEffect(() => {
     dispatch(getJobs(filters, favorites, visitorSkills))
-    console.log('2. -------- after first is state redux', favorites, visitorSkills)
   }, [location])
 
   return (
     <>
       {allJobs ? <TotalResults totalJobs={totalJobs} /> : ''}
       {allJobs ? allJobs.map((job, index) => <Job index={index} jobData={job} key={job._id} />) : <JobLoader repeat={10} />}
-      {allJobs ? <Pagination href={href} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} /> : '...loading pagination'}
+      {allJobs ? <Pagination href={href} order={filters.order} pageCurrent={filters.pageStart} totalResults={totalJobs} pagePer={10} /> : '...loading pagination'}
       <Footer />
     </>
   )
