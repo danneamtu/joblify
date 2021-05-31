@@ -1,7 +1,6 @@
 import { useLocation, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 export const useFilters = (jobId = 0) => {
-  
   const query = new URLSearchParams(useLocation().search)
   const filterPageStart = query.get('start')
   const filterLocation = query.get('location')
@@ -18,6 +17,11 @@ export const useFilters = (jobId = 0) => {
   }
 
   const lastJobIdFromState = useSelector((state) => state.jobs)
+  const { skills } = useSelector((state) => state.visitor)
+  const visitorSkills = skills.map((item) => item.skill)
+
+  console.log('visitor skills in use Filter', visitorSkills)
+
   if (!currentJobId) {
     if (lastJobIdFromState.data.data && totalJobs > 0) {
       const jobDetailsFromState = lastJobIdFromState.data.data[0].Jobs[0]
@@ -81,7 +85,9 @@ export const useFilters = (jobId = 0) => {
       jobUrlDesktop: theUri,
       jobUrlMobile: theMobileUri,
       totalJobs,
+      visitorSkills,
     },
     href,
+    visitorSkills,
   }
 }

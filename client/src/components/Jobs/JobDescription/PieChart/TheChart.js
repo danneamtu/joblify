@@ -1,13 +1,13 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
-import { accentGreen, darkLighter } from '../../../../styled-components/typography/colors'
+import { accentGreen, lightDarker } from '../../../../styled-components/typography/colors'
 
 const TheChart = ({ scoreFormula }) => {
   const data = {
     datasets: [
       {
         data: [scoreFormula, scoreFormula - 100],
-        backgroundColor: [accentGreen, darkLighter],
+        backgroundColor: [accentGreen, '#292A33'],
         borderWidth: 0,
       },
     ],

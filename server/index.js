@@ -26,7 +26,7 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
 dotenv.config()
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 3003
 
 app.use('/api/locations', locationRoutes)
 app.use('/api/users', usersRoutes)

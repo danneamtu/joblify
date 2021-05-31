@@ -1,6 +1,6 @@
 import axios from 'axios'
-// const baseURL = 'http://localhost:3002/'
-const baseURL = 'https://joblify2.herokuapp.com/'
+const baseURL = 'http://localhost:3003/'
+// const baseURL = 'https://joblify2.herokuapp.com/'
 const API = axios.create({ baseURL })
 
 API.interceptors.request.use((req) => {
@@ -10,9 +10,9 @@ API.interceptors.request.use((req) => {
   return req
 })
 
-export const fetchJobs = (filterData, favorites) =>
+export const fetchJobs = (filterData, favorites, visitorSkills) =>
   API.get(`/api/jobs`, {
-    params: { filterData, favorites },
+    params: { filterData, favorites, visitorSkills },
   })
 
 export const createJob = (job) => API.post(`/jobs`, job)

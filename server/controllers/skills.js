@@ -4,7 +4,7 @@ import Skills from '../models/skills.js'
 export const getSkills = async (req, res) => {
   try {
     const start = Number(req.query.start) || 0
-    const limit = Number(req.query.limit) || 9
+    const limit = Number(req.query.limit) || 18
 
     let skills
     if (!start) {

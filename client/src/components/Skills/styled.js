@@ -55,7 +55,7 @@ export const BestMatch = styled.div`
   display: inline-block;
   cursor: pointer;
   transition: 0.3s;
-
+  margin-left: auto;
   &.active {
     background: ${accentBlue};
     border: solid 1px ${accentBlue};

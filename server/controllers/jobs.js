@@ -8,6 +8,10 @@ export const getJobs = async (req, res) => {
     const { pageStart, location, skills, favorites } = JSON.parse(filters.filterData)
 
     const visitorFavoritesJobs = filters.favorites
+    const visitorSkillsJobs = filters.visitorSkills
+
+    console.log('--------------------------------------------the visitor skillsxxx', filters, visitorSkillsJobs)
+
     const limit = 10
     const start = (pageStart - 1) * limit //0
     let setFilters
@@ -55,6 +59,7 @@ export const getJobs = async (req, res) => {
                   $or: [setFilters],
                 },
               },
+
               { $sort: { timestamp: -1 } },
               {
                 $skip: start,
@@ -63,6 +68,7 @@ export const getJobs = async (req, res) => {
                 $limit: limit + 1,
               },
             ],
+
             Count: [
               {
                 $match: {
@@ -73,15 +79,23 @@ export const getJobs = async (req, res) => {
                 $count: 'total',
               },
             ],
+
             AllJobs: [
               {
                 $count: 'total',
               },
             ],
+            Score: [
+              {
+                $project: {
+                  result: { $size: { $setIntersection: ['$tags', visitorSkillsJobs] } },
+                },
+              },
+            ],
           },
         },
       ])
-      console.log('test resutls', filters)
+
       res.status(200).json(jobs)
     } catch (err) {
       console.log(err)

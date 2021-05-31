@@ -17,12 +17,15 @@ const JobsList = () => {
   const location = useLocation()
   const dispatch = useDispatch()
 
-  const { filters, href } = useFilters()
+  const { filters, href, visitorSkills } = useFilters()
   const { allJobs, totalJobs } = useJobs()
   const { favorites } = useSelector((state) => state.visitor)
 
+  console.log('1. ---------- first is state redux', favorites, visitorSkills)
+
   useEffect(() => {
-    dispatch(getJobs(filters, favorites))
+    dispatch(getJobs(filters, favorites, visitorSkills))
+    console.log('2. -------- after first is state redux', favorites, visitorSkills)
   }, [location])
 
   return (
