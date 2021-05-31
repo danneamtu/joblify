@@ -4,14 +4,9 @@ import mongoose from 'mongoose'
 export const getJobs = async (req, res) => {
   if (req.query) {
     let filters = req.query
-
     const { pageStart, location, skills, favorites } = JSON.parse(filters.filterData)
-
     const visitorFavoritesJobs = filters.favorites
     const visitorSkillsJobs = filters.visitorSkills
-
-    console.log('--------------------------------------------the visitor skillsxxx', filters, visitorSkillsJobs)
-
     const limit = 10
     const start = (pageStart - 1) * limit //0
     let setFilters
@@ -39,7 +34,6 @@ export const getJobs = async (req, res) => {
       setFilters = {}
     }
 
-    // the problem
     if (favorites) {
       let ids = visitorFavoritesJobs.map(function (el) {
         return mongoose.Types.ObjectId(el)
@@ -48,7 +42,6 @@ export const getJobs = async (req, res) => {
         _id: { $in: ids },
       }
     }
-
     try {
       let jobs = await Jobs.aggregate([
         {
@@ -59,8 +52,20 @@ export const getJobs = async (req, res) => {
                   $or: [setFilters],
                 },
               },
-
-              { $sort: { timestamp: -1 } },
+              {
+                $addFields: {
+                  total_skills: { $size: '$tags' },
+                  skills_count: { $size: { $setIntersection: ['$tags', visitorSkillsJobs] } },
+                },
+              },
+              {
+                $addFields: {
+                  scoreFormula: { $cond: [{ $eq: ['$skills_count', 0] }, -1, { $divide: ['$skills_count', '$total_skills'] }] },
+                },
+              },
+              {
+                $sort: { scoreFormulas: -1 },
+              },
               {
                 $skip: start,
               },
@@ -68,7 +73,13 @@ export const getJobs = async (req, res) => {
                 $limit: limit + 1,
               },
             ],
-
+            Score: [
+              {
+                $project: {
+                  result: { $size: { $setIntersection: ['$tags', visitorSkillsJobs] } },
+                },
+              },
+            ],
             Count: [
               {
                 $match: {
@@ -83,13 +94,6 @@ export const getJobs = async (req, res) => {
             AllJobs: [
               {
                 $count: 'total',
-              },
-            ],
-            Score: [
-              {
-                $project: {
-                  result: { $size: { $setIntersection: ['$tags', visitorSkillsJobs] } },
-                },
               },
             ],
           },
@@ -109,10 +113,6 @@ export const getJobs = async (req, res) => {
 export const getJob = async (req, res) => {
   try {
     const id = req.params.id
-    // var id = req.params.id;
-    // const { id } = req.query
-    // console.log('this are params', req.params.id)
-    // const id = '60ac90d790eb0fd64052ec14'
     if (!mongoose.Types.ObjectId.isValid(id)) return false
     const job = await Jobs.findById(id)
     res.status(200).json(job)
@@ -121,6 +121,15 @@ export const getJob = async (req, res) => {
     res.status(404).json({ message: err.message || 'Job not found' })
   }
 }
+
+
+
+
+
+
+
+
+
 
 export const createJob = async (req, res) => {
   const { title, description, location } = req.body
