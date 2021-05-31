@@ -18,7 +18,7 @@ function HomePage() {
             <JobsDescription />
           </Col>
           <Col xl={2} show={'xl'} className="d-none d-xl-block">
-            {/* <Trends /> */}
+            <Trends />
           </Col>
         </Row>
       </Container>

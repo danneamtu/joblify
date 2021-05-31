@@ -28,11 +28,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const visitor = JSON.parse(localStorage.getItem('visitor'))
-
-    !visitor ? dispatch(createVisitor()) : dispatch(getVisitor(visitor.result._id))
-
-    setVisitor(visitor.result._id)
-    setUser(JSON.parse(localStorage.getItem('user')))
+    if (!visitor) {
+      dispatch(createVisitor())
+    } else {
+      dispatch(getVisitor(visitor.result._id))
+      setVisitor(visitor.result._id)
+      setUser(JSON.parse(localStorage.getItem('user')))
+    }
   }, [location])
 
   const logout = () => {

@@ -3,6 +3,7 @@ import { getSkills, addVisitorSkill, removeVisitorSkill, insertSkill, getAllSkil
 const router = express.Router()
 
 router.get('/', getSkills)
+
 router.post('/', addVisitorSkill)
 router.post('/remove', removeVisitorSkill)
 

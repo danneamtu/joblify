@@ -11,14 +11,15 @@ const skillsReducer = (state = initialState, { type, payload }) => {
     case ADD_SKILL_LOADING:
       return { ...state, loading: true }
     case ADD_SKILL_SUCCESS:
-      return { ...state, ...payload, loading: false }
+      return { ...state, ...payload }
     case ADD_SKILL_ERROR:
       return { error: payload.error || 'Skill cannot be added', loading: false }
 
     case GET_SKILLS_LOADING:
       return { ...state, loading: true }
     case GET_SKILLS_SUCCESS:
-      return { ...state, data: payload, loading: false }
+      // return { ...state, ...payload }
+      return { ...state, data: [...state.data, ...payload.data] }
     case GET_SKILLS_ERROR:
       return { error: payload.error || 'No skills', loading: false }
     default:

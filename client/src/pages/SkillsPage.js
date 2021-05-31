@@ -9,7 +9,7 @@ import { Container, Row, Col } from '../styled-components/responsive/responsive'
 function HomePage() {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <Container>
         <Row>
           <Col md={5} xl={4}>

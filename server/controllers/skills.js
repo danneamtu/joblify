@@ -6,9 +6,13 @@ export const getSkills = async (req, res) => {
     const start = Number(req.query.start) || 0
     const limit = Number(req.query.limit) || 9
 
-    console.log('this is skills controllers', req.query)
+    let skills
+    if (!start) {
+      skills = await Skills.find().sort({ total: -1 }).limit(limit)
+    } else {
+      skills = await Skills.find().sort({ total: -1 }).limit(limit).skip(start)
+    }
 
-    let skills = await Skills.find().sort({ total: -1 }).limit(limit).skip(start)
     res.status(200).json(skills)
   } catch (err) {
     console.log(err)

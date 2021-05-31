@@ -3,16 +3,15 @@ import mongoose from 'mongoose'
 
 export const getJobs = async (req, res) => {
   if (req.query) {
-    const filters = req.query
-    const { pageStart, location, skills, favorites } = JSON.parse(filters.filterData)
-    const visitorFavoritesJobs = filters.favorites
+    let filters = req.query
 
+    const { pageStart, location, skills, favorites } = JSON.parse(filters.filterData)
+
+    const visitorFavoritesJobs = filters.favorites
     const limit = 10
     const start = (pageStart - 1) * limit //0
-
     let setFilters
     let friendlyLocation
-
     if (location && skills) {
       setFilters = {
         $and: [{ city: friendlyLocation }, { tags: skills }],
@@ -45,8 +44,6 @@ export const getJobs = async (req, res) => {
         _id: { $in: ids },
       }
     }
-
-    console.log('------visitor favorite job', favorites)
 
     try {
       let jobs = await Jobs.aggregate([
@@ -84,14 +81,14 @@ export const getJobs = async (req, res) => {
           },
         },
       ])
-      console.log('..... the result', jobs)
+      console.log('test resutls', filters)
       res.status(200).json(jobs)
     } catch (err) {
       console.log(err)
       res.status(409).json({ message: err.message || 'Jobs not found' })
     }
   } else {
-    console.log('no req body')
+    throw new Error({ message: 'Please refresh the page or try again later' })
   }
 }
 
