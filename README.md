@@ -4,3 +4,6 @@ Joblify help to you match your technical skills with Front End Develper job requ
 
 ![Joblify](https://joblify.be/screenshot.png)
 
+## Technologies 
+#### React, Redux, Node.js, Express,  MongoDB, Fuse.js, Puppeteer
+
