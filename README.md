@@ -1,6 +1,6 @@
 # joblify
 
-Joblify - effective tool to find your job
+Joblify help to you match your technical skills with Front End Develper job requirements. To find your dream job, match with your personal skill first.
 
 ## SERVER
 
