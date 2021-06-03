@@ -19,14 +19,9 @@ function HomePage() {
 
   const noParams = isEmpty(params)
 
-  console.log('setskills', skills)
-  console.log('set no skills', noSkills)
-  console.log('33set no params', noParams)
   let show
   useEffect(() => {
-    console.log('44set no skills', skills.length)
     if (skills && skills.length < 3) {
-      console.log('this is true')
       show = true
     } else {
       show = false
@@ -41,9 +36,17 @@ function HomePage() {
           <Col md={5} xl={4}>
             <JobsList />
           </Col>
-          <Col md={7} xl={6} className="d-none d-md-block">
-            {skills && noParams ? <SkillsList /> : <JobsDescription />}
-          </Col>
+
+          {skills && noParams ? (
+            <Col md={7} xl={6}>
+              <SkillsList />
+            </Col>
+          ) : (
+            <Col md={7} xl={6} className="d-none d-md-block">
+              <JobsDescription />
+            </Col>
+          )}
+
           <Col xl={2} show={'xl'} className="d-none d-xl-block">
             <Trends />
           </Col>

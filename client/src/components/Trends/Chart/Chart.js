@@ -9,8 +9,6 @@ function Chart() {
   const getSlice = stateSkills.slice(0, 8)
   const theSkillsTotal = getSlice.map((item) => item.total)
 
-  console.log('---- the cart render')
-
   const dataChart = {
     labels: ['', '', '', '', '', '', ''],
     datasets: [

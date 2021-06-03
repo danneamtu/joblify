@@ -21,8 +21,6 @@ export const useFilters = (jobId = 0) => {
   const { skills } = useSelector((state) => state.visitor)
   const visitorSkills = skills.map((item) => item.skill)
 
-  console.log('visitor skills in use Filter', visitorSkills)
-
   if (!currentJobId) {
     if (lastJobIdFromState.data.data && totalJobs > 0) {
       const jobDetailsFromState = lastJobIdFromState.data.data[0].Jobs[0]

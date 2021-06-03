@@ -91,7 +91,7 @@ export const getJobs = async (req, res) => {
       }
     }
 
-    console.log('this is ', withScoreFormula, withOrder)
+   
 
     try {
       let jobs = await Jobs.aggregate([

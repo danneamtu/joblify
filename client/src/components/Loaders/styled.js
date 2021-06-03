@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { lightDarker, lightDark, darkLight, darkLighter } from '../../styled-components/typography/colors'
 
@@ -64,4 +65,36 @@ export const Tag = styled.div`
   height: 16px;
   border-radius: 4px;
   margin-right: 16px;
+`
+
+export const DynoContainer = styled.a`
+  background: ${darkLight};
+  border-radius: 5px;
+  padding: 14px;
+  border-radius: 5px;
+  margin-bottom: 16px;
+  text-decoration: none;
+  color: ${lightDark};
+  display: block;
+`
+export const DynoTitle = styled.p`
+  color: ${lightDark};
+  font-size: 18px;
+`
+export const DynoSubTitle = styled.p`
+  color: ${lightDark};
+  font-size: 16px;
+`
+export const SuperLink = styled(Link)`
+  margin-top: 16px;
+  padding: 8px 22px;
+  border: solid 1px ${lightDark};
+  color: ${lightDark};
+  border-radius: 35px;
+  display: inline-block;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    background: ${darkLighter};
+  }
 `

@@ -16,12 +16,9 @@ function Skills() {
   const { _id, skills } = useSelector((state) => state.visitor)
   const filterData = `start=${start}&limit=${limit}`
 
-  console.log('this is state sta', stateSkills)
-
   const loadMoreSkills = (totalResults) => {
     setStart(start + 18)
     dispatch(getSkills(filterData))
-    console.log('start', start, filterData)
   }
 
   return (
